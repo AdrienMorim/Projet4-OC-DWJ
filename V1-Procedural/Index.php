@@ -29,9 +29,24 @@
         die('Erreur : ' .$e->getMessage());
     }
 
+    //On recupère les 5 derniers chapitres
+    $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
 
+    while ($data = $req->fetch())
+    {?>
+        <div class="news">
+            <h3>
+                <?= htmlspecialchars($data['title']); ?>
+                <em>le <?= $data['creation_date_fr']; ?></em>
+            </h3>
+
+            <p>
+                <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
+                <em><a href="comments.php?chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            </p>
+        </div>
+    <?php} // fin de la boucle des chapitres
+    $req->closeCursor();
     ?>
     </body>
 </html>
-
-
