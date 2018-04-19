@@ -22,7 +22,7 @@
     //Connexion DataBase
     try
     {
-        $db = new PDO('mysql:host=localhost;dbname=projet4;charset=utf-8', 'root', 'root');
+        $db = new PDO('mysql:host=localhost;dbname=Projet4;charset=utf8', 'root', 'root');
     }
     catch (Exception $e)
     {
@@ -30,10 +30,11 @@
     }
 
     //On recupère les 5 derniers chapitres
-    $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
+    $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
 
     while ($data = $req->fetch())
-    {?>
+    {
+    ?>
         <div class="news">
             <h3>
                 <?= htmlspecialchars($data['title']); ?>
@@ -45,7 +46,8 @@
                 <em><a href="comments.php?chapter=<?= $data['id']; ?>">Commentaires</a></em>
             </p>
         </div>
-    <?php} // fin de la boucle des chapitres
+    <?php
+    } // fin de la boucle des chapitres
     $req->closeCursor();
     ?>
     </body>
