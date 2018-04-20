@@ -16,9 +16,9 @@
 
     <body>
         <h1>Billet simple pour l'Alaska</h1>
-        <h2>Nouveau Roman - Jean Forteroche</h2>
+        <h2>Listes des chapitres</h2>
         <p>
-            <a href="chapters.php">Voir la liste des chapitres</a>
+            <a href="index.php">Retour à la page d'Accueil</a>
         </p>
 
         <?php
@@ -32,12 +32,12 @@
             die('Erreur : ' .$e->getMessage());
         }
 
-        //On recupère le dernier chapitre
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
+        //On recupère les 5 derniers chapitres
+        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
 
         while ($data = $req->fetch())
         {
-        ?>
+            ?>
             <div class="news">
                 <h3>
                     <?= htmlspecialchars($data['title']); ?>
@@ -49,7 +49,7 @@
                     <em><a href="comments.php?chapter=<?= $data['id']; ?>">Commentaires</a></em>
                 </p>
             </div>
-        <?php
+            <?php
         } // fin de la boucle des chapitres
         $req->closeCursor();
         ?>
