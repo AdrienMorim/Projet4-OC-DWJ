@@ -65,6 +65,47 @@ session_start();
         }
         ?>
         <h3>Commentaires</h3>
+
+        <?php
+        $req->closeCursor(); // on libere le curseur pour la prochaine requete.
+
+        //Récuperation des données pour la pagination
+        $comment_per_page = 3;
+        $req = $db->prepare('SELECT COUNT(*) AS comments_total FROM comments WHERE id_chapter =:chapter');
+        $req->bindValue(':chapter', $_GET['chapter'],PDO::PARAM_INT);
+        $req->execute();
+
+        $comments_number = $req->fetch();
+        $comments_total = $comments_number['comments_total'];
+        $pages_number = ceil($comments_total/$comment_per_page);
+
+        if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $pages_number){
+            $_GET['page'] = intval($_GET['page']);
+            $current_page = $_GET['page'];
+        }else{
+            $current_page = 1;
+        }
+
+        $first_page = ($current_page-1)* $comment_per_page;
+
+        $req->closeCursor();
+
+        //Recuperation des commentaires
+        $req = $db->prepare('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date DESC LIMIT ?, ?');
+        $req->bindParam(1,$_GET['chapter'], PDO::PARAM_INT);
+        $req->bindParam(2,$first_page, PDO::PARAM_INT);
+        $req->bindParam(3,$comment_per_page, PDO::PARAM_INT);
+        $req->execute();
+
+        while ($data = $req->fetch())
+        {
+            ?>
+            <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
+            <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+            <?php
+        } // fin de la boucle des commentaires
+        ?>
+
         <!-- Formulaire d'ajout de commentaire -->
         <div class="news">
             <form action="comments_post.php?chapter=<?php echo $_GET['chapter'];?>" method="POST">
@@ -88,20 +129,19 @@ session_start();
                 </button>
             </form>
         </div>
-        <?php
-        $req->closeCursor(); // on libere le curseur pour la prochaine requete.
 
-        //Recuperation des commentaires
-        $req = $db->prepare('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date');
-        $req->execute(array($_GET['chapter']));
-
-        while ($data = $req->fetch())
-        {
-        ?>
-            <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
-            <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
         <?php
+        //Affichage de la pagination
+        echo '<div class="pagination"> Pages : ';
+        for ($i = 1 ; $i <= $pages_number ; $i++){
+            if ($i == $current_page){
+                echo '<span>' . $i . '</span>';
+            }else{
+                echo '<a href="comments.php?chapter=' . $_GET['chapter'] . '&amp;page=' . $i . '">' . $i . '</a>';
+            }
         }
+        echo '</div>';
+
         $req->closeCursor();
         ?>
     </body>
