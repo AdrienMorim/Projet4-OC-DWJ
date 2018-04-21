@@ -21,6 +21,7 @@
             <a href="chapters.php">Voir la liste des chapitres</a>
         </p>
 
+
         <?php
         //Connexion DataBase
         try
@@ -33,7 +34,7 @@
         }
 
         //On recupère le dernier chapitre
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
+        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 1');
 
         while ($data = $req->fetch())
         {
@@ -52,6 +53,17 @@
         <?php
         } // fin de la boucle des chapitres
         $req->closeCursor();
+
+        //On recupère le dernier commentaire
+        $req = $db->prepare('SELECT author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM comments WHERE id_chapters ORDER BY creation_date DESC LIMIT 1');
+
+        while ($data = $req->fetch())
+        {
+        ?>
+            <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
+            <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+        <?php
+        }
         ?>
     </body>
 </html>
