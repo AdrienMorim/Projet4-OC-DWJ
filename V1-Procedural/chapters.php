@@ -32,8 +32,28 @@
             die('Erreur : ' .$e->getMessage());
         }
 
-        //On recupère les 5 derniers chapitres
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
+        //Récuperation des données pour la pagination
+        $chapter_per_page = 3;
+        $req = $db->query('SELECT COUNT(id) AS chapters_total FROM chapters');
+        $chapters_number = $req->fetch();
+        $chapters_total = $chapters_number['chapters_total'];
+        $pages_number = ceil($chapters_total/$chapter_per_page);
+
+        if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $pages_number){
+            $_GET['page'] = intval($_GET['page']);
+            $current_page = $_GET['page'];
+        }else{
+            $current_page = 1;
+        }
+
+        $first_page = ($current_page-1)* $chapter_per_page;
+        $req->closeCursor();
+
+        //On recupère les 3 derniers chapitres
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT ?, ?');
+        $req->bindParam(1,$first_page, PDO::PARAM_INT);
+        $req->bindParam(2,$chapter_per_page, PDO::PARAM_INT);
+        $req->execute();
 
         while ($data = $req->fetch())
         {
@@ -52,6 +72,19 @@
             <?php
         } // fin de la boucle des chapitres
         $req->closeCursor();
+        ?>
+
+        <!-- Pagination avec 1ère méthode -->
+        <?php
+        echo '<div class=pagination> Pages : ';
+        for($i = 1 ; $i <= $pages_number ; $i++){
+            if ($i == $current_page){
+                echo '<span> ' . $i . ' </span>'; // affiche la page courante sans lien
+            } else{
+                echo '<a href="chapters.php?page=' . $i . '">' . $i . '</a>';
+            }
+        }
+        echo '</div>'
         ?>
     </body>
 </html>
