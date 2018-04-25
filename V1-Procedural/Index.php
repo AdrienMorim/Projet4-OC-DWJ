@@ -20,13 +20,16 @@
         <p>
             <a href="chapters.php">Voir la liste des chapitres</a>
         </p>
+        <p>
+            <a href="admin/create_chapter.php">Créer un nouveau chapitre</a>
+        </p>
 
 
         <?php
         //Connexion DataBase
         try
         {
-            $db = new PDO('mysql:host=localhost;dbname=Projet4;charset=utf8', 'root', 'root');
+            $db = new PDO('mysql:host=localhost;dbname=Projet4;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch (Exception $e)
         {
@@ -55,7 +58,7 @@
         $req->closeCursor();
 
         //On recupère le dernier commentaire
-        $req = $db->prepare('SELECT author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM comments WHERE id_chapters ORDER BY creation_date DESC LIMIT 1');
+        $req = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 1');
 
         while ($data = $req->fetch())
         {
