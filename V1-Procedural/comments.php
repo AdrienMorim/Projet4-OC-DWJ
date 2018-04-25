@@ -108,7 +108,7 @@ session_start();
 
         <!-- Formulaire d'ajout de commentaire -->
         <div class="news">
-            <form action="comments_post.php?chapter=<?php echo $_GET['chapter'];?>" method="POST">
+            <form action="comments_post.php?chapter=<?= $_GET['chapter'];?>" method="POST">
                 <h3> Ajouter votre commentaire:</h3>
                 <p>
                     <label for="author">Auteur

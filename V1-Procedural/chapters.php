@@ -67,7 +67,10 @@
                 <p>
                     <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
                     <em><a href="comments.php?chapter=<?= $data['id']; ?>">Commentaires</a></em>
+                    <em><a href="admin/update_chapter.php?chapter=<?= $data['id']; ?>">Mettre à jour</a></em>
+                    <em><a href="admin/delete_chapter.php?chapter=<?= $data['id']; ?>">Supprimer</a></em>
                 </p>
+
             </div>
             <?php
         } // fin de la boucle des chapitres
