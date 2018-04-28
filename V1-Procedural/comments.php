@@ -29,6 +29,7 @@ session_start();
             <a href="index.php">Retour à la page d'Accueil</a>
         </p>
 
+
         <?php
         //Connexion DataBase
         try
@@ -64,6 +65,11 @@ session_start();
         <?php
         }
         ?>
+
+        <p>
+            <a href="admin/moderate_comments.php?chapter=<?= $_GET['chapter']; ?>">Administration des commentaires</a>
+        </p>
+
         <h3>Commentaires</h3>
 
         <?php
@@ -90,8 +96,8 @@ session_start();
 
         $req->closeCursor();
 
-        //Recuperation des commentaires
-        $req = $db->prepare('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date DESC LIMIT ?, ?');
+        //Recuperation des 3 derniers commentaires
+        $req = $db->prepare('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date DESC LIMIT ?, ?');
         $req->bindParam(1,$_GET['chapter'], PDO::PARAM_INT);
         $req->bindParam(2,$first_page, PDO::PARAM_INT);
         $req->bindParam(3,$comment_per_page, PDO::PARAM_INT);
@@ -102,7 +108,9 @@ session_start();
             ?>
             <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
             <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+            <em><a href="comments_report.php?chapter=<?= $_GET['chapter']; ?>&amp;id=<?= $data['id']; ?>&amp;reporting=<?= $data['reporting']; ?>">Signaler le commentaire</a></em>
             <?php
+
         } // fin de la boucle des commentaires
         ?>
 
@@ -135,9 +143,9 @@ session_start();
         echo '<div class="pagination"> Pages : ';
         for ($i = 1 ; $i <= $pages_number ; $i++){
             if ($i == $current_page){
-                echo '<span>' . $i . '</span>';
+                echo '<span>' . $i . ' </span>';
             }else{
-                echo '<a href="comments.php?chapter=' . $_GET['chapter'] . '&amp;page=' . $i . '">' . $i . '</a>';
+                echo '<span><a href="comments.php?chapter=' . $_GET['chapter'] . '&amp;page=' . $i . '">' . $i . '</a> </span>';
             }
         }
         echo '</div>';
