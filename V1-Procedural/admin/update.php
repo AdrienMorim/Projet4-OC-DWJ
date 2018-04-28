@@ -14,7 +14,7 @@ if (isset($_POST['author'], $_POST['title'], $_POST['content']))
         {
             die('Erreur : ' .$e->getMessage());
         }
-        // Effectuer ici la requête qui insère le message
+        // Effectuer ici la requête qui met à jour le chapitre
         $req = $db->prepare('UPDATE chapters SET title= :title, author= :author, content= :content, creation_date= NOW() WHERE id= :chapter');
         $req->execute(array(
             'title'=>$_POST['title'],
