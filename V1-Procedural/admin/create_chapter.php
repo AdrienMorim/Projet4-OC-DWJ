@@ -55,9 +55,6 @@ catch (Exception $e)
             <button>
                 <input type="submit" value="Envoyer"/>
             </button>
-            <button>
-                <input type="button" value="Rafraîchir"/>
-            </button>
         </form>
     </body>
 </html>
