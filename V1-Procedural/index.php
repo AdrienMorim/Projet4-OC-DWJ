@@ -18,8 +18,18 @@
         <h1>Billet simple pour l'Alaska</h1>
         <h2>Nouveau Roman - Jean Forteroche</h2>
         <p>
-            <a href="chapters.php">Voir la liste des chapitres</a>
+            <a href="about.php">À propos</a>
         </p>
+        <p>
+            <a href="chapters.php">Chapitres</a>
+        </p>
+        <p>
+            <a href="register.php">Inscription</a>
+        </p>
+        <p>
+            <a href="login.php">Connexion</a>
+        </p>
+
         <p>
             <a href="admin/create_chapter.php">Créer un nouveau chapitre</a>
         </p>
@@ -35,7 +45,6 @@
         {
             die('Erreur : ' .$e->getMessage());
         }
-
         //On recupère le dernier chapitre
         $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 1');
 
