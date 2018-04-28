@@ -30,7 +30,7 @@
         }
         ?>
 
-        <form action="create_registration.php" method="post">
+        <form action="create_user.php" method="post">
             <div class="col-md-offset-2 col-md-8">
                 <div class="form-group row">
                     <h2 class="col-md-offset-5 col-md-4">Inscription</h2>
