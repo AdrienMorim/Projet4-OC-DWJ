@@ -17,23 +17,26 @@
     <body>
         <h1>Billet simple pour l'Alaska</h1>
         <h2>Nouveau Roman - Jean Forteroche</h2>
-        <p>
-            <a href="about.php">À propos</a>
-        </p>
-        <p>
-            <a href="chapters.php">Chapitres</a>
-        </p>
-        <p>
-            <a href="register.php">Inscription</a>
-        </p>
-        <p>
-            <a href="login.php">Connexion</a>
-        </p>
+        <nav class="menu">
 
-        <p>
-            <a href="admin/create_chapter.php">Créer un nouveau chapitre</a>
-        </p>
-
+            <ul> <!-- avec emmet: ul>li*4>a +[TAB]-->
+                <li>
+                    <a href="about.php">À propos</a>
+                </li>
+                <li>
+                    <a href="chapters.php">Chapitres</a>
+                </li>
+                <li>
+                    <a href="register.php">Inscription</a>
+                </li>
+                <li>
+                    <a href="login.php">Connexion</a>
+                </li>
+                <li>
+                    <a href="admin/create_chapter.php">Créer un nouveau chapitre</a>
+                </li>
+            </ul>
+        </nav>
 
         <?php
         //Connexion DataBase
