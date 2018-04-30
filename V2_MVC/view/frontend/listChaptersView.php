@@ -4,7 +4,7 @@
 
     <ul> <!-- avec emmet: ul>li*5>a +[TAB]-->
         <li>
-            <a href="../V2-MVC/index.php">Accueil</a>
+            <a href="../V2_MVC/index.php">Accueil</a>
         </li>
         <li>
             <a href="about.php">À propos</a>
@@ -37,7 +37,7 @@ while ($data = $chapters->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
-            <em><a href="../V2-MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <em><a href="../V2_MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
         </p>
     </div>
     <?php

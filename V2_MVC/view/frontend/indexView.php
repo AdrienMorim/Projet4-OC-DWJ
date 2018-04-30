@@ -7,7 +7,7 @@
         <a href="about.php">À propos</a>
     </li>
     <li>
-        <a href="../V2-MVC/index.php?action=listChapters">Chapitres</a>
+        <a href="../V2_MVC/index.php?action=listChapters">Chapitres</a>
     </li>
     <li>
         <a href="register.php">Inscription</a>
@@ -37,7 +37,7 @@ while ($data = $chapter->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
-            <em><a href="../V2-MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <em><a href="../V2_MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
         </p>
     </div>
     <?php

@@ -4,13 +4,13 @@
 
     <ul> <!-- avec emmet: ul>li*5>a +[TAB]-->
         <li>
-            <a href="../V2-MVC/index.php">Accueil</a>
+            <a href="../V2_MVC/index.php">Accueil</a>
         </li>
         <li>
             <a href="about.php">À propos</a>
         </li>
         <li>
-            <a href="../V2-MVC/index.php?action=listChapters">Chapitres</a>
+            <a href="../V2_MVC/index.php?action=listChapters">Chapitres</a>
         </li>
         <li>
             <a href="register.php">Inscription</a>
@@ -57,7 +57,7 @@ $comments->closeCursor();
 <?php require('template.php'); ?>
 
 <div class="news">
-    <form action="../V2-MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
+    <form action="../V2_MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
         <h3> Ajouter votre commentaire:</h3>
         <p>
             <label for="author">Auteur
