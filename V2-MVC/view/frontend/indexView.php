@@ -37,7 +37,7 @@ while ($data = $chapter->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
-            <em><a href="../V2-MVC/index.php?action=chapter&amp;chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <em><a href="../V2-MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
         </p>
     </div>
     <?php
