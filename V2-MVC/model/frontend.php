@@ -1,6 +1,6 @@
 <?php
 
-// Le dernier chapitre
+// Récupérer le dernier chapitre
 function getLastChapter()
 {
     $db = dbConnect();
@@ -9,7 +9,7 @@ function getLastChapter()
     return $req;
 }
 
-// Tous les chapitres
+// Récupérer tous les chapitres
 function getChapters()
 {
     $db = dbConnect();
@@ -18,7 +18,7 @@ function getChapters()
     return $req;
 }
 
-// Un chapitre via son id
+// Récupérer un chapitre via son id
 function getChapter($id_chapter)
 {
     $db = dbConnect();
@@ -30,7 +30,7 @@ function getChapter($id_chapter)
     return $chapter;
 }
 
-// Le dernier commentaire
+// Récupérer le dernier commentaire
 function getLastComment()
 {
     $db = dbConnect();
@@ -39,7 +39,7 @@ function getLastComment()
     return $comment;
 }
 
-// Les commentaires d'un chapitre
+// Récupération des commentaires d'un chapitre
 function getComments($id_chapter)
 {
     $db = dbConnect();
@@ -50,21 +50,24 @@ function getComments($id_chapter)
     return $comments;
 }
 
-// connexion à la database
+// Poster un commentaire
+function postComment($id_chapter, $author, $comment)
+{
+    $db = dbConnect();
+
+    $comments = $db->prepare('INSERT INTO comments (id_chapter, author, comment, comment_date) VALUES( ?, ?, ?, NOW())');
+    $postComment = $comments->execute(array($id_chapter, $author, $comment));
+
+    return $postComment;
+}
+
+// Connexion à la database
 function dbConnect()
 {
-    try
-    {
-        $host = 'localhost';
-        $database = 'projet4';
-        $username = 'root';
-        $password = 'root';
-        $db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        echo 'Veuillez patienter.. La base de données n\'est pas encore disponible. <br />';
-        die('Erreur : ' . $e->getMessage());
-    }
+    $host = 'localhost';
+    $database = 'projet4';
+    $username = 'root';
+    $password = 'root';
+    $db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    return $db;
 }
