@@ -52,7 +52,29 @@ while ($comment = $comments->fetch())
 $comments->closeCursor();
 ?>
 
-
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php');
+<?php require('template.php'); ?>
+
+<div class="news">
+    <form action="../V2-MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
+        <h3> Ajouter votre commentaire:</h3>
+        <p>
+            <label for="author">Auteur
+                <input type="text" name="author" id="author" placeholder="Indiquez ici votre nom" value="<?php
+                if (isset($_SESSION['author'])){
+                    echo htmlspecialchars($_SESSION['author']);
+                }?>"
+                />
+            </label>
+        </p>
+        <p>
+            <label for="comment">Commentaire
+                <textarea name="comment" id="comment" placeholder="Indiquez ici votre commentaire"></textarea>
+            </label>
+        </p>
+        <button>
+            <input type="submit" value="Envoyer votre commentaire"/>
+        </button>
+    </form>
+</div>
