@@ -1,9 +1,17 @@
 <?php
 
 namespace V2_MVC\Model;
+use \PDO;
 
+/**
+ * Class Manager
+ * @package V2_MVC\Model
+ */
 class Manager
 {
+    /**
+     * @return PDO
+     */
     protected function dbConnect()
     {
         $host = 'localhost';
@@ -11,7 +19,7 @@ class Manager
         $username = 'root';
         $password = 'root';
 
-        $db = new \PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         return $db;
     }
 }
