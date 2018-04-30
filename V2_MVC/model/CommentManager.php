@@ -4,8 +4,15 @@ namespace V2_MVC\Model;
 
 require_once('model/Manager.php');
 
+/**
+ * Class CommentManager
+ * @package V2_MVC\Model
+ */
 class CommentManager extends Manager
 {
+    /**
+     * @return bool|\PDOStatement
+     */
     public function getLastComment()
     {
         $db = $this->dbConnect();
@@ -14,6 +21,10 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    /**
+     * @param $id_chapter
+     * @return bool|\PDOStatement
+     */
     public function getComments($id_chapter)
     {
         $db = $this->dbConnect();
@@ -24,6 +35,12 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    /**
+     * @param $id_chapter
+     * @param $author
+     * @param $comment
+     * @return bool
+     */
     public function postComment($id_chapter, $author, $comment)
     {
         $db = $this->dbConnect();
