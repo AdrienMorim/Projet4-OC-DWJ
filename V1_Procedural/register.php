@@ -17,19 +17,6 @@
     <body>
         <h1>Billet simple pour l'Alaska</h1>
 
-        <?php
-
-        //Connexion DataBase
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=Projet4;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' .$e->getMessage());
-        }
-        ?>
-
         <form action="create_user.php" method="post">
             <div class="col-md-offset-2 col-md-8">
                 <div class="form-group row">
