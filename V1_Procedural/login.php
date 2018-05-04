@@ -18,19 +18,6 @@
         <h1>Billet simple pour l'Alaska</h1>
         <h2>Connexion</h2>
 
-        <?php
-
-        //Connexion DataBase
-        try
-        {
-            $db = new PDO('mysql:host=localhost;dbname=Projet4;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' .$e->getMessage());
-        }
-        ?>
-
         <form action="log.php" method="POST">
             <p>
                 <label for="pseudo">Pseudo
