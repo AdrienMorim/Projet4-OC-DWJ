@@ -7,7 +7,7 @@
             <a href="../V2_MVC/index.php">Accueil</a>
         </li>
         <li>
-            <a href="about.php">À propos</a>
+            <a href="../V2_MVC/index.php?action=about">À propos</a>
         </li>
         <li>
             <a href="../V2_MVC/index.php?action=listChapters">Chapitres</a>
