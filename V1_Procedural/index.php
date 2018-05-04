@@ -32,8 +32,18 @@
                 <li>
                     <a href="login.php">Connexion</a>
                 </li>
+                <br/>
                 <li>
                     <a href="admin/create_chapter.php">Créer un nouveau chapitre</a>
+                </li>
+                <li>
+                    <a href="admin/update_chapter.php?chapter=<?= $data['id']; ?>">Mettre à jour</a>
+                </li>
+                <li>
+                    <a href="admin/delete_chapter.php?chapter=<?= $data['id']; ?>">Supprimer</a>
+                </li>
+                <li>
+                    <a href="admin/moderate_comments.php?chapter=<?= $_GET['chapter']; ?>">Administration des commentaires</a>
                 </li>
             </ul>
         </nav>
