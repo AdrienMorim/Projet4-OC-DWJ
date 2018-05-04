@@ -13,7 +13,7 @@
             <a href="../V2_MVC/index.php?action=listChapters">Chapitres</a>
         </li>
         <li>
-            <a href="register.php">Inscription</a>
+            <a href="../V2_MVC/index.php?action=login">Inscription</a>
         </li>
         <li>
             <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
