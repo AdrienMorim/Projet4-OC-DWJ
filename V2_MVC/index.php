@@ -1,6 +1,7 @@
 <?php
 
 require('controller/frontend.php');
+require('controller/backend.php');
 
 // Gestion des exception
 try{
@@ -11,6 +12,11 @@ try{
         {
             lastOne();
             //require('view/frontend/loginView.php');
+        }
+        // À propos de l'auteur
+        elseif ($_GET['action'] == 'about')
+        {
+            aboutAuthor();
         }
         // Liste des chapitres
         elseif ($_GET['action'] == 'listChapters')
