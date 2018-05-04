@@ -10,10 +10,10 @@
             <a href="about.php">À propos</a>
         </li>
         <li>
-            <a href="register.php">Inscription</a>
+            <a href="../V2_MVC/index.php?action=login">Inscription</a>
         </li>
         <li>
-            <a href="login.php">Connexion</a>
+            <a href="../V2_MVC/index.php?action=login">Connexion</a>
         </li>
     </ul>
 
