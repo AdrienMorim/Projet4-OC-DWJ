@@ -1,13 +1,13 @@
 <?php
 
 //require('model/frontend.php');
-require_once('model/ChapterManager.php');
-require_once('model/CommentManager.php');
-require_once('model/UsersManager.php');
+require_once('model/frontend/ChapterManager.php');
+require_once('model/frontend/CommentManager.php');
+require_once('model/frontend/UsersManager.php');
 
-use V2_MVC\Model\ChapterManager;
-use V2_MVC\Model\CommentManager;
-use V2_MVC\Model\UsersManager;
+use V2_MVC\Model\Frontend\ChapterManager;
+use V2_MVC\Model\Frontend\CommentManager;
+use V2_MVC\Model\Frontend\UsersManager;
 
 function lastOne()
 {
@@ -24,6 +24,11 @@ function listChapters()
     $chapterManager = new ChapterManager();
     $chapters = $chapterManager->getChapters();
     require('view/frontend/listChaptersView.php');
+}
+
+function aboutAuthor()
+{
+    require('view/frontend/aboutView.php');
 }
 
 function chapter()
