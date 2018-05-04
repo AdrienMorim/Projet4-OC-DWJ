@@ -1,8 +1,8 @@
 <?php
 
-namespace V2_MVC\Model;
+namespace V2_MVC\Model\Frontend;
 
-require_once('model/Manager.php');
+require_once('model/frontend/Manager.php');
 
 /**
  * Class ChapterManager
