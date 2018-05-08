@@ -54,6 +54,17 @@ try{
                 throw new Exception('Aucun identifiant de chapitre envoyé !');
             }
         }
+        elseif ($_GET['action'] == 'report')
+        {
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0 && isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                reportingComment();
+            }
+            else
+            {
+                throw new Exception('Le commentaire a déjà été signalé, merci.');
+            }
+        }
         // Page de connexion
         elseif($_GET['action'] == 'login')
         {
