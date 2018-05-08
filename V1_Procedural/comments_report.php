@@ -18,9 +18,9 @@ if (isset($_POST['author'], $_POST['comment']))
             die('Erreur : ' . $e->getMessage());
         }
         // Effectuer ici la requête qui insère le commentaire
-        $req = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id');
+        $req = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
         $req->bindValue(':reporting', 1, PDO::PARAM_INT);
-        $req->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+        $req->bindPAram(':id_comment', $_GET['id'], PDO::PARAM_INT);
         $req->execute();
         /*$req->execute(array(
             'reporting' => TRUE,
