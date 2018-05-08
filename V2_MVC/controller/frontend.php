@@ -55,6 +55,24 @@ function addComment($id_chapter, $author, $comment)
     }
 }
 
+function reportingComment()
+{
+    $chapterManager = new ChapterManager();
+    $commentManager = new CommentManager();
+
+    $chapter = $chapterManager->getChapter($_GET['id_chapter']);
+    $reportComment = $commentManager->reportComment($_GET['id']);
+
+    if($reportComment === true)
+    {
+        throw new Exception('Le commentaire a déjà été signalé, merci.');
+    }
+    else
+    {
+        header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $id_chapter);
+    }
+}
+
 function login()
 {
     require('view/frontend/loginView.php');
