@@ -54,15 +54,23 @@ try{
                 throw new Exception('Aucun identifiant de chapitre envoyé !');
             }
         }
+        // Signaler un commentaire
         elseif ($_GET['action'] == 'report')
         {
-            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0 && isset($_GET['id']) && $_GET['id'] > 0)
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
             {
-                reportingComment();
+                if (isset($_GET['id']) && $_GET['id'] > 0)
+                {
+                    reportingComment();
+                }
+                else
+                {
+                    throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
+                }
             }
             else
             {
-                throw new Exception('Le commentaire a déjà été signalé, merci.');
+                throw new Exception('Aucun identifiant de chapitre envoyé pour revenir sur la page précédente!');
             }
         }
         // Page de connexion
