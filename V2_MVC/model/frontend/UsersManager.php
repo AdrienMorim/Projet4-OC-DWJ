@@ -5,8 +5,8 @@ namespace V2_MVC\Model\Frontend;
 require_once('model/frontend/Manager.php');
 
 /**
- * Class LoginManager
- * @package V2_MVC\Model
+ * Class UsersManager
+ * @package V2_MVC\Model\Frontend
  */
 class UsersManager extends Manager
 {

@@ -6,7 +6,7 @@ require_once('model/frontend/Manager.php');
 
 /**
  * Class CommentManager
- * @package V2_MVC\Model
+ * @package V2_MVC\Model\Frontend
  */
 class CommentManager extends Manager
 {

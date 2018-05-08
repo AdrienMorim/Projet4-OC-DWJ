@@ -5,7 +5,7 @@ use \PDO;
 
 /**
  * Class Manager
- * @package V2_MVC\Model
+ * @package V2_MVC\Model\Frontend
  */
 class Manager
 {

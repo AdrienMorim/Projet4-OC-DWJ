@@ -6,7 +6,7 @@ require_once('model/frontend/Manager.php');
 
 /**
  * Class ChapterManager
- * @package V2_MVC\Model
+ * @package V2_MVC\Model\Frontend
  */
 class ChapterManager extends Manager
 {
