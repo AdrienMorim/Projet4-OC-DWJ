@@ -50,4 +50,18 @@ class CommentManager extends Manager
 
         return $postComment;
     }
+
+    public function reportComment($id_comment)
+    {
+        $db = $this->dbConnect();
+
+        $comments = $db->prepare('UPDATE comments SET reporting= :reporting WHERE id= :id_comment');
+        $comments->bindValue(':reporting', 1, \PDO::PARAM_INT);
+        $comments->bindParam(':id_comment', $id_comment, \PDO::PARAM_INT);
+        $report = $comments->execute();
+        //$comments = $db->prepare('UPDATE comments SET reporting= ? WHERE id= ?');
+        //$report = $comments->execute(array($reporting, $id_comment));
+
+        return $report;
+    }
 }
