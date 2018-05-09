@@ -94,25 +94,33 @@ function logUser($pseudo, $pass)
         throw new Exception('Wrong username or password');
     }
     else{
-        if($proper_pass)
+        if($proper_pass && $user['id_group'] == 2)
         {
-            session_start();
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['pseudo'] = $user['pseudo'];
+                session_start();
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['pseudo'] = $user['pseudo'];
 
-            header('Location: ../V2_MVC/index.php');
+                header('Location: ../V2_MVC/index.php');
         }
+        elseif($proper_pass && $user['id_group'] == 1)
+            {
+                session_start();
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['pseudo'] = $user['pseudo'];
+
+                header('Location: ../V2_MVC/admin/index.php');
+            }
         else
         {
-            throw new Exception('Wrong username or password');
+            throw new Exception('Wrong Username or Password');
         }
     }
 }
 
-function registerUser($pseudo, $password_hache, $email){
+function registerUser($id_group, $pseudo, $password_hache, $email){
 
     $userManager = new UsersManager();
-    $registerUser = $userManager->createUser($pseudo, $password_hache, $email);
+    $registerUser = $userManager->createUser($id_group, $pseudo, $password_hache, $email);
     if($registerUser === false)
     {
         throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
