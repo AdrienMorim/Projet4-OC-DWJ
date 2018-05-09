@@ -11,7 +11,6 @@ try{
         if($_GET['action'] == '')
         {
             lastOne();
-            //require('view/frontend/loginView.php');
         }
         // À propos de l'auteur
         elseif ($_GET['action'] == 'about')
@@ -77,7 +76,6 @@ try{
         elseif($_GET['action'] == 'login')
         {
             login();
-            //require('view/frontend/loginView.php');
         }
         // Connexion
         elseif ($_GET['action'] == 'log')
@@ -106,7 +104,7 @@ try{
                     // On vérifie que les 2 mots de passe sont identiques.
                     if ($_POST['password'] == $_POST['password_confirm'])
                     {
-                        registerUser($pseudo, $password_hache, $email);
+                        registerUser(2, $pseudo, $password_hache, $email);
                     }
                     else
                     {
@@ -123,6 +121,27 @@ try{
                 throw new Exception('Tous les champs doivent être remplis !');
             }
         }
+        //Creation d'un chapitre
+        elseif ($_GET['action'] == 'createChapter')
+        {
+            if (isset($_POST['author'], $_POST['title'], $_POST['content']))
+            {
+                if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+                {
+                    postChapter($_POST['author'], $_POST['title'], $_POST['content']);
+                }
+                else
+                {
+
+                    throw new Exception('Tous les champs ne sont pas remplis..');
+                }
+            }
+            else
+            {
+                throw new Exception('Aucun auteur, titre ou contenu envoyé !');
+            }
+        }
+        //
     }
 // Retourne à l'index.
     else
