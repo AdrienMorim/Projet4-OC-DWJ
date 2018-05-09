@@ -8,8 +8,13 @@
 
 namespace V2_MVC\Model\Backend;
 
+require_once ('model/backend/Manager.php');
 
-class ChapterManager
+/**
+ * Class ChapterManager
+ * @package V2_MVC\Model\Backend
+ */
+class ChapterManager extends Manager
 {
 
 }
