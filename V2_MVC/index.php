@@ -1,7 +1,6 @@
 <?php
 
 require('controller/frontend.php');
-require('controller/backend.php');
 
 // Gestion des exception
 try{
@@ -11,6 +10,10 @@ try{
         if($_GET['action'] == '')
         {
             lastOne();
+        }
+        elseif ($_GET['action'] == 'admin')
+        {
+            dashbord();
         }
         // À propos de l'auteur
         elseif ($_GET['action'] == 'about')
