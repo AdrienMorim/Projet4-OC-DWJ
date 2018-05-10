@@ -108,7 +108,7 @@ function logUser($pseudo, $pass)
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
 
-                header('Location: ../V2_MVC/admin/index.php');
+                header('Location: ../V2_MVC/index.php?action=admin');
             }
         else
         {
