@@ -7,16 +7,10 @@
             <a href="../V2_MVC/index.php?action=dashbord">Tableau de bord</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=createChapter">Créer un chapitre</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=updateChapter">Mise à jour d'un chapitre</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=deleteChapter">Supprimer un chapitre</a>
-        </li>
-        <li>
             <a href="../V2_MVC/index.php?action=adminComment">Administration des commentaires</a>
+        </li>
+        <li>
+            <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
         </li>
     </ul>
 
@@ -25,6 +19,9 @@
 <?php ob_start(); ?>
 
     <h1>Billet simple pour l'Alaska</h1>
+    <li>
+        <a href="../V2_MVC/index.php?action=createChapter">Créer un chapitre</a>
+    </li>
     <h2>Liste des chapitres</h2>
 
 <?php
