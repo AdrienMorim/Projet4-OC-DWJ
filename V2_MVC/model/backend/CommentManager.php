@@ -18,7 +18,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $comments = $db->query('SELECT author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY reporting DESC, comment_date DESC');
+        $comments = $db->query('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY reporting DESC, comment_date DESC');
         return $comments;
     }
 
@@ -26,7 +26,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $reportComments = $db->query('SELECT author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
+        $reportComments = $db->query('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
         return $reportComments;
     }
     /**
