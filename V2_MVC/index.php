@@ -148,6 +148,10 @@ try{
                 throw new Exception('Tous les champs doivent être remplis !');
             }
         }
+        elseif ($_GET['action'] == 'logout')
+        {
+            logoutUser();
+        }
         // ADMIN - Page pour créer un chapitre
         elseif ($_GET['action'] == 'adminNewChapter')
         {
