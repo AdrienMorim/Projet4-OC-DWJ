@@ -99,6 +99,18 @@ function logUser($pseudo, $pass)
                 session_start();
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
+                $_SESSION['pass'] = $user['pass'];
+                $_SESSION['id_group'] = $user['id_group'];
+
+                $pseudo = $_SESSION['pseudo'];
+                $pass_hash = $_SESSION['pass'];
+                $group = $_SESSION['id_group'];
+                $id = $_SESSION['id'];
+
+                setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
+                setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
+                setcookie('id_group', $group, time() + 1800, null, null, false, true);
+                setcookie('id', $id, time() + 1800, null, null, false, true);
 
                 header('Location: ../V2_MVC/index.php');
         }
@@ -107,6 +119,18 @@ function logUser($pseudo, $pass)
                 session_start();
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
+                $_SESSION['pass'] = $user['pass'];
+                $_SESSION['id_group'] = $user['id_group'];
+
+                $pseudo = $_SESSION['pseudo'];
+                $pass_hash = $_SESSION['pass'];
+                $group = $_SESSION['id_group'];
+                $id = $_SESSION['id'];
+
+                setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
+                setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
+                setcookie('id_group', $group, time() + 1800, null, null, false, true);
+                setcookie('id', $id, time() + 1800, null, null, false, true);
 
                 header('Location: ../V2_MVC/index.php?action=dashbord');
             }
@@ -129,4 +153,20 @@ function registerUser($id_group, $pseudo, $password_hache, $email){
     {
         header('Location: ../V2_MVC/index.php');
     }
+}
+
+function logoutUser()
+{
+    session_start();
+    // Suppression des variables de session et de la session
+    $_SESSION = array();
+    session_destroy();
+
+    // Suppression des cookies de connexion automatique
+    setcookie('pseudo', '');
+    setcookie('pass', '');
+    setcookie('id_group', '');
+    setcookie('id', '');
+
+    header('Location: ../V2_MVC/index.php');
 }
