@@ -7,19 +7,13 @@
             <a href="../V2_MVC/index.php?action=dashbord">Tableau de bord</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=about">À propos</a>
+            <a href="../V2_MVC/index.php?action=adminListChapters">Administration des chapitres</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=createChapter">Créer un chapitre</a>
+            <a href="../V2_MVC/index.php?action=adminListComments">Administration des commentaires</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=updateChapter">Mise à jour d'un chapitre</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=deleteChapter">Supprimer un chapitre</a>
-        </li>
-        <li>
-            <a href="..V2_MVC/index.php?action=adminComment">Administration des commentaires</a>
+            <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
         </li>
     </ul>
 
@@ -50,7 +44,8 @@
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <em><a href="../V2_MVC/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler le commentaire</a></em>
+        <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Mettre à jour le commentaire</a></em>
+        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer le commentaire</a></em>
         <?php
     }
 

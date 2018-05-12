@@ -7,7 +7,10 @@
             <a href="../V2_MVC/index.php?action=dashbord">Tableau de bord</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=adminComment">Administration des commentaires</a>
+            <a href="../V2_MVC/index.php?action=adminListChapters">Administration des chapitres</a>
+        </li>
+        <li>
+            <a href="../V2_MVC/index.php?action=adminListComments">Administration des commentaires</a>
         </li>
         <li>
             <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
@@ -20,7 +23,7 @@
 
     <h1>Billet simple pour l'Alaska</h1>
     <li>
-        <a href="../V2_MVC/index.php?action=createChapter">Créer un chapitre</a>
+        <a href="../V2_MVC/index.php?action=adminNewChapter">Créer un chapitre</a>
     </li>
     <h2>Liste des chapitres</h2>
 
@@ -37,8 +40,8 @@ while ($data = $chapters->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
-            <em><a href="../V2_MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
-            <em><a href="../V2_MVC/index.php?action=updateChapter&amp;id_chapter=<?= $data['id']; ?>">Mise à jour d'un chapitre</a></em>
+            <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <em><a href="../V2_MVC/index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Mise à jour d'un chapitre</a></em>
             <em><a href="../V2_MVC/index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer un chapitre</a></em>
         </p>
     </div>

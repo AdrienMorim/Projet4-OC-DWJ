@@ -7,10 +7,10 @@
             <a href="../V2_MVC/index.php?action=dashbord">Tableau de bord</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=adminChapter">Administration des chapitres</a>
+            <a href="../V2_MVC/index.php?action=adminListChapters">Administration des chapitres</a>
         </li>
         <li>
-            <a href="../V2_MVC/index.php?action=adminComment">Administration des commentaires</a>
+            <a href="../V2_MVC/index.php?action=adminListComments">Administration des commentaires</a>
         </li>
         <li>
             <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
@@ -37,7 +37,7 @@ while ($data = $chapter->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
-            <em><a href="../V2_MVC/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
         </p>
     </div>
     <?php
