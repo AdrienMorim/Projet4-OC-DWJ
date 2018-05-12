@@ -2,20 +2,7 @@
 
 <?php ob_start(); ?>
 
-    <ul> <!-- avec emmet: ul>li*5>a +[TAB]-->
-        <li>
-            <a href="../V2_MVC/index.php">Accueil</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=about">À propos</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=listChapters">Chapitres</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=login">Inscription/Connexion</a>
-        </li>
-    </ul>
+    <?php include('nav.php'); ?>
 
 <?php $toggle_menu = ob_get_clean(); ?>
 
@@ -57,11 +44,16 @@
             <p>
                 <label for="author">Auteur
                     <input type="text" name="author" id="author" placeholder="Indiquez ici votre nom" value="<?php
-                    if (isset($_SESSION['author'])){
-                        echo htmlspecialchars($_SESSION['author']);
-                    }?>"
+                    if (isset($_COOKIE['pseudo']))
+                    {
+                        echo htmlspecialchars($_COOKIE['pseudo']);
+                    }
+                    ?>"
                     />
+
                 </label>
+                <?php var_dump($_SESSION['pseudo']);
+                    var_dump($_COOKIE['pseudo']); ?>
             </p>
             <p>
                 <label for="comment">Commentaire
