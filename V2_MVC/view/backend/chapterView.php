@@ -2,20 +2,7 @@
 
 <?php ob_start(); ?>
 
-    <ul> <!-- avec emmet: ul>li*5>a +[TAB]-->
-        <li>
-            <a href="../V2_MVC/index.php?action=dashbord">Tableau de bord</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=adminListChapters">Administration des chapitres</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=adminListComments">Administration des commentaires</a>
-        </li>
-        <li>
-            <a href="../V2_MVC/index.php?action=logout">Déconnexion</a>
-        </li>
-    </ul>
+    <?php include('navAdmin.php'); ?>
 
 <?php $admin_menu = ob_get_clean(); ?>
 
@@ -58,10 +45,14 @@
             <p>
                 <label for="author">Auteur
                     <input type="text" name="author" id="author" placeholder="Indiquez ici votre nom" value="<?php
-                    if (isset($_SESSION['author'])){
-                        echo htmlspecialchars($_SESSION['author']);
-                    }?>"
+                    if (isset($_COOKIE['pseudo']))
+                    {
+                        echo htmlspecialchars($_COOKIE['pseudo']);
+                    }
+                    ?>"
                     />
+                    <?php var_dump($_SESSION['pseudo']);
+                    var_dump($_COOKIE['pseudo']); ?>
                 </label>
             </p>
             <p>
