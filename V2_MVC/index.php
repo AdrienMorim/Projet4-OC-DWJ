@@ -1,17 +1,19 @@
 <?php
 
 require('controller/frontend.php');
+require('controller/backend.php');
 
 // Gestion des exception
 try{
     if (isset($_GET['action']))
     {
         // Index
-        if($_GET['action'] == '')
+        if($_GET['action'] == 'home')
         {
             lastOne();
         }
-        elseif ($_GET['action'] == 'admin')
+        // ADMIN - Dashbord
+        elseif ($_GET['action'] == 'dashbord')
         {
             dashbord();
         }
@@ -25,12 +27,34 @@ try{
         {
             listChapters();
         }
+        // ADMIN - Liste des chapitres
+        elseif ($_GET['action'] == 'adminListChapters')
+        {
+            adminListChapters();
+        }
+        // ADMIN - Liste des commentaires
+        elseif ($_GET['action'] == 'adminListComments')
+        {
+            adminListComments();
+        }
         // Affiche le chapitre avec ses commentaires
         elseif ($_GET['action'] == 'chapter')
         {
             if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
             {
                 chapter();
+            }
+            else
+            {
+                throw new Exception('Aucun identifiant de chapitre envoyé !');
+            }
+        }
+        // ADMIN - chapitre avec ses commentaires
+        elseif ($_GET['action'] == 'adminChapter')
+        {
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
+            {
+                adminChapter();
             }
             else
             {
@@ -124,27 +148,103 @@ try{
                 throw new Exception('Tous les champs doivent être remplis !');
             }
         }
-        //Creation d'un chapitre
+        // ADMIN - Page pour créer un chapitre
+        elseif ($_GET['action'] == 'adminNewChapter')
+        {
+            adminNewChapter();
+        }
+        // ADMIN - Creation d'un chapitre
         elseif ($_GET['action'] == 'createChapter')
         {
-            if (isset($_POST['author'], $_POST['title'], $_POST['content']))
+            if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
+            {
+                postChapter($_POST['author'], $_POST['title'], $_POST['content']);
+            }
+            else
+            {
+                throw new Exception('Tous les champs ne sont pas remplis..');
+            }
+        }
+        // ADMIN - page de MAJ
+        elseif ($_GET['action'] == 'adminUpdateChapter')
+        {
+            adminUpdateChapter();
+        }
+        // ADMIN - Mise à jour d'un chapitre
+        elseif ($_GET['action'] == 'updateChapter')
+        {
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
             {
                 if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
                 {
-                    postChapter($_POST['author'], $_POST['title'], $_POST['content']);
+                    updateChapter($_GET['id_chapter'], $_POST['author'], $_POST['title'], $_POST['content']);
                 }
                 else
                 {
-
                     throw new Exception('Tous les champs ne sont pas remplis..');
                 }
             }
             else
             {
-                throw new Exception('Aucun auteur, titre ou contenu envoyé !');
+                throw new Exception('Aucun identifiant de chapitre envoyé !');
             }
         }
-        //
+        // ADMIN - suppression d'un chapitre
+        elseif ($_GET['action'] == 'deleteChapter')
+        {
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
+            {
+                deleteChapter($_GET['id_chapter']);
+            }
+            else
+            {
+                throw new Exception('Aucun identifiant de chapitre envoyé !');
+            }
+        }
+        // ADMIN - page de MAJ des commentaires
+        elseif ($_GET['action'] == 'adminUpdateComment')
+        {
+            adminUpdateComment();
+        }
+        // ADMIN - Mise à jour d'un commentaire
+        elseif ($_GET['action'] == 'updateComment')
+        {
+            if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
+            {
+                if (isset($_GET['id']) && $_GET['id'] > 0)
+                {
+                    if ($_POST['author'] != NULL && $_POST['comment'] != NULL)
+                    {
+                        updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                    }
+                    else
+                    {
+                        throw new Exception('Tous les champs ne sont pas remplis..');
+                    }
+                }
+                else
+                {
+                    throw new Exception('Aucun identifiant de commentaire envoyé !');
+                }
+
+            }
+            else
+            {
+                throw new Exception('Aucun identifiant de chapitre envoyé !');
+            }
+        }
+        // ADMIN - Supprimer un commentaire
+        elseif ($_GET['action'] == 'deleteComment')
+        {
+            if (isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                deleteComment($_GET['id']);
+            }
+            else
+            {
+                throw new Exception('Aucun identifiant de commentaire envoyé !');
+            }
+        }
     }
 // Retourne à l'index.
     else
