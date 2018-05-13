@@ -2,9 +2,9 @@
 
 <?php ob_start(); ?>
 
-    <?php include('nav.php'); ?>
+    <?php include('../V2_MVC/view/nav.php'); ?>
 
-<?php $toggle_menu = ob_get_clean(); ?>
+<?php $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -15,4 +15,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('../V2_MVC/view/template.php'); ?>

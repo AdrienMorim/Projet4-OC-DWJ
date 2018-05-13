@@ -2,17 +2,17 @@
 
 <?php ob_start(); ?>
 
-    <?php include('nav.php'); ?>
+    <?php include('../V2_MVC/view/nav.php'); ?>
 
-<?php $toggle_menu = ob_get_clean(); ?>
+<?php $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
 <h1>Billet simple pour l'Alaska</h1>
-<h2> Erreur :</h2>
+<h2> Erreur <?= $_SESSION['pseudo']?> :</h2>
 
 <h3><?= $errorMessage ?></h3>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('../V2_MVC/view/template.php'); ?>
