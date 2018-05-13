@@ -1,6 +1,5 @@
 <?php
 
-//require('model/frontend.php');
 require_once('model/frontend/ChapterManager.php');
 require_once('model/frontend/CommentManager.php');
 require_once('model/frontend/UsersManager.php');
@@ -9,7 +8,7 @@ use V2_MVC\Model\Frontend\ChapterManager;
 use V2_MVC\Model\Frontend\CommentManager;
 use V2_MVC\Model\Frontend\UsersManager;
 
-function lastOne()
+function home()
 {
     $chapterManager = new ChapterManager();
     $commentManager = new CommentManager();
@@ -63,17 +62,6 @@ function reportingComment()
     $chapter = $chapterManager->getChapter($_GET['id_chapter']);
     $reportComment = $commentManager->reportComment($_GET['id']);
 
-    /*
-    if($reportComment === true)
-    {
-        throw new Exception('Le commentaire a déjà été signalé, merci.');
-    }
-    else
-    {
-        header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
-    }
-    */
-
     header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
 }
 
@@ -102,15 +90,15 @@ function logUser($pseudo, $pass)
                 $_SESSION['pass'] = $user['pass'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                $pseudo = $_SESSION['pseudo'];
-                $pass_hash = $_SESSION['pass'];
-                $group = $_SESSION['id_group'];
-                $id = $_SESSION['id'];
+                $id = $user['id'];
+                $pseudo = $user['pseudo'];
+                $pass_hash = $user['pass'];
+                $group = $user['id_group'];
 
+                setcookie('id', $id, time() + 1800, null, null, false, true);
                 setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
                 setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
                 setcookie('id_group', $group, time() + 1800, null, null, false, true);
-                setcookie('id', $id, time() + 1800, null, null, false, true);
 
                 header('Location: ../V2_MVC/index.php');
         }
@@ -122,15 +110,15 @@ function logUser($pseudo, $pass)
                 $_SESSION['pass'] = $user['pass'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                $pseudo = $_SESSION['pseudo'];
-                $pass_hash = $_SESSION['pass'];
-                $group = $_SESSION['id_group'];
-                $id = $_SESSION['id'];
+                $id = $user['id'];
+                $pseudo = $user['pseudo'];
+                $pass_hash = $user['pass'];
+                $group = $user['id_group'];
 
+                setcookie('id', $id, time() + 1800, null, null, false, true);
                 setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
                 setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
                 setcookie('id_group', $group, time() + 1800, null, null, false, true);
-                setcookie('id', $id, time() + 1800, null, null, false, true);
 
                 header('Location: ../V2_MVC/index.php?action=dashbord');
             }
@@ -163,10 +151,11 @@ function logoutUser()
     session_destroy();
 
     // Suppression des cookies de connexion automatique
+    setcookie('id', '');
     setcookie('pseudo', '');
     setcookie('pass', '');
     setcookie('id_group', '');
-    setcookie('id', '');
+
 
     header('Location: ../V2_MVC/index.php');
 }
