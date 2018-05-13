@@ -1,17 +1,20 @@
-<?php $title = 'Jean Forteroche - Billet simple pour l\'Alaska'; ?>
+<?php $title = 'Dashbord Jean Forteroche - Billet simple pour l\'Alaska'; ?>
 
 <?php ob_start(); ?>
 
-    <?php include('navAdmin.php'); ?>
+    <?php include('../V2_MVC/view/nav.php'); ?>
 
-<?php $admin_menu = ob_get_clean(); ?>
+<?php $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
-    <h1>Admin - Billet simple pour l'Alaska</h1>
+    <h1>Billet simple pour l'Alaska</h1>
     <h2>Nouveau Roman - Jean Forteroche</h2>
+    <h3>Dashbord</h3>
 
-<?php
+<?php $header = ob_get_clean(); ?>
+
+<?php ob_start();
 
 while ($data = $chapter->fetch())
 {
@@ -23,7 +26,7 @@ while ($data = $chapter->fetch())
         </h3>
 
         <p>
-            <?= nl2br(htmlspecialchars($data['content'])); ?> <br/>
+            <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?> ...<br/>
             <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
         </p>
     </div>
@@ -45,4 +48,4 @@ $comment->closeCursor();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('../V2_MVC/view/template.php'); ?>
