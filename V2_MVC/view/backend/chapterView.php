@@ -1,15 +1,15 @@
-<?php $title = 'Admin - Chapitre ' . htmlspecialchars($chapter['id']) . ' - Billet simple pour l\'Alaska'; ?>
+<?php $title = 'Chapitre ' . htmlspecialchars($chapter['id']) . ' - Billet simple pour l\'Alaska'; ?>
+
+<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
-    <?php include('../V2_MVC/view/nav.php'); ?>
+    <h1>Billet simple pour l'Alaska</h1>
+    <h2>Chapitre <?= htmlspecialchars($chapter['title']); ?></h2>
 
-<?php $menu = ob_get_clean(); ?>
+<?php $header = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-
-    <h1>Admin - Billet simple pour l'Alaska</h1>
-    <h2>Chapitre <?= htmlspecialchars($chapter['id']); ?></h2>
 
     <div class="news">
         <h3>
@@ -21,18 +21,17 @@
             <?= nl2br(htmlspecialchars($chapter['content'])); ?> <br/>
         </p>
     </div>
-
-    <h3>Commentaires</h3>
-
+    <h3><i class="fas fa-comments"></i> Commentaires: </h3>
 <?php
 
     while ($comment = $comments->fetch())
     {
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Mettre à jour le commentaire</a></em>
-        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer le commentaire</a></em>
+        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?><br/>
+        ( <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>,
+        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em> )
+        </p>
         <?php
     }
 
@@ -65,6 +64,8 @@
     </div>
 
 <?php $content = ob_get_clean(); ?>
+
+<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
 
 <?php require('../V2_MVC/view/template.php'); ?>
 

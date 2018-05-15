@@ -1,15 +1,17 @@
 <?php $title = 'Mise à jour du commentaire ' . htmlspecialchars($comment['id']) . ' - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); ?>
-
-    <?php include('../V2_MVC/view/nav.php'); ?>
-
-<?php $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
-<h1>Admin - Billet simple pour l'Alaska</h1>
-<h2>Nouveau Roman - Jean Forteroche</h2>
+    <h1>Billet simple pour l'Alaska</h1>
+    <h2>Éditer le commentaire de: </h2>
+    <p><?= htmlspecialchars($comment['author']); ?><em> du <?= htmlspecialchars($comment['comment_date_fr']); ?></em><br/>
+        <?= htmlspecialchars($comment['comment']); ?> </p>
+
+<?php $header = ob_get_clean(); ?>
+
+<?php ob_start(); ?>
 
 <div class="news">
     <h3>
@@ -21,11 +23,6 @@
         <?= nl2br(htmlspecialchars($chapter['content'])); ?> <br/>
     </p>
 </div>
-
-<h3>Mise à jour du commentaire de <?= htmlspecialchars($comment['author']); ?>
-    <em>du <?= htmlspecialchars($comment['comment_date_fr']); ?></em></h3>
-
-<p> <?= htmlspecialchars($comment['comment']); ?> </p>
 
 <form action="../V2_MVC/index.php?action=updateComment&amp;id_chapter=<?= $_GET['id_chapter']; ?>&amp;id=<?= $_GET['id']; ?>" method="POST">
     <p>
@@ -44,5 +41,7 @@
 </form>
 
 <?php $content = ob_get_clean(); ?>
+
+<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
 
 <?php require('../V2_MVC/view/template.php'); ?>

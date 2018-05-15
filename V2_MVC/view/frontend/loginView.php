@@ -1,15 +1,15 @@
-<?php $title = 'Connexion'; ?>
+<?php $title = 'Connexion / Inscription'; ?>
 
-<?php ob_start(); ?>
-
-    <?php include('../V2_MVC/view/nav.php'); ?>
-
-<?php $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
     <h1>Billet simple pour l'Alaska</h1>
-    <h2>Nouveau Roman - Jean Forteroche</h2>
+    <h2>Connexion / Inscription</h2>
+
+<?php $header = ob_get_clean(); ?>
+
+<?php ob_start(); ?>
 
     <form action="../V2_MVC/index.php?action=log" method="POST">
         <h3 class="col-md-offset-5 col-md-4">Connexion</h3>
@@ -29,9 +29,9 @@
     </form>
 
     <form action="../V2_MVC/index.php?action=register" method="post">
-        <div class="col-md-offset-2 col-md-8">
+        <div class="col-lg-12">
             <div class="form-group row">
-                <h3 class="col-md-offset-5 col-md-4">Inscription</h3>
+                <h3 class="col-lg-offset-5 col-lg-4">Inscription</h3>
             </div>
             <div class="form-group row">
                 <label for="pseudo" class="col-md-3">Pseudo :</label>
@@ -63,5 +63,7 @@
     </form>
 
 <?php $content = ob_get_clean(); ?>
+
+<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
 
 <?php require('../V2_MVC/view/template.php'); ?>

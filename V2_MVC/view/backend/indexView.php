@@ -1,20 +1,19 @@
-<?php $title = 'Dashbord Jean Forteroche - Billet simple pour l\'Alaska'; ?>
+<?php $title = 'Dashbord Blog - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); ?>
-
-    <?php include('../V2_MVC/view/nav.php'); ?>
-
-<?php $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
     <h1>Billet simple pour l'Alaska</h1>
-    <h2>Nouveau Roman - Jean Forteroche</h2>
-    <h3>Dashbord</h3>
+    <h2>Bienvenue sur le dashbord <?= $_SESSION['pseudo']; ?></h2>
 
 <?php $header = ob_get_clean(); ?>
 
-<?php ob_start();
+<?php ob_start(); ?>
+
+<h3>Derniers chapitres du blog:</h3>
+
+<?php
 
 while ($data = $chapter->fetch())
 {
@@ -26,14 +25,18 @@ while ($data = $chapter->fetch())
         </h3>
 
         <p>
-            <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?> ...<br/>
-            <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Commentaires</a></em>
+            <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?>...<br/>
+            <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
         </p>
     </div>
     <?php
 } // fin de la boucle des chapitres
-
 $chapter->closeCursor();
+?>
+
+    <h3>Derniers commentaires des visiteurs: </h3>
+
+<?php
 
 while ($data = $comment->fetch())
 {
@@ -42,10 +45,10 @@ while ($data = $comment->fetch())
     <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
     <?php
 }
-$comment->closeCursor();
-
-?>
+$comment->closeCursor(); ?>
 
 <?php $content = ob_get_clean(); ?>
+
+<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
 
 <?php require('../V2_MVC/view/template.php'); ?>
