@@ -27,6 +27,11 @@ try{
             {
                 adminListComments();
             }
+            // ADMIN - Commentaires signalés
+            elseif ($_GET['action'] == 'adminCommentsReport')
+            {
+                adminCommentsReport();
+            }
             // ADMIN - Chapitre avec ses commentaires
             elseif ($_GET['action'] == 'adminChapter')
             {
