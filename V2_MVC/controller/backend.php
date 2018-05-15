@@ -29,8 +29,15 @@ function adminListComments()
     $commentManager = new CommentManager();
 
     $comments = $commentManager->getAllComments();
+    require ('view/backend/ListCommentsView.php');
+}
+
+function adminCommentsReport()
+{
+    $commentManager = new CommentManager();
+
     $reportComments = $commentManager->getReportComments();
-    require ('view/backend/ListCommentView.php');
+    require ('view/backend/reportCommentsView.php');
 }
 
 function adminChapter()
