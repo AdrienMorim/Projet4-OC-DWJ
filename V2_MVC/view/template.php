@@ -18,7 +18,11 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
         <!-- Link Style - public -->
         <link rel="stylesheet" type="text/css" href="../V2_MVC/public/css/style.css"/>
         <link rel="icon" type="image/ico" sizes="500X500" href="../V2_MVC/public/images/ico/favicon.png" />
+        <!-- Fonteawesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Bootstrap V4 -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,500" rel="stylesheet">
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -29,17 +33,29 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
     </head>
 
     <body>
-        <div class="container fluid">
-            <header>
-                <nav> <?= $menu ?> </nav>
-                <?= $header ?>
-            </header>
-            <div class="container">
-                <?= $content ?>
+        <div class="container-fluid">
+            <div class="row">
+
+                <header id="header" class="container col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <?= $menu ?>
+                        </div>
+                        <div class="col-lg-8">
+                            <?= $header ?>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="container col-lg-8 offset-lg-2">
+                    <?= $content ?>
+                </section>
+
+                <footer id="footer" class="container col-lg-12">
+                    <?= $footer ?>
+                </footer>
+
             </div>
-            <footer>
-                <!-- <?= $footer ?> -->
-            </footer>
         </div>
     </body>
 </html>
