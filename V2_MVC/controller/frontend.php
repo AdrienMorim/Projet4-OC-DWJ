@@ -2,12 +2,13 @@
 
 require_once('model/frontend/ChapterManager.php');
 require_once('model/frontend/CommentManager.php');
-require_once('model/frontend/UsersManager.php');
+require_once('model/frontend/UserManager.php');
 
 use V2_MVC\Model\Frontend\ChapterManager;
 use V2_MVC\Model\Frontend\CommentManager;
-use V2_MVC\Model\Frontend\UsersManager;
+use V2_MVC\Model\Frontend\UserManager;
 
+// Home
 function home()
 {
     $chapterManager = new ChapterManager();
@@ -17,19 +18,19 @@ function home()
     $comment = $commentManager->getLastComment();
     require('view/frontend/indexView.php');
 }
-
+// liste des chapitres
 function listChapters()
 {
     $chapterManager = new ChapterManager();
     $chapters = $chapterManager->getChapters();
     require('view/frontend/listChaptersView.php');
 }
-
+// A propos de l'auteur
 function aboutAuthor()
 {
     require('view/frontend/aboutView.php');
 }
-
+// chapitre + commentaires
 function chapter()
 {
     $chapterManager = new ChapterManager();
@@ -39,7 +40,7 @@ function chapter()
     $comments = $commentManager->getComments($_GET['id_chapter']);
     require('view/frontend/chapterView.php');
 }
-
+// Ajouter un commentaire
 function addComment($id_chapter, $author, $comment)
 {
     $commentManager = new CommentManager();
@@ -53,7 +54,35 @@ function addComment($id_chapter, $author, $comment)
         header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $id_chapter);
     }
 }
+// Page pour modifier un commentaire
+function userUpdateComment()
+{
+    $chapterManager = new ChapterManager();
+    $commentManager = new CommentManager();
 
+    $chapter = $chapterManager->getChapter($_GET['id_chapter']);
+    $comment = $commentManager->getComment($_GET['id']);
+    require ('view/frontend/updateCommentView.php');
+}
+// Editer un commentaire
+function editComment($id_comment, $id_chapter, $author, $comment)
+{
+
+    $commentManager = new CommentManager();
+
+    $updateComment = $commentManager->updateComment($id_comment, $id_chapter, $author, $comment);
+
+    if($updateComment === false)
+    {
+        throw new Exception('Impossible de mettre à jour le commentaire' );
+    }
+    else
+    {
+        header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $id_chapter );
+        //header('Location: ../V2_MVC/index.php?action=dashbord' );
+    }
+}
+// Signaler un commentaire
 function reportingComment()
 {
     $chapterManager = new ChapterManager();
@@ -64,15 +93,15 @@ function reportingComment()
 
     header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
 }
-
+// Page de connexion / inscription
 function login()
 {
     require('view/frontend/loginView.php');
 }
-
+// Connexion
 function logUser($pseudo, $pass)
 {
-    $userManager = new UsersManager();
+    $userManager = new UserManager();
 
     $user = $userManager->getUser($pseudo);
     $proper_pass = password_verify($_POST['pass'], $user['pass']);
@@ -128,10 +157,10 @@ function logUser($pseudo, $pass)
         }
     }
 }
-
+// Inscription
 function registerUser($id_group, $pseudo, $password_hache, $email){
 
-    $userManager = new UsersManager();
+    $userManager = new UserManager();
     $registerUser = $userManager->createUser($id_group, $pseudo, $password_hache, $email);
     if($registerUser === false)
     {
@@ -142,7 +171,7 @@ function registerUser($id_group, $pseudo, $password_hache, $email){
         header('Location: ../V2_MVC/index.php');
     }
 }
-
+// Deconnexion
 function logoutUser()
 {
     session_start();
