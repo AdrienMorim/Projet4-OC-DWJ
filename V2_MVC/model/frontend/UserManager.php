@@ -33,4 +33,10 @@ class UsersManager extends Manager
 
         return $registerUser;
     }
+
+    public function updateUser($id, $pseudo, $password_hash, $email)
+    {
+        $db = $this->dbConnect();
+
+    }
 }
