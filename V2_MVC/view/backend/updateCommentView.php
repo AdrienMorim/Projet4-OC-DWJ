@@ -1,4 +1,4 @@
-<?php $title = 'Mise à jour du commentaire ' . htmlspecialchars($comment['id']) . ' - Billet simple pour l\'Alaska'; ?>
+<?php $title = 'Editer le commentaire ' . htmlspecialchars($comment['id']) . ' - Billet simple pour l\'Alaska'; ?>
 
 <?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
 
@@ -25,19 +25,25 @@
 </div>
 
 <form action="../V2_MVC/index.php?action=updateComment&amp;id_chapter=<?= $_GET['id_chapter']; ?>&amp;id=<?= $_GET['id']; ?>" method="POST">
-    <p>
-        <label for="author">Auteur
-            <input type="text" name="author" id="author" value="<?= htmlspecialchars($comment['author']); ?>"/>
-        </label>
-    </p>
-    <p>
-        <label for="comment">Commentaire
-            <textarea name="comment" id="comment" placeholder="<?= htmlspecialchars($comment['comment']); ?>"></textarea>
-        </label>
-    </p>
-    <button>
-        <input type="submit" value="Mise à jour du commentaire"/>
-    </button>
+    <div class="col-lg-12">
+        <div class="form-group row">
+            <label for="author" class="col-lg-3">Auteur</label>
+            <div class="col-lg-9">
+                <input type="text" name="author" id="author" class="form-control" placeholder="Indiquez ici votre nom" value="<?= htmlspecialchars($comment['author']); ?>"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="content" class="col-lg-3">Commentaire</label>
+            <div class="col-lg-9">
+                <textarea name="comment" id="comment" class="form-control" placeholder="<?= htmlspecialchars($comment['comment']); ?>"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-12">
+                <button type="submit" name="envoyer" class="btn btn-primary">Envoyer votre commentaire</button>
+            </div>
+        </div>
+    </div>
 </form>
 
 <?php $content = ob_get_clean(); ?>
