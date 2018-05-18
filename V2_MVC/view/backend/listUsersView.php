@@ -22,6 +22,8 @@ while ($user = $users->fetch())
         </h3>
         <p>
             <?= htmlspecialchars($user['pseudo']); ?>
+            <em><a href="../V2_MVC/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Éditer</a></em>
+            <em><a href="../V2_MVC/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a></em>
         </p>
         <p>
             <?= htmlspecialchars($user['pass']); ?>
