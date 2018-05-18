@@ -5,10 +5,10 @@ namespace V2_MVC\Model\Frontend;
 require_once('model/frontend/Manager.php');
 
 /**
- * Class UsersManager
+ * Class UserManager
  * @package V2_MVC\Model\Frontend
  */
-class UsersManager extends Manager
+class UserManager extends Manager
 {
     /**
      * @param $pseudo
@@ -34,9 +34,18 @@ class UsersManager extends Manager
         return $registerUser;
     }
 
-    public function updateUser($id, $pseudo, $password_hash, $email)
+    public function updateUser($id, $pseudo, $password_hash, $email) // A MODIFIER
     {
         $db = $this->dbConnect();
 
+    }
+
+    public function deleteUser($id) // A Ajouter dans le controller
+    {
+        $db = $this->dbConnect();
+        $user = $db->prepare('DELETE FROM users WHERE id= ?');
+        $deleteUser = $user->execute(array($id));
+
+        return $deleteUser;
     }
 }
