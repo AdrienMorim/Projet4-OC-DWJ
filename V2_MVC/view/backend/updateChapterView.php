@@ -23,27 +23,37 @@
 </div>
 
 <form action="../V2_MVC/index.php?action=updateChapter&amp;id_chapter=<?= $_GET['id_chapter']; ?>" method="POST">
-    <p>
-        <label for="author">Auteur</label>
-        <input type="text" name="author" id="author" value="<?php
-        if (isset($_COOKIE['pseudo']))
-        {
-            echo htmlspecialchars($_COOKIE['pseudo']);
-        }
-        ?>"
-        />
-    </p>
-    <p>
-        <label for="title">Titre</label>
-        <input type="text" name="title" id="title"/>
-    </p>
-    <p>
-        <label for="content">Chapitre</label>
-        <textarea name="content" id="content" placeholder="Indiquez ici votre chapitre"></textarea>
-    </p>
-    <button>
-        <input type="submit" value="Éditer"/>
-    </button>
+    <div class="col-lg-12">
+        <div class="form-group row">
+            <label for="author" class="col-lg-3">Auteur</label>
+            <div class="col-lg-9">
+                <input type="text" name="author" id="author" class="form-control" value="<?php
+                if (isset($_SESSION['pseudo']))
+                {
+                    echo htmlspecialchars($_SESSION['pseudo']);
+                }
+                ?>"
+                />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="title" class="col-lg-3">Titre</label>
+            <div class="col-lg-9">
+                <input type="text" name="title" class="form-control" id="title" placeholder="Indiquez ici votre titre"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="content" class="col-lg-3">Chapitre</label>
+            <div class="col-lg-9">
+                <textarea name="content" id="content" class="form-control" placeholder="Indiquez ici votre chapitre"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-9">
+                <button type="submit" name="envoyer" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </div>
 </form>
 
 <?php $content = ob_get_clean(); ?>
