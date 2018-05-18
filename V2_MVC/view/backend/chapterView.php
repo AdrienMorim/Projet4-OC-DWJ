@@ -29,8 +29,8 @@
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?><br/>
-        ( <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>,
-        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em> )
+        <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
+        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em>
         </p>
         <?php
     }
@@ -38,30 +38,34 @@
     $comments->closeCursor();
 ?>
 
-    <div class="news">
-        <form action="../V2_MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
-            <h3> Ajouter votre commentaire:</h3>
-            <p>
-                <label for="author">Auteur
-                    <input type="text" name="author" id="author" placeholder="Indiquez ici votre nom" value="<?php
-                    if (isset($_COOKIE['pseudo']))
+    <h3> Ajouter votre commentaire:</h3>
+    <form action="../V2_MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
+        <div class="col-lg-12">
+            <div class="form-group row">
+                <label for="author" class="col-lg-3">Auteur</label>
+                <div class="col-lg-9">
+                    <input type="text" name="author" id="author" class="form-control" placeholder="Indiquez ici votre nom" value="<?php
+                    if (isset($_SESSION['pseudo']))
                     {
-                        echo htmlspecialchars($_COOKIE['pseudo']);
+                        echo htmlspecialchars($_SESSION['pseudo']);
                     }
                     ?>"
                     />
-                </label>
-            </p>
-            <p>
-                <label for="comment">Commentaire
-                    <textarea name="comment" id="comment" placeholder="Indiquez ici votre commentaire"></textarea>
-                </label>
-            </p>
-            <button>
-                <input type="submit" value="Envoyer votre commentaire"/>
-            </button>
-        </form>
-    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="content" class="col-lg-3">Commentaire</label>
+                <div class="col-lg-9">
+                    <textarea name="comment" id="comment" class="form-control" placeholder="Indiquez ici votre commentaire"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-12">
+                    <button type="submit" name="envoyer" class="btn btn-primary">Envoyer votre commentaire</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
 <?php $content = ob_get_clean(); ?>
 
