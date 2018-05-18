@@ -19,9 +19,9 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
         <li class="nav-item">
             <a class="nav-link" href="../V2_MVC/index.php?action=about"><i class="fas fa-chalkboard-teacher"></i> À propos</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a class="nav-link" href="../V2_MVC/index.php?action=listChapters"><i class="far fa-newspaper"></i> Liste des chapitres</a>
-        </li>
+        </li>-->
         <li class="nav-item dropright">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-edit"></i> Chapitres</a>
             <div class="dropdown-menu">
@@ -48,12 +48,19 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
                 </ul>
             </div>
         </li>
+        <li class="nav-item dropright">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i> Paramètres</a>
+            <div class="dropdown-menu">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../V2_MVC/index.php?action=adminListUsers"><i class="fas fa-users-cog"></i>Liste des Membres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../V2_MVC/index.php?action=adminNewUser"><i class="fas fa-user-plus"></i>Ajouter un membre</a>
+                    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="../V2_MVC/index.php?action=#"><i class="fas fa-users-cog"></i> Membres</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="../V2_MVC/index.php?action=adminParametre"><i class="fas fa-cogs"></i> Paramètres</a>
+                </ul>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../V2_MVC/index.php?action=logout"><i class="fas fa-user-times"></i> Déconnexion</a>
