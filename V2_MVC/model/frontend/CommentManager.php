@@ -41,6 +41,18 @@ class CommentManager extends Manager
      * @param $comment
      * @return bool
      */
+
+    public function getComment($id_comment)
+    {
+        $db = $this->dbConnect();
+
+        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE id= ?');
+        $comments->execute(array($id_comment));
+        $comment = $comments->fetch();
+
+        return $comment;
+    }
+
     public function postComment($id_chapter, $author, $comment)
     {
         $db = $this->dbConnect();
@@ -63,5 +75,19 @@ class CommentManager extends Manager
         //$report = $comments->execute(array($reporting, $id_comment));
 
         return $report;
+    }
+
+    public function updateComment($id_comment, $id_chapter, $author, $comment)
+    {
+        $db = $this->dbConnect();
+
+        $comments = $db->prepare('UPDATE comments SET id_chapter= :id_chapter, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
+        $comments->bindParam('id_chapter', $id_chapter, \PDO::PARAM_INT);
+        $comments->bindParam('author',$author, \PDO::PARAM_STR);
+        $comments->bindParam('comment',$comment, \PDO::PARAM_STR);
+        $comments->bindParam('id_comment', $id_comment, \PDO::PARAM_INT);
+        $updateComment = $comments->execute();
+
+        return $updateComment;
     }
 }
