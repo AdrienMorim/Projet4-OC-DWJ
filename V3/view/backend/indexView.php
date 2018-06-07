@@ -1,6 +1,6 @@
 <?php $title = 'Dashbord Blog - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -8,8 +8,6 @@
     <h2>Bienvenue sur le dashbord <?= $_SESSION['pseudo']; ?></h2>
 
 <?php $header = ob_get_clean(); ?>
-
-<?php ob_start(); ?>
 
 <h3>Derniers chapitres du blog:</h3>
 
@@ -26,7 +24,7 @@ while ($data = $chapter->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?>...<br/>
-            <em><a href="../V2_MVC/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
+            <em><a href="../V3/index.php?action=adminChapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
         </p>
     </div>
     <?php
@@ -47,8 +45,6 @@ while ($data = $comment->fetch())
 }
 $comment->closeCursor(); ?>
 
-<?php $content = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
-
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>

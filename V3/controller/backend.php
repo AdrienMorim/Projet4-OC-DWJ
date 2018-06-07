@@ -3,10 +3,12 @@
 require_once ('model/backend/ChapterManager.php');
 require_once ('model/backend/CommentManager.php');
 require_once ('model/backend/UserManager.php');
+require_once ('model/Chapter.php');
 
-use V2_MVC\Model\Backend\ChapterManager;
-use V2_MVC\Model\Backend\CommentManager;
-use V2_MVC\Model\Backend\UserManager;
+use V3\Model\Backend\ChapterManager;
+use V3\Model\Backend\CommentManager;
+use V3\Model\Backend\UserManager;
+use V3\Model;
 
 // Dashbord
 function dashbord()
@@ -43,13 +45,13 @@ function adminCommentsReport()
     require ('view/backend/reportCommentsView.php');
 }
 // Chapitre + commentaires
-function adminChapter()
+function adminChapter($id_chapter)
 {
     $chapterManager = new ChapterManager();
     $commentManager = new CommentManager();
 
-    $chapter = $chapterManager->getChapter($_GET['id_chapter']);
-    $comments = $commentManager->getComments($_GET['id_chapter']);
+    $chapter = $chapterManager->getChapter($id_chapter);
+    $comments = $commentManager->getComments($id_chapter);
     require ('view/backend/chapterView.php');
 }
 // Page nouveau chapitre
@@ -63,7 +65,7 @@ function postChapter($author, $title, $content)
     $chapterManager = new ChapterManager();
     $createChapter = $chapterManager->createChapter($author, $title, $content);
 
-    header('Location: ../V2_MVC/index.php?action=adminListChapters');
+    header('Location: ../V3/index.php?action=adminListChapters');
 }
 // Page d'édition d'un chapitre
 function adminUpdateChapter()
@@ -84,7 +86,7 @@ function updateChapter($id_chapter, $author, $title, $content)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminListChapters');
+        header('Location: ../V3/index.php?action=adminListChapters');
     }
 }
 // Supprimer un chapitre
@@ -106,7 +108,7 @@ function deleteChapter($id_chapter)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminListChapters');
+        header('Location: ../V3/index.php?action=adminListChapters');
     }
 }
 // Page d'édition d'un commentaire
@@ -133,8 +135,8 @@ function updateComment($id_comment, $id_chapter, $author, $comment)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminChapter&id_chapter=' . $id_chapter );
-        //header('Location: ../V2_MVC/index.php?action=dashbord' );
+        header('Location: ../V3/index.php?action=adminChapter&id_chapter=' . $id_chapter );
+        //header('Location: ../V3/index.php?action=dashbord' );
     }
 }
 // Supprimer un commentaire
@@ -150,7 +152,7 @@ function deleteComment($id_comment)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=dashbord' );
+        header('Location: ../V3/index.php?action=dashbord' );
     }
 }
 // Approuver un commentaire (retirer le signalement)
@@ -162,7 +164,7 @@ function approvedComment()
     $chapter = $chapterManager->getChapter($_GET['id_chapter']);
     $reportComment = $commentManager->approvedComment($_GET['id']);
 
-    header('Location: ../V2_MVC/index.php?action=adminCommentsReport');
+    header('Location: ../V3/index.php?action=adminCommentsReport');
 
 }
 // Modérer un commentaire signalé
@@ -193,7 +195,7 @@ function adminAddUser($id_group, $pseudo, $password_hache, $email)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminListUsers');
+        header('Location: ../V3/index.php?action=adminListUsers');
     }
 }
 // Editer un membre
@@ -214,7 +216,7 @@ function updateUser($id, $id_group, $pseudo, $pass, $email, $firstname, $surname
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminListUsers');
+        header('Location: ../V3/index.php?action=adminListUsers');
     }
 }
 // Supprimer un membre
@@ -228,6 +230,6 @@ function deleteUser($id)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=adminListUsers');
+        header('Location: ../V3/index.php?action=adminListUsers');
     }
 }

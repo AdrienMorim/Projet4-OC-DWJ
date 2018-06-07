@@ -1,6 +1,6 @@
 <?php
 
-namespace V2_MVC\Model\Backend;
+namespace V3\Model\Backend;
 
 require_once ('model/backend/Manager.php');
 

@@ -1,6 +1,6 @@
 <?php $title = 'Connexion / Inscription'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -11,7 +11,7 @@
 
 <?php ob_start(); ?>
 
-    <form action="../V2_MVC/index.php?action=log" method="POST">
+    <form action="../V3/index.php?action=log" method="POST">
         <div class="col-lg-12">
             <div class="form-group row">
                 <h3 class="col-lg-offset-5 col-lg-4">Connexion</h3>
@@ -31,7 +31,7 @@
             <button type="submit" name="connexion"  class="btn btn-primary">Connexion</button>
     </form>
 
-    <form action="../V2_MVC/index.php?action=register" method="post">
+    <form action="../V3/index.php?action=register" method="post">
         <div class="col-lg-12">
             <div class="form-group row">
                 <h3 class="col-lg-offset-5 col-lg-4">Inscription</h3>
@@ -66,6 +66,6 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>

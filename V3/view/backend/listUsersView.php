@@ -1,6 +1,6 @@
 <?php $title = 'Liste des membres - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -22,11 +22,11 @@ while ($user = $users->fetch())
         </h3>
         <p>
             <?= htmlspecialchars($user['pseudo']); ?>
-            <em><a href="../V2_MVC/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Éditer</a></em>
-            <em><a href="../V2_MVC/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a></em>
+            <em><a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Éditer</a></em>
+            <em><a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a></em>
         </p>
         <p>
-            <?= htmlspecialchars($user['pass']); ?>
+            <?= htmlspecialchars($user['registration_date']); ?>
         </p>
         <p>
             <?= htmlspecialchars($user['email']); ?>
@@ -40,6 +40,6 @@ $users->closeCursor();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>

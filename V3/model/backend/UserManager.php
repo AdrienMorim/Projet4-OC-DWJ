@@ -6,16 +6,21 @@
  * Time: 15:24
  */
 
-namespace V2_MVC\Model\Backend;
+namespace V3\Model\Backend;
 
 require_once('model/backend/Manager.php');
 
 /**
  * Class UserManager
- * @package V2_MVC\Model\Frontend
+ * @package V3\Model\Frontend
  */
 class UserManager extends Manager
 {
+    public function __construct()
+    {
+
+    }
+
     /**
      * @param $pseudo
      * @param $pass

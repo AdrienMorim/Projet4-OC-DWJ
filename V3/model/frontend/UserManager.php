@@ -1,18 +1,23 @@
 <?php
 
-namespace V2_MVC\Model\Frontend;
+namespace V3\Model\Frontend;
 
 require_once('model/frontend/Manager.php');
 
+use V3\Model\User;
+
 /**
  * Class UserManager
- * @package V2_MVC\Model\Frontend
+ * @package V3\Model\Frontend
  */
 class UserManager extends Manager
 {
+
+
+
+
     /**
      * @param $pseudo
-     * @param $pass
      * @return mixed
      */
     public function getUser($pseudo)

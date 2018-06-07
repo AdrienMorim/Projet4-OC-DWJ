@@ -1,12 +1,12 @@
 <?php
 
-namespace V2_MVC\Model\Frontend;
+namespace V3\Model\Frontend;
 
 require_once('model/frontend/Manager.php');
 
 /**
  * Class ChapterManager
- * @package V2_MVC\Model\Frontend
+ * @package V3\Model\Frontend
  */
 class ChapterManager extends Manager
 {

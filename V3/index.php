@@ -2,6 +2,14 @@
 
 <?php
 
+require_once ('controller/Routeur.php');
+
+use \V3\Controller\Routeur;
+
+$_routeur = new Routeur();
+$_routeur->getRequete();
+
+/*
 require('controller/frontend.php');
 require('controller/backend.php');
 
@@ -37,7 +45,7 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                 {
-                    adminChapter();
+                    adminChapter($_GET['id_chapter']);
                 }
                 else
                 {
@@ -261,7 +269,7 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                 {
-                    chapter();
+                    chapter($_GET['id_chapter']);
                 }
                 else
                 {
@@ -390,7 +398,7 @@ try{
             elseif ($_GET['action'] == 'chapter')
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                    chapter();
+                    chapter($_GET['id_chapter']);
                 } else {
                     throw new Exception('Aucun identifiant de chapitre envoyé !');
                 }
@@ -523,7 +531,7 @@ try{
             // Affiche le chapitre avec ses commentaires
             elseif ($_GET['action'] == 'chapter') {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                    chapter();
+                    chapter($_GET['id_chapter']);
                 } else {
                     throw new Exception('Aucun identifiant de chapitre envoyé !');
                 }
@@ -605,3 +613,4 @@ catch (Exception $e)
     $errorMessage = $e->getMessage();
     require('view/frontend/errorView.php');
 }
+*/

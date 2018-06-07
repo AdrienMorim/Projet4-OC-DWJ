@@ -1,6 +1,6 @@
 <?php $title = 'À propos - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -15,6 +15,6 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>

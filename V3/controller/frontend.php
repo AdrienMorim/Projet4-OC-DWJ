@@ -4,9 +4,9 @@ require_once('model/frontend/ChapterManager.php');
 require_once('model/frontend/CommentManager.php');
 require_once('model/frontend/UserManager.php');
 
-use V2_MVC\Model\Frontend\ChapterManager;
-use V2_MVC\Model\Frontend\CommentManager;
-use V2_MVC\Model\Frontend\UserManager;
+use V3\Model\Frontend\ChapterManager;
+use V3\Model\Frontend\CommentManager;
+use V3\Model\Frontend\UserManager;
 
 // Home
 function home()
@@ -31,13 +31,13 @@ function aboutAuthor()
     require('view/frontend/aboutView.php');
 }
 // chapitre + commentaires
-function chapter()
+function chapter($id_chapter)
 {
     $chapterManager = new ChapterManager();
     $commentManager = new CommentManager();
 
-    $chapter = $chapterManager->getChapter($_GET['id_chapter']);
-    $comments = $commentManager->getComments($_GET['id_chapter']);
+    $chapter = $chapterManager->getChapter($id_chapter);
+    $comments = $commentManager->getComments($id_chapter);
     require('view/frontend/chapterView.php');
 }
 // Ajouter un commentaire
@@ -51,7 +51,7 @@ function addComment($id_chapter, $author, $comment)
         throw new Exception('Impossible d\'ajouter le commentaire');
     }
     else{
-        header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $id_chapter);
+        header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
     }
 }
 // Page pour modifier un commentaire
@@ -78,8 +78,8 @@ function editComment($id_comment, $id_chapter, $author, $comment)
     }
     else
     {
-        header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $id_chapter );
-        //header('Location: ../V2_MVC/index.php?action=dashbord' );
+        header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter );
+        //header('Location: ../V3/index.php?action=dashbord' );
     }
 }
 // Signaler un commentaire
@@ -91,7 +91,7 @@ function reportingComment()
     $chapter = $chapterManager->getChapter($_GET['id_chapter']);
     $reportComment = $commentManager->reportComment($_GET['id']);
 
-    header('Location: ../V2_MVC/index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
+    header('Location: ../V3/index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
 }
 // Page de connexion / inscription
 function login()
@@ -129,7 +129,7 @@ function logUser($pseudo, $pass)
                 setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
                 setcookie('id_group', $group, time() + 1800, null, null, false, true);
 
-                header('Location: ../V2_MVC/index.php');
+                header('Location: ../V3/index.php');
         }
         elseif($proper_pass && $user['id_group'] == 1)
             {
@@ -149,7 +149,7 @@ function logUser($pseudo, $pass)
                 setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
                 setcookie('id_group', $group, time() + 1800, null, null, false, true);
 
-                header('Location: ../V2_MVC/index.php?action=dashbord');
+                header('Location: ../V3/index.php?action=dashbord');
             }
         else
         {
@@ -168,7 +168,7 @@ function registerUser($id_group, $pseudo, $password_hache, $email){
     }
     else
     {
-        header('Location: ../V2_MVC/index.php');
+        header('Location: ../V3/index.php');
     }
 }
 // Deconnexion
@@ -186,5 +186,5 @@ function logoutUser()
     setcookie('id_group', '');
 
 
-    header('Location: ../V2_MVC/index.php');
+    header('Location: ../V3/index.php');
 }

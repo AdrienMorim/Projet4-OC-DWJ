@@ -1,6 +1,6 @@
 <?php $title = 'Ajout d\'un membre - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -11,7 +11,7 @@
 
 <?php ob_start(); ?>
 
-    <form action="../V2_MVC/index.php?action=newUser" method="post">
+    <form action="../V3/index.php?action=newUser" method="post">
         <div class="col-lg-12">
             <div class="form-group row">
                 <h3 class="col-lg-offset-5 col-lg-4">Inscription d'un nouveau membre</h3>
@@ -64,6 +64,6 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>

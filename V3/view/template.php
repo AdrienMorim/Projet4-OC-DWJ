@@ -6,7 +6,6 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -16,8 +15,8 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
         <meta name="keywords" content="Jean Forteroche, Blog, Roman, Billet simple pour l'Alaska"/>
         <meta name="author" content="Jean Forteroche">
         <!-- Link Style - public -->
-        <link rel="stylesheet" type="text/css" href="../V2_MVC/public/css/style.css"/>
-        <link rel="icon" type="image/ico" sizes="500X500" href="../V2_MVC/public/images/ico/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="../V3/public/css/style.css"/>
+        <link rel="icon" type="image/ico" sizes="500X500" href="../V3/public/images/ico/favicon.png" />
         <!-- Fonteawesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <!-- Bootstrap V4 -->

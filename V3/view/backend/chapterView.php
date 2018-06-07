@@ -1,6 +1,6 @@
 <?php $title = 'Chapitre ' . htmlspecialchars($chapter['id']) . ' - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V2_MVC/view/nav.php'); $menu = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
 
@@ -8,8 +8,6 @@
     <h2>Chapitre <?= htmlspecialchars($chapter['title']); ?></h2>
 
 <?php $header = ob_get_clean(); ?>
-
-<?php ob_start(); ?>
 
     <div class="news">
         <h3>
@@ -29,8 +27,8 @@
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?><br/>
-        <em><a href="../V2_MVC/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
-        <em><a href="../V2_MVC/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em>
+        <em><a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
+        <em><a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em>
         </p>
         <?php
     }
@@ -39,7 +37,7 @@
 ?>
 
     <h3> Ajouter votre commentaire:</h3>
-    <form action="../V2_MVC/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
+    <form action="../V3/index.php?action=addComment&amp;id_chapter=<?= $_GET['id_chapter'];?>" method="POST">
         <div class="col-lg-12">
             <div class="form-group row">
                 <label for="author" class="col-lg-3">Auteur</label>
@@ -67,9 +65,7 @@
         </div>
     </form>
 
-<?php $content = ob_get_clean(); ?>
+<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V2_MVC/view/footer.php'); $footer = ob_get_clean(); ?>
-
-<?php require('../V2_MVC/view/template.php'); ?>
+<?php require('../V3/view/template.php'); ?>
 

@@ -1,14 +1,15 @@
 <?php
 
-namespace V2_MVC\Model\Backend;
+namespace V3\Model\Backend;
 use \PDO;
 
 /**
  * Class Manager
- * @package V2_MVC\Model\Backend
+ * @package V3\Model\Backend
  */
 class Manager
 {
+    private $_db;
     /**
      * @return PDO
      */
@@ -19,7 +20,7 @@ class Manager
         $username = 'root';
         $password = 'root';
 
-        $db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        return $db;
+        $this->_db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        return $this->_db;
     }
 }

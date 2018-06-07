@@ -1,12 +1,12 @@
 <?php
 
-namespace V2_MVC\Model\Backend;
+namespace V3\Model\Backend;
 
 require_once ('model/backend/Manager.php');
 
 /**
  * Class ChapterManager
- * @package V2_MVC\Model\Backend
+ * @package V3\Model\Backend
  */
 class ChapterManager extends Manager
 {
@@ -14,8 +14,8 @@ class ChapterManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 3');
-        return $req;
+        $chapter = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
+        return $chapter;
     }
 
     public function getChapters()
