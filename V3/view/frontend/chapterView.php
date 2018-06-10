@@ -1,7 +1,5 @@
 <?php $title = 'Chapitre ' . htmlspecialchars($chapter['id']) . ' - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
-
 <?php ob_start(); ?>
 
     <h1>Billet simple pour l'Alaska</h1>
@@ -28,9 +26,27 @@
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <em><a href="../V3/index.php?action=userUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
-        <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
         <?php
+
+        if(!isset($_SESSION['id_group'])) {
+            ?>
+                <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
+            <?php
+        }
+        elseif(isset($_SESSION) && $_SESSION['id_group'] == 2){
+            ?>
+            <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
+            <em><a href="../V3/index.php?action=userUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
+            <?php
+        }
+        else{
+        ?>
+            <em><a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
+            <em><a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em>
+            <em><a href="../V3/index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Approuver <i class="fas fa-check-circle"></i></a></em>
+
+        <?php
+        }
     }
 
     $comments->closeCursor();
@@ -67,7 +83,5 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
-
-<?php require('../V3/view/template.php'); ?>
+<?php require('../V3/view/inc/template.php'); ?>
 

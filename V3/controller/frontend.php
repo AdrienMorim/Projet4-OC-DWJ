@@ -1,12 +1,12 @@
 <?php
 
-require_once('model/frontend/ChapterManager.php');
-require_once('model/frontend/CommentManager.php');
-require_once('model/frontend/UserManager.php');
+require_once('model/ChapterManager.php');
+require_once('model/CommentManager.php');
+require_once('model/UserManager.php');
 
-use V3\Model\Frontend\ChapterManager;
-use V3\Model\Frontend\CommentManager;
-use V3\Model\Frontend\UserManager;
+use V3\Model\ChapterManager;
+use V3\Model\CommentManager;
+use V3\Model\UserManager;
 
 // Home
 function home()
@@ -30,7 +30,7 @@ function aboutAuthor()
 {
     require('view/frontend/aboutView.php');
 }
-// chapitre + commentaires
+// lire un chapitre + ses commentaires
 function chapter($id_chapter)
 {
     $chapterManager = new ChapterManager();
@@ -45,7 +45,7 @@ function addComment($id_chapter, $author, $comment)
 {
     $commentManager = new CommentManager();
 
-    $postComment = $commentManager->postComment($id_chapter, $author, $comment);
+    $postComment = $commentManager->createComment($id_chapter, $author, $comment);
     if($postComment === false)
     {
         throw new Exception('Impossible d\'ajouter le commentaire');
@@ -61,7 +61,7 @@ function userUpdateComment()
     $commentManager = new CommentManager();
 
     $chapter = $chapterManager->getChapter($_GET['id_chapter']);
-    $comment = $commentManager->getComment($_GET['id']);
+    $comment = $commentManager->getCommentById($_GET['id']);
     require ('view/frontend/updateCommentView.php');
 }
 // Editer un commentaire
@@ -108,7 +108,7 @@ function logUser($pseudo, $pass)
 
     if(!$user)
     {
-        throw new Exception('Wrong username or password');
+        throw new Exception('Wrong username or/and password');
     }
     else{
         if($proper_pass && $user['id_group'] == 2)

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: morimadrien
- * Date: 15/05/2018
- * Time: 15:24
- */
 
 namespace V2_MVC\Model\Backend;
 

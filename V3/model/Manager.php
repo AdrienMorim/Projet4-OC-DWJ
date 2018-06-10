@@ -1,6 +1,6 @@
 <?php
 
-namespace V3\Model\Backend;
+namespace V3\Model;
 use \PDO;
 
 /**

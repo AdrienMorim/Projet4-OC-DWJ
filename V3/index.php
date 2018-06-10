@@ -2,16 +2,11 @@
 
 <?php
 
-require_once ('controller/Routeur.php');
-
-use \V3\Controller\Routeur;
-
-$_routeur = new Routeur();
-$_routeur->getRequete();
-
-/*
 require('controller/frontend.php');
 require('controller/backend.php');
+require('controller/ChapterController.php');
+
+use V3\Controller\ChapterController;
 
 // Gestion des exception
 try{
@@ -25,11 +20,6 @@ try{
             {
                 dashbord();
             }
-            // ADMIN - Liste des chapitres
-            elseif ($_GET['action'] == 'adminListChapters')
-            {
-                adminListChapters();
-            }
             // ADMIN - Liste des commentaires
             elseif ($_GET['action'] == 'adminListComments')
             {
@@ -39,18 +29,6 @@ try{
             elseif ($_GET['action'] == 'adminCommentsReport')
             {
                 adminCommentsReport();
-            }
-            // ADMIN - Chapitre avec ses commentaires
-            elseif ($_GET['action'] == 'adminChapter')
-            {
-                if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
-                {
-                    adminChapter($_GET['id_chapter']);
-                }
-                else
-                {
-                    throw new Exception('Aucun identifiant de chapitre envoyé !');
-                }
             }
             // ADMIN - Page pour créer un chapitre
             elseif ($_GET['action'] == 'adminNewChapter')
@@ -62,7 +40,8 @@ try{
             {
                 if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
                 {
-                    postChapter($_POST['author'], $_POST['title'], $_POST['content']);
+                    $chapterCtrl = new ChapterController();
+                    $chapterCtrl->postChapter($_POST['author'], $_POST['title'], $_POST['content']);
                 }
                 else
                 {
@@ -81,7 +60,8 @@ try{
                 {
                     if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
                     {
-                        updateChapter($_GET['id_chapter'], $_POST['author'], $_POST['title'], $_POST['content']);
+                        $chapterCtrl = new ChapterController();
+                        $chapterCtrl->updateChapter($_GET['id_chapter'], $_POST['author'], $_POST['title'], $_POST['content']);
                     }
                     else
                     {
@@ -98,7 +78,8 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                 {
-                    deleteChapter($_GET['id_chapter']);
+                    $chapterCtrl = new ChapterController();
+                    $chapterCtrl->deleteChapter($_GET['id_chapter']);
                 }
                 else
                 {
@@ -269,7 +250,8 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                 {
-                    chapter($_GET['id_chapter']);
+                    $chapterCtrl = new ChapterController();
+                    $chapterCtrl->chapter($_GET['id_chapter']);
                 }
                 else
                 {
@@ -613,4 +595,3 @@ catch (Exception $e)
     $errorMessage = $e->getMessage();
     require('view/frontend/errorView.php');
 }
-*/

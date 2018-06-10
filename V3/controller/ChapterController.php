@@ -2,31 +2,65 @@
 
 namespace V3\Controller;
 
-require_once ('model/backend/ChapterManager.php');
-require_once ('model/backend/CommentManager.php');
-require_once ('model/backend/UserManager.php');
-require_once ('view/backend/chapterView.php');
+require_once ('model/ChapterManager.php');
+require_once ('model/CommentManager.php');
 
-use V3\Model\Backend\ChapterManager;
-use V3\Model\Backend\CommentManager;
-use V3\Model\Backend\UserManager;
-
+use V3\Model\ChapterManager;
+use V3\Model\CommentManager;
 
 class ChapterController
 {
-    private $_chapter;
-    private $_comment;
 
-    public function __construct()
+// Ajouter un chapitre
+    public function postChapter($author, $title, $content)
     {
-        $this->_chapter = new ChapterManager();
-        $this->_comment = new CommentManager();
+        $chapterManager = new ChapterManager();
+        $createChapter = $chapterManager->createChapter($author, $title, $content);
+
+        header('Location: ../V3/index.php?action=listChapters');
     }
 
-    // Chapitre + commentaires
-    public function adminChapter($id_chapter)
+// lire un chapitre + ses commentaires
+    public function chapter($id_chapter)
     {
-        $chapter = $this->_chapter->getChapter($id_chapter);
-        $comments = $this->_comment->getComments($id_chapter);
+        $chapterManager = new ChapterManager();
+        $commentManager = new CommentManager();
+
+        $chapter = $chapterManager->getChapter($id_chapter);
+        $comments = $commentManager->getComments($id_chapter);
+        require('view/frontend/chapterView.php');
     }
+
+// Editer un chapitre
+    public function updateChapter($id_chapter, $author, $title, $content)
+    {
+        $chapterManager = new ChapterManager();
+        $updateChapter = $chapterManager->updateChapter($id_chapter, $author, $title, $content);
+
+        if ($updateChapter === false) {
+            throw new Exception('Impossible de mettre à jour le chapitre');
+        } else {
+            header('Location: ../V3/index.php?action=listChapters');
+        }
+    }
+
+// Supprimer un chapitre
+    public function deleteChapter($id_chapter)
+    {
+        $chapterManager = new ChapterManager();
+        $commentManager = new CommentManager();
+
+        $deleteChapter = $chapterManager->deleteChapter($id_chapter);
+        $deleteComments = $commentManager->deleteComments($id_chapter);
+
+        if ($deleteChapter === false) {
+            throw new Exception('Impossible de supprimer le chapitre');
+        } elseif ($deleteComments === false) {
+            throw new Exception('Impossible de supprimer les commentaire du chapitre');
+        } else {
+            header('Location: ../V3/index.php?action=listChapters');
+        }
+    }
+
 }
+

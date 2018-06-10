@@ -1,14 +1,13 @@
 <?php
 
-require_once ('model/backend/ChapterManager.php');
-require_once ('model/backend/CommentManager.php');
-require_once ('model/backend/UserManager.php');
-require_once ('model/Chapter.php');
 
-use V3\Model\Backend\ChapterManager;
-use V3\Model\Backend\CommentManager;
-use V3\Model\Backend\UserManager;
-use V3\Model;
+require_once ('model/ChapterManager.php');
+require_once ('model/CommentManager.php');
+require_once ('model/UserManager.php');
+
+use V3\Model\ChapterManager;
+use V3\Model\CommentManager;
+use V3\Model\UserManager;
 
 // Dashbord
 function dashbord()
@@ -18,15 +17,7 @@ function dashbord()
 
     $chapter = $chapterManager->getLastChapter();
     $comment = $commentManager->getLastComment();
-    require('view/backend/indexView.php');
-}
-// Liste des Chapitres
-function adminListChapters()
-{
-    $chapterManager = new ChapterManager();
-    $chapters = $chapterManager->getChapters();
-
-    require('view/backend/listChaptersView.php');
+    require('view/backend/dashbordView.php');
 }
 // Liste des commentaires
 function adminListComments()
@@ -44,29 +35,12 @@ function adminCommentsReport()
     $reportComments = $commentManager->getReportComments();
     require ('view/backend/reportCommentsView.php');
 }
-// Chapitre + commentaires
-function adminChapter($id_chapter)
-{
-    $chapterManager = new ChapterManager();
-    $commentManager = new CommentManager();
-
-    $chapter = $chapterManager->getChapter($id_chapter);
-    $comments = $commentManager->getComments($id_chapter);
-    require ('view/backend/chapterView.php');
-}
 // Page nouveau chapitre
 function adminNewChapter()
 {
     require ('view/backend/newChapterView.php');
 }
-// Ajouter un chapitre
-function postChapter($author, $title, $content)
-{
-    $chapterManager = new ChapterManager();
-    $createChapter = $chapterManager->createChapter($author, $title, $content);
 
-    header('Location: ../V3/index.php?action=adminListChapters');
-}
 // Page d'édition d'un chapitre
 function adminUpdateChapter()
 {
@@ -96,7 +70,7 @@ function deleteChapter($id_chapter)
     $commentManager = new CommentManager();
 
     $deleteChapter = $chapterManager->deleteChapter($id_chapter);
-    $deleteComments = $commentManager->deleteComments($id_chapter);
+    $deleteComments = $commentManager->deleteAllComments($id_chapter);
 
     if($deleteChapter === false)
     {
@@ -118,7 +92,7 @@ function adminUpdateComment()
     $commentManager = new CommentManager();
 
     $chapter = $chapterManager->getChapter($_GET['id_chapter']);
-    $comment = $commentManager->getComment($_GET['id']);
+    $comment = $commentManager->getCommentById($_GET['id']);
     require ('view/backend/updateCommentView.php');
 }
 // Editer un commentaire
@@ -167,11 +141,7 @@ function approvedComment()
     header('Location: ../V3/index.php?action=adminCommentsReport');
 
 }
-// Modérer un commentaire signalé
-function moderateComment()
-{
 
-}
 // Liste des membres
 function adminListUsers()
 {
@@ -202,7 +172,7 @@ function adminAddUser($id_group, $pseudo, $password_hache, $email)
 function adminUpdateUser()
 {
     $userManager = new UserManager();
-    $user = $userManager->getUser($_GET['id_user']);
+    $user = $userManager->getUserById($_GET['id_user']);
     require ('view/backend/updateUserView.php');
 }
 

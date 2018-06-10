@@ -1,7 +1,5 @@
 <?php $title = 'Jean Forteroche - Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); include('../V3/view/nav.php'); $menu = ob_get_clean(); ?>
-
 <?php ob_start(); ?>
 
     <h1>Billet simple pour l'Alaska</h1>
@@ -56,7 +54,4 @@ $comment->closeCursor();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php ob_start(); include('../V3/view/footer.php'); $footer = ob_get_clean(); ?>
-
-
-<?php require('../V3/view/template.php'); ?>
+<?php require('../V3/view/inc/template.php'); ?>

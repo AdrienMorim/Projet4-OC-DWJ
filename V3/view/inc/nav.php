@@ -27,7 +27,7 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
             <div class="dropdown-menu">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../V3/index.php?action=adminListChapters"><i class="far fa-list-alt"></i> Tous les chapitres</a>
+                        <a class="nav-link" href="../V3/index.php?action=listChapters"><i class="far fa-list-alt"></i> Tous les chapitres</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../V3/index.php?action=adminNewChapter"><i class="fas fa-pencil-alt"></i> Créer un chapitre</a>

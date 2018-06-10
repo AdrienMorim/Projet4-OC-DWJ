@@ -12,9 +12,19 @@ class Routeur
 
     public function __construct()
     {
-        //$this->_chapterCtrl = new ChapterController();
-        $this->_indexCtrl = new IndexController();
+        $this->setIndex(new IndexController());
     }
+
+    private function setIndex($index)
+    {
+        $this->_indexCtrl = $index;
+    }
+
+    private function setChapter($chapter)
+    {
+        $this->_chapterCtrl = $chapter;
+    }
+
 
     public function getRequete()
     {
@@ -28,7 +38,7 @@ class Routeur
                     } // ADMIN - Chapitre avec ses commentaires
                     elseif ($_GET['action'] == 'adminChapter') {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                            adminChapter($_GET['id_chapter']);
+                            $this->_chapterCtrl->adminChapter($_GET['id_chapter']);
                         } else {
                             throw new Exception('Aucun identifiant de chapitre envoyé !');
                         }
