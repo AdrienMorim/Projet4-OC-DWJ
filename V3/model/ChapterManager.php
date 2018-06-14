@@ -31,6 +31,7 @@ class ChapterManager extends Manager
         $this->_creation_date = new DateTime('now');
     }
 
+    /******************************************************* GETTERS ***************************************************/
     /**
      * @return int
      */
@@ -71,6 +72,8 @@ class ChapterManager extends Manager
         return $this->_creation_date;
     }
 
+    /******************************************************* SETTERS ***************************************************/
+
     /**
      * @param int           $id_chapter
      */
@@ -97,7 +100,7 @@ class ChapterManager extends Manager
      */
     public function setAuthor($author)
     {
-        if(is_string($title)) {
+        if(is_string($author)) {
             $this->_author = $author;
         }
     }
@@ -107,7 +110,7 @@ class ChapterManager extends Manager
      */
     public function setContent($content)
     {
-        if(is_string($title)) {
+        if(is_string($content)) {
             $this->_content = $content;
         }
     }
@@ -120,15 +123,23 @@ class ChapterManager extends Manager
         $this->_creation_date = $creation_date;
     }
 
+    /*********************************************** METHODES *********************************************************/
+
+    /**
+     * @return bool|\PDOStatement           Récupère le dernier chapitre
+     */
     public function getLastChapter()
     {
         $db = $this->dbConnect();
 
-        $chapter = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
+        $chapter = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 3');
         return $chapter;
     }
 
-    public function getChapters()
+    /**
+     * @return bool|\PDOStatement           Récupère tous les chapitres
+     */
+    public function getAllChapters()
     {
         $db = $this->dbConnect();
 
@@ -136,6 +147,10 @@ class ChapterManager extends Manager
         return $req;
     }
 
+    /**
+     * @param                               $id_chapter
+     * @return mixed                        Récupère un chapitre via son identifiant
+     */
     public function getChapter($id_chapter)
     {
         $this->setId($id_chapter);
@@ -148,6 +163,12 @@ class ChapterManager extends Manager
         return $chapter;
     }
 
+    /**
+     * @param                               $author
+     * @param                               $title
+     * @param                               $content
+     * @return bool                         Créer un chapitre du blog
+     */
     public function createChapter($author, $title, $content)
     {
         $this->setAuthor($author);
@@ -165,6 +186,13 @@ class ChapterManager extends Manager
         return $createChapter;
     }
 
+    /**
+     * @param                               $id_chapter
+     * @param                               $author
+     * @param                               $title
+     * @param                               $content
+     * @return bool                         Met à jour un chapitre via son identifiant
+     */
     public function updateChapter($id_chapter, $author, $title, $content)
     {
         $this->setId($id_chapter);
@@ -183,6 +211,10 @@ class ChapterManager extends Manager
         return $updateChapter;
     }
 
+    /**
+     * @param                               $id_chapter
+     * @return bool                         Supprimer un chapitre via son identifiant
+     */
     public function deleteChapter($id_chapter)
     {
         $this->setId($id_chapter);

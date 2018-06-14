@@ -110,7 +110,7 @@ class CommentManager extends Manager
      */
     public function setAuthor($author)
     {
-        if(is_string($title)) {
+        if(is_string($author)) {
             $this->_author = $author;
         }
     }
@@ -120,7 +120,7 @@ class CommentManager extends Manager
      */
     public function setComment($comment)
     {
-        if(is_string($title)) {
+        if(is_string($comment)) {
             $this->_comment = $comment;
         }
     }

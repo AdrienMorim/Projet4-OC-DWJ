@@ -18,7 +18,7 @@ function dashbord()
     $chapter = $chapterManager->getLastChapter();
     $comment = $commentManager->getLastComment();
     require('view/backend/dashbordView.php');
-}
+}/*
 // Liste des commentaires
 function adminListComments()
 {
@@ -34,13 +34,13 @@ function adminCommentsReport()
 
     $reportComments = $commentManager->getReportComments();
     require ('view/backend/reportCommentsView.php');
-}
+}*/
 // Page nouveau chapitre
 function adminNewChapter()
 {
     require ('view/backend/newChapterView.php');
 }
-
+/*
 // Page d'édition d'un chapitre
 function adminUpdateChapter()
 {
@@ -148,12 +148,12 @@ function adminListUsers()
     $userManager = new UserManager();
     $users = $userManager->getAllUsers();
     require ('view/backend/listUsersView.php');
-}
+}*/
 // Page d'ajout membre
 function adminNewUser()
 {
     require ('view/backend/newUserView.php');
-}
+}/*
 // Ajouter un membre
 function adminAddUser($id_group, $pseudo, $password_hache, $email)
 {
@@ -202,4 +202,4 @@ function deleteUser($id)
     {
         header('Location: ../V3/index.php?action=adminListUsers');
     }
-}
+}*/

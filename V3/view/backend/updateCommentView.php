@@ -27,7 +27,7 @@
         <div class="form-group row">
             <label for="author" class="col-lg-3">Auteur</label>
             <div class="col-lg-9">
-                <input type="text" name="author" id="author" class="form-control" placeholder="Indiquez ici votre nom" value="<?= htmlspecialchars($comment['author']); ?>"/>
+                <input type="text" name="author" id="author" class="form-control" value="<?= htmlspecialchars($comment['author']); ?>"/>
             </div>
         </div>
         <div class="form-group row">
@@ -38,7 +38,7 @@
         </div>
         <div class="form-group row">
             <div class="col-lg-12">
-                <button type="submit" name="envoyer" class="btn btn-primary">Envoyer votre commentaire</button>
+                <button type="submit" name="envoyer" class="btn btn-primary">Mettre à jour votre commentaire</button>
             </div>
         </div>
     </div>

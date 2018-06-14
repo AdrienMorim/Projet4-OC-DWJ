@@ -9,7 +9,7 @@ use V3\Model\CommentManager;
 use V3\Model\UserManager;
 
 // Home
-function home()
+/*function home()
 {
     $chapterManager = new ChapterManager();
     $commentManager = new CommentManager();
@@ -30,6 +30,7 @@ function aboutAuthor()
 {
     require('view/frontend/aboutView.php');
 }
+
 // lire un chapitre + ses commentaires
 function chapter($id_chapter)
 {

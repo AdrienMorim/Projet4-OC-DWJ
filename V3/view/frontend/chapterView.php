@@ -26,21 +26,16 @@
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+        <?php if(!isset($_SESSION['id_group'])) { ?>
+            <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
         <?php
-
-        if(!isset($_SESSION['id_group'])) {
-            ?>
-                <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
-            <?php
         }
-        elseif(isset($_SESSION) && $_SESSION['id_group'] == 2){
-            ?>
+        elseif(isset($_SESSION) && $_SESSION['id_group'] == 2){ ?>
             <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Signaler <i class="fas fa-bell"></i></a></em>
             <em><a href="../V3/index.php?action=userUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
-            <?php
+        <?php
         }
-        else{
-        ?>
+        else{ ?>
             <em><a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Éditer <i class="fas fa-comment-dots"></i></a></em>
             <em><a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Supprimer <i class="fas fa-comment-slash"></i></a></em>
             <em><a href="../V3/index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id'];?>&amp;id=<?= $comment['id'];?>">Approuver <i class="fas fa-check-circle"></i></a></em>

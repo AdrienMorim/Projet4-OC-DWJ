@@ -146,7 +146,7 @@ class UserManager extends Manager
      */
     public function setPseudo($pseudo)
     {
-        if(is_string($title)) {
+        if(is_string($pseudo)) {
             $this->_pseudo = $pseudo;
         }
     }
@@ -156,7 +156,7 @@ class UserManager extends Manager
      */
     public function setPass($pass)
     {
-        if(is_string($title)) {
+        if(is_string($pass)) {
             $this->_pass = $pass;
         }
     }
@@ -166,7 +166,7 @@ class UserManager extends Manager
      */
     public function setEmail($email)
     {
-        if(is_string($title)) {
+        if(is_string($email)) {
             $this->_email = $email;
         }
     }
@@ -184,7 +184,7 @@ class UserManager extends Manager
      */
     public function setFirstname($firstname)
     {
-        if(is_string($title)) {
+        if(is_string($firstname)) {
             $this->_firstname = $firstname;
         }
     }
@@ -194,7 +194,7 @@ class UserManager extends Manager
      */
     public function setSurname($surname)
     {
-        if(is_string($title)) {
+        if(is_string($surname)) {
             $this->_surname = $surname;
         }
     }

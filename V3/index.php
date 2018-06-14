@@ -2,11 +2,19 @@
 
 <?php
 
-require('controller/frontend.php');
-require('controller/backend.php');
 require('controller/ChapterController.php');
+require('controller/CommentController.php');
+require('controller/DashboardController.php');
+require('controller/IndexController.php');
+require('controller/UserController.php');
+require('controller/ViewController.php');
 
 use V3\Controller\ChapterController;
+use V3\Controller\CommentController;
+use V3\Controller\DashboardController;
+use V3\Controller\IndexController;
+use V3\Controller\UserController;
+use V3\Controller\ViewController;
 
 // Gestion des exception
 try{
@@ -18,22 +26,20 @@ try{
             // ADMIN - Dashbord
             if ($_GET['action'] == 'dashbord')
             {
-                dashbord();
+                $dashboardCtrl = new DashboardController();
+                $dashboardCtrl->dashbord();
             }
             // ADMIN - Liste des commentaires
             elseif ($_GET['action'] == 'adminListComments')
             {
-                adminListComments();
+                $commentCtrl = new CommentController();
+                $commentCtrl->adminListComments();
             }
-            // ADMIN - Commentaires signalés
+            // ADMIN - Liste des commentaires signalés
             elseif ($_GET['action'] == 'adminCommentsReport')
             {
-                adminCommentsReport();
-            }
-            // ADMIN - Page pour créer un chapitre
-            elseif ($_GET['action'] == 'adminNewChapter')
-            {
-                adminNewChapter();
+                $commentCtrl = new CommentController();
+                $commentCtrl->adminCommentsReport();
             }
             // ADMIN - Creation d'un chapitre
             elseif ($_GET['action'] == 'createChapter')
@@ -51,7 +57,8 @@ try{
             // ADMIN - page de MAJ d'un chapitre
             elseif ($_GET['action'] == 'adminUpdateChapter')
             {
-                adminUpdateChapter();
+                $chapterCtrl = new ChapterController();
+                $chapterCtrl->adminUpdateChapter();
             }
             // ADMIN - Mise à jour d'un chapitre
             elseif ($_GET['action'] == 'updateChapter')
@@ -89,7 +96,8 @@ try{
             // ADMIN - page de MAJ des commentaires
             elseif ($_GET['action'] == 'adminUpdateComment')
             {
-                adminUpdateComment();
+                $commentCtrl = new CommentController();
+                $commentCtrl->adminUpdateComment();
             }
             // ADMIN - Mise à jour d'un commentaire
             elseif ($_GET['action'] == 'updateComment')
@@ -100,7 +108,8 @@ try{
                     {
                         if ($_POST['author'] != NULL && $_POST['comment'] != NULL)
                         {
-                            updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                            $commentCtrl = new CommentController();
+                            $commentCtrl->updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
                         }
                         else
                         {
@@ -123,66 +132,31 @@ try{
             {
                 if (isset($_GET['id']) && $_GET['id'] > 0)
                 {
-                    deleteComment($_GET['id']);
+                    $commentCtrl = new CommentController();
+                    $commentCtrl->deleteComment($_GET['id']);
                 }
                 else
                 {
                     throw new Exception('Aucun identifiant de commentaire envoyé !');
                 }
             }
-            // ADMIN - Approuver un commentaire signaler
+            // ADMIN - Approuver un commentaire (retirer le signalement)
             elseif ($_GET['action'] == 'approvedComment')
             {
-                approvedComment();
+                $commentCtrl = new CommentController();
+                $commentCtrl->approvedComment();
             }
             // ADMIN - Liste des utilisateurs
             elseif ($_GET['action'] == 'adminListUsers')
             {
-                adminListUsers();
-            }
-            // ADMIN - Page d'ajout d'un membre
-            elseif ($_GET['action'] == 'adminNewUser')
-            {
-                adminNewUser();
-            }
-            // ADMIN - Ajouter un utilisateur
-            elseif ($_GET['action'] == 'newUser')
-            {
-                if (!empty($_POST['pseudo']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['email']) && !empty($_POST['id_group']))
-                {
-                    // Sécurité
-                    $id_group = $_POST['id_group'];
-                    $pseudo = htmlspecialchars($_POST['pseudo']);
-                    $email = htmlspecialchars($_POST['email']);
-                    // Hachage du mot de passe
-                    $password_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    // On vérifie la Regex pour l'adresse email
-                    if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
-                    {
-                        // On vérifie que les 2 mots de passe sont identiques.
-                        if ($_POST['password'] == $_POST['password_confirm'])
-                        {
-                            adminAddUser($id_group, $pseudo, $password_hache, $email);
-                        }
-                        else
-                        {
-                            throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
-                    }
-                }
-                else
-                {
-                    throw new Exception('Tous les champs doivent être remplis !');
-                }
+                $userCtrl = new UserController();
+                $userCtrl->adminListUsers();
             }
             // ADMIN - Page de MAJ du membre
             elseif ($_GET['action'] == 'adminUpdateUser')
             {
-                adminUpdateUser();
+                $userCtrl = new UserController();
+                $userCtrl->adminUpdateUser();
             }
             // ADMIN - Editer un utilisateur
             elseif ($_GET['action'] == 'updateUser')
@@ -204,7 +178,8 @@ try{
                     {
                         // On vérifie que les 2 mots de passe sont identiques.
                         if ($_POST['password'] == $_POST['password_confirm']) {
-                            updateUser($id, $id_group, $pseudo, $password_hache, $email, $firstname, $surname, $birthday);
+                            $userCtrl = new UserController();
+                            $userCtrl->updateUser($id, $id_group, $pseudo, $password_hache, $email, $firstname, $surname, $birthday);
                         }
                         else
                         {
@@ -223,7 +198,8 @@ try{
 
                 if (isset($_GET['id_user']) && $_GET['id_user'] > 0)
                 {
-                    deleteUser($_GET['id_user']);
+                    $userCtrl = new UserController();
+                    $userCtrl->deleteUser($_GET['id_user']);
                 }
                 else
                 {
@@ -233,17 +209,26 @@ try{
             // Accueil Visiteur
             elseif ($_GET['action'] == 'home')
             {
-                home();
+                $indexCtrl = new IndexController();
+                $indexCtrl->home();
+            }
+            // ADMIN - Page pour créer un chapitre
+            elseif ($_GET['action'] == 'adminNewChapter')
+            {
+                $viewCtrl = new ViewController();
+                $viewCtrl->adminNewChapter();
             }
             // À propos de l'auteur
             elseif ($_GET['action'] == 'about')
             {
-                aboutAuthor();
+                $viewCtrl = new ViewController();
+                $viewCtrl->aboutAuthor();
             }
             // Liste des chapitres
             elseif ($_GET['action'] == 'listChapters')
             {
-                listChapters();
+                $chapterCtrl = new ChapterController();
+                $chapterCtrl->listChapters();
             }
             // Affiche le chapitre avec ses commentaires
             elseif ($_GET['action'] == 'chapter')
@@ -265,7 +250,8 @@ try{
                 {
                     if (!empty($_POST['author']) && !empty($_POST['comment']))
                     {
-                        addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
                     }
                     else
                     {
@@ -284,7 +270,8 @@ try{
                 {
                     if (isset($_GET['id']) && $_GET['id'] > 0)
                     {
-                        reportingComment();
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->reportingComment();
                     }
                     else
                     {
@@ -299,7 +286,8 @@ try{
             // Page de connexion
             elseif ($_GET['action'] == 'login')
             {
-                login();
+                $viewCtrl = new ViewController();
+                $viewCtrl->login();
             }
             // Inscription
             elseif ($_GET['action'] == 'register')
@@ -317,7 +305,8 @@ try{
                         // On vérifie que les 2 mots de passe sont identiques.
                         if ($_POST['password'] == $_POST['password_confirm'])
                         {
-                            registerUser(2, $pseudo, $password_hache, $email);
+                            $userCtrl = new UserController();
+                            $userCtrl->registerUser(2, $pseudo, $password_hache, $email);
                         }
                         else
                         {
@@ -339,7 +328,8 @@ try{
             {
                 if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
                 {
-                    logUser($_POST['pseudo'], $_POST['pass']);
+                    $userCtrl = new UserController();
+                    $userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
                 }
                 else
                 {
@@ -349,13 +339,15 @@ try{
             // Deconnexion
             elseif ($_GET['action'] == 'logout')
             {
-                logoutUser();
+                $userCtrl = new UserController();
+                $userCtrl->logoutUser();
             }
         }
         // Retourne au Dashbord.
         else
         {
-            dashbord();
+            $dashboardCtrl = new DashboardController();
+            $dashboardCtrl->dashbord();
         }
     }
     // SI USER
@@ -366,21 +358,25 @@ try{
             // Accueil Visiteur
             if ($_GET['action'] == 'home')
             {
-                home();
+                $indexCtrl = new IndexController();
+                $indexCtrl->home();
             }
             // À propos de l'auteur
             elseif ($_GET['action'] == 'about') {
-                aboutAuthor();
+                $viewCtrl = new ViewController();
+                $viewCtrl->aboutAuthor();
             }
             // Liste des chapitres
             elseif ($_GET['action'] == 'listChapters') {
-                listChapters();
+                $chapterCtrl = new ChapterController();
+                $chapterCtrl->listChapters();
             }
             // Affiche le chapitre avec ses commentaires
             elseif ($_GET['action'] == 'chapter')
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                    chapter($_GET['id_chapter']);
+                    $chapterCtrl = new ChapterController();
+                    $chapterCtrl->chapter($_GET['id_chapter']);
                 } else {
                     throw new Exception('Aucun identifiant de chapitre envoyé !');
                 }
@@ -390,7 +386,8 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                     if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                        addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
                     } else {
                         throw new Exception('Tous les champs doivent être remplis !');
                     }
@@ -403,7 +400,8 @@ try{
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
-                        reportingComment();
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->reportingComment();
                     } else {
                         throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                     }
@@ -412,12 +410,13 @@ try{
                 }
             }
             // Page de MAJ des commentaires
-            elseif ($_GET['action'] == 'userUpdateComment')
+            elseif ($_GET['action'] == 'adminUpdateComment')
             {
-                userUpdateComment();
+                $commentCtrl = new CommentController();
+                $commentCtrl->adminUpdateComment();
             }
             // Mise à jour d'un commentaire
-            elseif ($_GET['action'] == 'editComment')
+            elseif ($_GET['action'] == 'updateComment')
             {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                 {
@@ -425,7 +424,8 @@ try{
                     {
                         if ($_POST['author'] != NULL && $_POST['comment'] != NULL)
                         {
-                            editComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                            $commentCtrl = new CommentController();
+                            $commentCtrl->updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
                         }
                         else
                         {
@@ -445,7 +445,8 @@ try{
             }
             // Page de connexion
             elseif ($_GET['action'] == 'login') {
-                login();
+                $viewCtrl = new ViewController();
+                $viewCtrl->login();
             }
             // Inscription
             elseif ($_GET['action'] == 'register')
@@ -460,7 +461,8 @@ try{
                     if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
                         // On vérifie que les 2 mots de passe sont identiques.
                         if ($_POST['password'] == $_POST['password_confirm']) {
-                            registerUser(2, $pseudo, $password_hache, $email);
+                            $userCtrl = new UserController();
+                            $userCtrl->registerUser(2, $pseudo, $password_hache, $email);
                         } else {
                             throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
                         }
@@ -475,7 +477,8 @@ try{
             elseif ($_GET['action'] == 'log')
             {
                 if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-                    logUser($_POST['pseudo'], $_POST['pass']);
+                    $userCtrl = new UserController();
+                    $userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
                 } else {
                     throw new Exception('Tous les champs doivent être remplis !');
                 }
@@ -483,13 +486,15 @@ try{
             // Deconnexion
             elseif ($_GET['action'] == 'logout')
             {
-                logoutUser();
+                $userCtrl = new UserController();
+                $userCtrl->logoutUser();
             }
         }
         // Retourne à l'index
         else
         {
-            home();
+            $indexCtrl = new IndexController();
+            $indexCtrl->home();
         }
     }
     // SI VISITOR
@@ -500,20 +505,24 @@ try{
             // Accueil Visiteur
             if ($_GET['action'] == 'home')
             {
-                home();
+                $indexCtrl = new IndexController();
+                $indexCtrl->home();
             }
             // À propos de l'auteur
             elseif ($_GET['action'] == 'about') {
-                aboutAuthor();
+                $viewCtrl = new ViewController();
+                $viewCtrl->aboutAuthor();
             }
             // Liste des chapitres
             elseif ($_GET['action'] == 'listChapters') {
-                listChapters();
+                $chapterCtrl = new ChapterController();
+                $chapterCtrl->listChapters();
             }
             // Affiche le chapitre avec ses commentaires
             elseif ($_GET['action'] == 'chapter') {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                    chapter($_GET['id_chapter']);
+                    $chapterCtrl = new ChapterController();
+                    $chapterCtrl->chapter($_GET['id_chapter']);
                 } else {
                     throw new Exception('Aucun identifiant de chapitre envoyé !');
                 }
@@ -522,7 +531,8 @@ try{
             elseif ($_GET['action'] == 'addComment') {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                     if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                        addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
                     } else {
                         throw new Exception('Tous les champs doivent être remplis !');
                     }
@@ -534,7 +544,8 @@ try{
             elseif ($_GET['action'] == 'report') {
                 if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
-                        reportingComment();
+                        $commentCtrl = new CommentController();
+                        $commentCtrl->reportingComment();
                     } else {
                         throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                     }
@@ -544,7 +555,8 @@ try{
             }
             // Page de connexion
             elseif ($_GET['action'] == 'login') {
-                login();
+                $viewCtrl = new ViewController();
+                $viewCtrl->login();
             }
             // Inscription
             elseif ($_GET['action'] == 'register') {
@@ -558,7 +570,8 @@ try{
                     if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
                         // On vérifie que les 2 mots de passe sont identiques.
                         if ($_POST['password'] == $_POST['password_confirm']) {
-                            registerUser(2, $pseudo, $password_hache, $email);
+                            $userCtrl = new UserController();
+                            $userCtrl->registerUser(2, $pseudo, $password_hache, $email);
                         } else {
                             throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
                         }
@@ -572,20 +585,23 @@ try{
             // Connexion
             elseif ($_GET['action'] == 'log') {
                 if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-                    logUser($_POST['pseudo'], $_POST['pass']);
+                    $userCtrl = new UserController();
+                    $userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
                 } else {
                     throw new Exception('Tous les champs doivent être remplis !');
                 }
             }
             // Deconnexion
             elseif ($_GET['action'] == 'logout') {
-                logoutUser();
+                $userCtrl = new UserController();
+                $userCtrl->logoutUser();
             }
         }
         // Retourne à l'index.
         else
         {
-            home();
+            $indexCtrl = new IndexController();
+            $indexCtrl->home();
         }
     }
 
