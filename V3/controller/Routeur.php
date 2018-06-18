@@ -2,7 +2,7 @@
 
 namespace V3\Controller;
 
-
+require('Autoload.php');
 
 /*
 require('ChapterController.php');
@@ -10,7 +10,8 @@ require('CommentController.php');
 require('DashboardController.php');
 require('IndexController.php');
 require('UserController.php');
-require('ViewController.php');*/
+require('ViewController.php');
+*/
 
 use \Exception;
 
@@ -32,6 +33,7 @@ class Routeur
      */
     public function __construct()
     {
+        Autoload::register();
         $this->_chapterCtrl = new ChapterController();
         $this->_commentCtrl = new CommentController();
         $this->_dashboardCtrl = new DashboardController();
