@@ -12,6 +12,6 @@ class Autoload
     static function autoload($className)
     {
         var_dump($className);
-        require 'controller/' . $className . '.php';
+        require $className . '.php';
     }
 }
