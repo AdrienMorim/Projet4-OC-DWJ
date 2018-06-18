@@ -35,6 +35,7 @@ class DashboardController
         $comment = $this->_comment->getLastComment();
         //$chapter = $this->_chapter->countChapter();
         //$comment = $this->_comment->countComment();
+        //$commentReport = $this->_comment->countCommentReport();
         //$user = $this->_user->countUser();
         require('view/backend/dashbordView.php');
     }
