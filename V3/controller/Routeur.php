@@ -30,6 +30,7 @@ class Routeur
     /**
      * Routeur constructor.
      * Méthode magique car automatiquement appelé dès l'instanciation de Routeur
+     * Permet d'instancier automatiquement les controller
      */
     public function __construct()
     {
@@ -43,7 +44,7 @@ class Routeur
     }
 
     /**
-     *
+     * Methode qui permet, si les conditions sont réunis, d'afficher l'url demandée.
      */
     public function getRequest()
     {
@@ -176,42 +177,117 @@ class Routeur
                         $this->_userCtrl->adminUpdateUser();
                     }
                     // ADMIN - Editer un utilisateur
-                    elseif ($_GET['action'] == 'updateUser')
+                    elseif ($_GET['action'] == 'updateGroup')
                     {
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0)
                         {
                             // Sécurité
                             $id = $_GET['id_user'];
                             $id_group = $_POST['id_group'];
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['id_group'])) {
+                                $this->_userCtrl->updateGroupUser($id, $id_group);
+                            }
+                            else{
+                                throw new Exception('Aucun changement de niveau d\'administration');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updatePseudo'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
                             $pseudo = htmlspecialchars($_POST['pseudo']);
-                            $firstname = htmlspecialchars($_POST['firstname']);
-                            $surname = htmlspecialchars($_POST['surname']);
-                            $birthday = htmlspecialchars($_POST['birthday_date']);
-                            $email = htmlspecialchars($_POST['email']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['pseudo'])) {
+                                $this->_userCtrl->updatePseudoUser($id, $pseudo);
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updatePass') {
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
                             // Hachage du mot de passe
                             $password_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                            // On vérifie la Regex pour l'adresse email
-                            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
-                            {
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['password']) && !empty($_POST['password_confirm'])) {
                                 // On vérifie que les 2 mots de passe sont identiques.
                                 if ($_POST['password'] == $_POST['password_confirm']) {
-                                    $this->_userCtrl->updateUser($id, $id_group, $pseudo, $password_hache, $email, $firstname, $surname, $birthday);
+                                    $this->_userCtrl->updatePassUser($id, $password_hache);
+                                } else {
+                                    throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
+                                }
+                            } else{
+                                throw new Exception('Au moins un des deux champs est vide, veuillez remplir les deux, merci.');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updateName'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $firstname = htmlspecialchars($_POST['firstname']);
+                            $surname = htmlspecialchars($_POST['surname']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['firstname']) && !empty($_POST['surname'])){
+                                $this->_userCtrl->updateNameUser($id, $firstname, $surname);
+                            } else{
+                                throw new Exception('Au moins un des deux champs est vide, veuillez remplir les deux, merci.');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updateEmail'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $email = htmlspecialchars($_POST['email']);
+                            // On vérifie la Regex pour l'adresse email
+                            if (!empty($_POST['email'])) {
+                                if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+                                {
+                                    $this->_userCtrl->updateEmailUser($id, $email);
                                 }
                                 else
                                 {
-                                    throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
+                                    throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
                                 }
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
                             }
-                            else
-                            {
-                                throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updateBirthday'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $birthday = htmlspecialchars($_POST['birthday_date']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['birthday_date'])){
+                                $this->_userCtrl->updateBirthdayUser($id, $birthday);
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
                             }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
                         }
                     }
                     // ADMIN - Supprimer un utilisateur
                     elseif ($_GET['action'] == 'deleteUser')
                     {
-
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0)
                         {
                             $this->_userCtrl->deleteUser($_GET['id_user']);
@@ -291,56 +367,7 @@ class Routeur
                             throw new Exception('Aucun identifiant de chapitre envoyé pour revenir sur la page précédente!');
                         }
                     }
-                    // Page de connexion
-                    elseif ($_GET['action'] == 'login')
-                    {
-                        $this->_viewCtrl->login();
-                    }
-                    // Inscription
-                    elseif ($_GET['action'] == 'register')
-                    {
-                        if (!empty($_POST['pseudo']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['email']))
-                        {
-                            // Sécurité
-                            $pseudo = htmlspecialchars($_POST['pseudo']);
-                            $email = htmlspecialchars($_POST['email']);
-                            // Hachage du mot de passe
-                            $password_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                            // On vérifie la Regex pour l'adresse email
-                            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
-                            {
-                                // On vérifie que les 2 mots de passe sont identiques.
-                                if ($_POST['password'] == $_POST['password_confirm'])
-                                {
-                                    $this->_userCtrl->registerUser(2, $pseudo, $password_hache, $email);
-                                }
-                                else
-                                {
-                                    throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception('Tous les champs doivent être remplis !');
-                        }
-                    }
-                    // Connexion
-                    elseif ($_GET['action'] == 'log')
-                    {
-                        if (!empty($_POST['pseudo']) && !empty($_POST['pass']))
-                        {
-                            $this->_userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
-                        }
-                        else
-                        {
-                            throw new Exception('Tous les champs doivent être remplis !');
-                        }
-                    }
+
                     // Deconnexion
                     elseif ($_GET['action'] == 'logout')
                     {
@@ -438,41 +465,118 @@ class Routeur
                             throw new Exception('Aucun identifiant de chapitre envoyé !');
                         }
                     }
-                    // Page de connexion
-                    elseif ($_GET['action'] == 'login') {
-                        $this->_viewCtrl->login();
-                    }
-                    // Inscription
-                    elseif ($_GET['action'] == 'register')
+                    // Profil de l'utilisateur
+                    elseif ($_GET['action'] == 'adminUpdateUser')
                     {
-                        if (!empty($_POST['pseudo']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['email'])) {
+                        $this->_userCtrl->adminUpdateUser();
+                    }
+                    // Editer le profil utilisateur
+                    elseif ($_GET['action'] == 'updateGroup')
+                    {
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0)
+                        {
                             // Sécurité
+                            $id = $_GET['id_user'];
+                            $id_group = $_POST['id_group'];
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['id_group'])) {
+                                $this->_userCtrl->updateGroupUser($id, $id_group);
+                            }
+                            else{
+                                throw new Exception('Aucun changement de niveau d\'administration');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updatePseudo'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
                             $pseudo = htmlspecialchars($_POST['pseudo']);
-                            $email = htmlspecialchars($_POST['email']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['pseudo'])) {
+                                $this->_userCtrl->updatePseudoUser($id, $pseudo);
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updatePass') {
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
                             // Hachage du mot de passe
                             $password_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                            // On vérifie la Regex pour l'adresse email
-                            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])) {
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['password']) && !empty($_POST['password_confirm'])) {
                                 // On vérifie que les 2 mots de passe sont identiques.
                                 if ($_POST['password'] == $_POST['password_confirm']) {
-                                    $this->_userCtrl->registerUser(2, $pseudo, $password_hache, $email);
+                                    $this->_userCtrl->updatePassUser($id, $password_hache);
                                 } else {
                                     throw new Exception('Les 2 mots de passe ne sont pas identiques, recommencez !');
                                 }
-                            } else {
-                                throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+                            } else{
+                                throw new Exception('Au moins un des deux champs est vide, veuillez remplir les deux, merci.');
                             }
-                        } else {
-                            throw new Exception('Tous les champs doivent être remplis !');
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
                         }
                     }
-                    // Connexion
-                    elseif ($_GET['action'] == 'log')
-                    {
-                        if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-                            $this->_userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
-                        } else {
-                            throw new Exception('Tous les champs doivent être remplis !');
+                    elseif ($_GET['action'] == 'updateName'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $firstname = htmlspecialchars($_POST['firstname']);
+                            $surname = htmlspecialchars($_POST['surname']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['firstname']) && !empty($_POST['surname'])){
+                                $this->_userCtrl->updateNameUser($id, $firstname, $surname);
+                            } else{
+                                throw new Exception('Au moins un des deux champs est vide, veuillez remplir les deux, merci.');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updateEmail'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $email = htmlspecialchars($_POST['email']);
+                            // On vérifie la Regex pour l'adresse email
+                            if (!empty($_POST['email'])) {
+                                if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+                                {
+                                    $this->_userCtrl->updateEmailUser($id, $email);
+                                }
+                                else
+                                {
+                                    throw new Exception('L\'adresse email ' . $email . ' n\'est pas valide, recommencez !');
+                                }
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
+                            }
+
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
+                        }
+                    }
+                    elseif ($_GET['action'] == 'updateBirthday'){
+                        if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
+                            // Sécurité
+                            $id = $_GET['id_user'];
+                            $birthday = htmlspecialchars($_POST['birthday_date']);
+                            //On vérifie que les champs ne sont pas vides
+                            if (!empty($_POST['birthday_date'])){
+                                $this->_userCtrl->updateBirthdayUser($id, $birthday);
+                            }else{
+                                throw new Exception('Le champ doit être rempli !');
+                            }
+                        }else{
+                            throw new Exception('L\'utilisateur n\'existe pas !');
                         }
                     }
                     // Deconnexion
@@ -593,7 +697,7 @@ class Routeur
     }
 
     /**
-     * @param $errorMessage
+     * @param $errorMessage         Renvoi un message d'erreur dans la vue
      */
     public function getErreur($errorMessage)
     {
