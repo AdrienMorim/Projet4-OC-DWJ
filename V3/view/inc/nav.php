@@ -5,7 +5,7 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
     ?>
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-            <h4 class="nav-link"><a href="#"><i class="fas fa-minus"></i></a> MENU</h4>
+            <h4 class="nav-link"><a href="#"><i class="fas fa-bars"></i></a> MENU</h4>
         </li>
         <li class="nav-item">
             <h4 class="nav-link"><a href="#"><i class="fas fa-times"></i></a> MENU</h4>
@@ -19,9 +19,6 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
         <li class="nav-item">
             <a class="nav-link" href="../V3/index.php?action=about"><i class="fas fa-chalkboard-teacher"></i> À propos</a>
         </li>
-        <!--<li class="nav-item">
-            <a class="nav-link" href="../V3/index.php?action=listChapters"><i class="far fa-newspaper"></i> Liste des chapitres</a>
-        </li>-->
         <li class="nav-item dropright">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-edit"></i> Chapitres</a>
             <div class="dropdown-menu">
@@ -53,10 +50,10 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
             <div class="dropdown-menu">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../V3/index.php?action=adminListUsers"><i class="fas fa-users-cog"></i>Liste des Membres</a>
+                        <a class="nav-link" href="../V3/index.php?action=adminListUsers"><i class="fas fa-users"></i> Liste des utilisateurs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../V3/index.php?action=adminNewUser"><i class="fas fa-user-plus"></i>Ajouter un membre</a>
+                        <a class="nav-link" href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><i class="fas fa-user-cog"></i> Mes paramètres</a>
                     </li>
 
                 </ul>
@@ -88,7 +85,7 @@ elseif (isset($_SESSION['id']) && $_SESSION['id_group'] == 2)
             <a class="nav-link" href="../V3/index.php?action=listChapters"><i class="far fa-newspaper"></i> Chapitres</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../V3/index.php?action=parametres"><i class="fas fa-cog"></i> Paramètres</a>
+            <a class="nav-link" href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><i class="fas fa-cog"></i> Mon profil</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../V3/index.php?action=logout"><i class="fas fa-user-times"></i> Déconnexion</a>
