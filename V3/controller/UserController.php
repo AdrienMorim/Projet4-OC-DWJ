@@ -11,6 +11,7 @@ namespace V3\Controller;
 require_once('model/UserManager.php');
 
 use V3\Model\UserManager;
+use \Exception;
 
 class UserController
 {
@@ -101,23 +102,84 @@ class UserController
     }
 
 // Page d'édition d'un utilisateur
-    function adminUpdateUser()
+    public function adminUpdateUser()
     {
         $user = $this->_user->getUserById($_GET['id_user']);
         require ('view/backend/updateUserView.php');
     }
 
-// Editer un membre
-    public function updateUser($id, $id_group, $pseudo, $pass, $email, $firstname, $surname, $birthday)
+// Editer le groupe d'un membre
+    public function updateGroupUser($id, $id_group)
     {
-        $updateUser = $this->_user->updateUser($id, $id_group, $pseudo, $pass, $email, $firstname, $surname, $birthday);
+        $updateUser = $this->_user->updateGroupUser($id, $id_group);
+        if($updateUser === false)
+        {
+            throw new Exception('Impossible d\'éditer le groupe de l\'utilisateur');
+        }
+        else
+        {
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+        }
+    }
+
+    public function updatePseudoUser($id, $pseudo)
+    {
+        $updateUser = $this->_user->updatePseudoUser($id, $pseudo);
+        if($updateUser === false)
+        {
+            throw new Exception('Impossible d\'éditer le pseudo de l\'utilisateur');
+        }
+        else
+        {
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+        }
+    }
+    public function updatePassUser($id, $pass)
+    {
+        $updateUser = $this->_user->updatePassUser($id, $pass);
         if($updateUser === false)
         {
             throw new Exception('Impossible d\'éditer l\'utilisateur');
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminListUsers');
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+        }
+    }
+    public function updateNameUser($id, $firstname, $surname)
+    {
+        $updateUser = $this->_user->updateNameUser($id, $firstname, $surname);
+        if($updateUser === false)
+        {
+            throw new Exception('Impossible d\'éditer l\'utilisateur');
+        }
+        else
+        {
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+        }
+    }
+    public function updateEmailUser($id, $email)
+    {
+        $updateUser = $this->_user->updateEmailUser($id, $email);
+        if($updateUser === false)
+        {
+            throw new Exception('Impossible d\'éditer l\'utilisateur');
+        }
+        else
+        {
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+        }
+    }
+    public function updateBirthdayUser($id, $birthday)
+    {
+        $updateUser = $this->_user->updateBirthdayUser($id, $birthday);
+        if($updateUser === false)
+        {
+            throw new Exception('Impossible d\'éditer l\'utilisateur');
+        }
+        else
+        {
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
         }
     }
 
