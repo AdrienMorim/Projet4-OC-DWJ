@@ -29,14 +29,14 @@ class DashboardController
         $this->_user = new UserManager();
     }
 
-    function dashbord()
+    public function dashbord()
     {
         $chapter = $this->_chapter->getLastChapter();
         $comment = $this->_comment->getLastComment();
-        //$chapter = $this->_chapter->countChapter();
-        //$comment = $this->_comment->countComment();
-        //$commentReport = $this->_comment->countCommentReport();
-        //$user = $this->_user->countUser();
+        $chaptersTotal = $this->_chapter->countChapters();
+        $commentsTotal = $this->_comment->countComments();
+        $commentsReportTotal = $this->_comment->countCommentsReport();
+        $usersTotal = $this->_user->countUsers();
         require('view/backend/dashbordView.php');
     }
 }
