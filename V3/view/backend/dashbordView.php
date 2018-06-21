@@ -7,18 +7,17 @@
 
 <?php $header = ob_get_clean(); ?>
 
-<h3>Derniers chapitres du blog:</h3>
-
 <?php
 
 while ($data = $chapter->fetch())
 {
     ?>
-    <div class="news">
-        <h3>
+    <div class="dashbord">
+        <h4>Derniers chapitres du blog:</h4>
+        <h5>
             <?= htmlspecialchars($data['title']); ?>
             <em>le <?= $data['creation_date_fr']; ?></em>
-        </h3>
+        </h5>
 
         <p>
             <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?>...<br/>
@@ -29,19 +28,41 @@ while ($data = $chapter->fetch())
 } // fin de la boucle des chapitres
 $chapter->closeCursor();
 ?>
+    <div class="dashbord">
+        <h4>Derniers commentaires des visiteurs: </h4>
 
-    <h3>Derniers commentaires des visiteurs: </h3>
-
-<?php
-
-while ($data = $comment->fetch())
-{
-    ?>
-    <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
-    <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
     <?php
-}
+
+    while ($data = $comment->fetch())
+    {
+        ?>
+        <p><strong><?= htmlspecialchars($data['author']); ?></strong> le <?= $data['comment_date_fr']; ?></p>
+        <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+    </div>
+    <?php
+    }
 $comment->closeCursor(); ?>
+
+<div class="dashbord">
+    <a class="nav-link" href="../V3/index.php?action=listChapters">
+        <p>Vous avez actuellement <?= $chaptersTotal['total_chapters']?> chapitres dans votre Roman-Blog.</p>
+    </a>
+</div>
+<div class="dashbord">
+    <a class="nav-link" href="../V3/index.php?action=adminListComments">
+        <p>Vous avez actuellement <?= $commentsTotal['total_comments']?> commentaires dans votre Roman-Blog.</p>
+    </a>
+</div>
+<div class="dashbord">
+    <a class="nav-link" href="../V3/index.php?action=adminCommentsReport">
+        <p>Vous avez actuellement <?= $commentsReportTotal['total_comments_report']?> commentaires signalés sur votre Roman-Blog.</p>
+    </a>
+</div>
+<div class="dashbord">
+    <a class="nav-link" href="../V3/index.php?action=adminListUsers">
+        <p>Vous avez actuellement <?= $usersTotal['total_users']?> utilisateurs inscrits sur votre site.</p>
+    </a>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 
