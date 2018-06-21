@@ -132,7 +132,7 @@ class ChapterManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $chapter = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 3');
+        $chapter = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
         return $chapter;
     }
 
@@ -145,6 +145,18 @@ class ChapterManager extends Manager
 
         $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 100');
         return $req;
+    }
+
+    /**
+     * @return int                          Compte le nombre de commentaires
+     */
+    public function countChapters()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS total_chapters FROM chapters');
+        $req->execute();
+        $chaptersTotal = $req->fetch();
+        return $chaptersTotal;
     }
 
     /**

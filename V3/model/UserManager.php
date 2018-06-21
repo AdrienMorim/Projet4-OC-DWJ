@@ -209,6 +209,7 @@ class UserManager extends Manager
 
     /*********************************************** METHODES *********************************************************/
 
+    // READ
     /**
      * @param                       $pseudo
      * @param                       $pass
@@ -253,6 +254,20 @@ class UserManager extends Manager
         return $users;
     }
 
+    // COUNT
+    /**
+     * @return int                      Compte le nombre d'utilisateur enregistré
+     */
+    public function countUsers()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS total_users FROM users');
+        $req->execute();
+        $usersTotal = $req->fetch();
+        return $usersTotal;
+    }
+
+    // CREATE
     /**
      * @param                               $id_group
      * @param                               $pseudo
@@ -279,17 +294,98 @@ class UserManager extends Manager
         return $registerUser;
     }
 
-    // A MODIFIER POUR CHAQUE PARAMETRE
-    public function updateUser($id, $id_group, $pseudo, $pass, $email, $firstname, $surname, $birthday)
+    // UPDATE
+    /**
+     * @param $id
+     * @param $id_group
+     * @return bool
+     */
+    public function updateGroupUser($id, $id_group)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE users SET id_group= :id_group, pseudo= :pseudo, pass= :pass, email= :email, firstname= :firstname, surname= :surname, birthday_date= :birthday WHERE id= :id');
+        $req = $db->prepare('UPDATE users SET id_group= :id_group WHERE id= :id');
         $req->bindParam('id_group', $id_group, PDO::PARAM_INT);
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $updateUser = $req->execute();
+
+        return $updateUser;
+    }
+
+    /**
+     * @param $id
+     * @param $pseudo
+     * @return bool
+     */
+    public function updatePseudoUser($id, $pseudo)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET pseudo= :pseudo WHERE id= :id');
         $req->bindParam('pseudo',$pseudo, PDO::PARAM_STR);
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $updateUser = $req->execute();
+
+        return $updateUser;
+    }
+
+    /**
+     * @param $id
+     * @param $pass
+     * @return bool
+     */
+    public function updatePassUser($id, $pass)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET pass= :pass WHERE id= :id');
         $req->bindParam('pass',$pass, PDO::PARAM_STR);
-        $req->bindParam('email', $email, PDO::PARAM_STR);
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $updateUser = $req->execute();
+
+        return $updateUser;
+    }
+
+    /**
+     * @param $id
+     * @param $firstname
+     * @param $surname
+     * @return bool
+     */
+    public function updateNameUser($id, $firstname, $surname)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET firstname= :firstname, surname= :surname WHERE id= :id');
         $req->bindParam('firstname', $firstname, PDO::PARAM_STR);
         $req->bindParam('surname', $surname, PDO::PARAM_STR);
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $updateUser = $req->execute();
+
+        return $updateUser;
+    }
+
+    /**
+     * @param $id
+     * @param $email
+     * @return bool
+     */
+    public function updateEmailUser($id, $email)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET email= :email WHERE id= :id');
+        $req->bindParam('email', $email, PDO::PARAM_STR);
+        $req->bindParam('id', $id, PDO::PARAM_INT);
+        $updateUser = $req->execute();
+
+        return $updateUser;
+    }
+
+    /**
+     * @param $id
+     * @param $birthday
+     * @return bool
+     */
+    public function updateBirthdayUser($id, $birthday)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE users SET birthday_date= :birthday WHERE id= :id');
         $req->bindParam('birthday', $birthday, PDO::PARAM_STR);
         $req->bindParam('id', $id, PDO::PARAM_INT);
         $updateUser = $req->execute();
@@ -297,6 +393,7 @@ class UserManager extends Manager
         return $updateUser;
     }
 
+    // DELETE
     /**
      * @param                       $id_user
      * @return bool                 Supprime un utilisateur via son identifiant

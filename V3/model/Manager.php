@@ -9,18 +9,30 @@ use \PDO;
  */
 class Manager
 {
-    private $_db;
     /**
-     * @return PDO
+     * @var $_db            Instance de PDO
+     */
+    private $_db;
+
+    /**
+     * @return Instance
+     */
+    public function getDb()
+    {
+        return $this->_db;
+    }
+    /**
+     * @return PDO|Instance
      */
     protected function dbConnect()
     {
-        $host = 'localhost';
-        $database = 'projet4';
+        $host = 'mysql:host=localhost;';
+        $database = 'dbname=projet4';
+        $dsn = $host . $database;
         $username = 'root';
         $password = 'root';
 
-        $this->_db = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->_db = new PDO($dsn . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         return $this->_db;
     }
 }

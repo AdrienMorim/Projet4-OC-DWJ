@@ -149,7 +149,7 @@ class CommentManager extends Manager
     public function getLastComment()
     {
         $db = $this->dbConnect();
-        $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
+        $comment = $db->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 1');
         return $comment;
     }
 
@@ -164,6 +164,18 @@ class CommentManager extends Manager
     }
 
     /**
+     * @return int                      Compte le nombre de commentaires
+     */
+    public function countComments()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS total_comments FROM comments');
+        $req->execute();
+        $commentsTotal = $req->fetch();
+        return $commentsTotal;
+    }
+
+    /**
      * @return bool|\PDOStatement       Récupère tous les commentaires signalés
      */
     public function getReportComments()
@@ -172,6 +184,18 @@ class CommentManager extends Manager
 
         $reportComments = $db->query('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
         return $reportComments;
+    }
+
+    /**
+     * @return int                      Compte le nombre de commentaires signalés
+     */
+    public function countCommentsReport()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS total_comments_report FROM comments WHERE reporting = 1');
+        $req->execute();
+        $commentsReportTotal = $req->fetch();
+        return $commentsReportTotal;
     }
 
     /**
