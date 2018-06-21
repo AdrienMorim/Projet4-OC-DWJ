@@ -34,6 +34,7 @@ class ChapterController
         require('view/frontend/listChaptersView.php');
     }
 
+
 // Ajouter un chapitre
     public function postChapter($author, $title, $content)
     {
