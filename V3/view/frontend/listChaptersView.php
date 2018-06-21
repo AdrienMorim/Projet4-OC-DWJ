@@ -20,14 +20,14 @@ while ($data = $chapters->fetch())
 
         <p>
             <?= nl2br(htmlspecialchars(substr($data['content'], 0, 150))); ?>...<br/>
-            <?php if(!isset($_SESSION['id_group'])) { ?>
+            <?php if(!isset($_SESSION['id_group']) || isset($_SESSION) && $_SESSION['id_group'] == 2) { ?>
                 <em><a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
             <?php
             }
             else { ?>
                 <em><a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                 <em><a href="../V3/index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Éditer <i class="fas fa-pen-square"></i></a></em>
-                <em><a href="../V3/index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer <i class="fas fa-trash-alt"></i></a></em>;
+                <em><a href="../V3/index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer <i class="fas fa-trash-alt"></i></a></em>
             <?php
             }
             ?>
