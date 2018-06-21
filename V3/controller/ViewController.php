@@ -18,13 +18,13 @@ class ViewController
     }
 
     // Page de connexion  / inscription
-    function login()
+    public function login()
     {
         require('view/frontend/loginView.php');
     }
 
     // Page nouveau chapitre
-    function adminNewChapter()
+    public function adminNewChapter()
     {
         require ('view/backend/newChapterView.php');
     }
