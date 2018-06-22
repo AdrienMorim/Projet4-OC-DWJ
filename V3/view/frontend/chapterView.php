@@ -21,9 +21,7 @@
 
 <?php
 
-$comment = $comments->fetch();
-
-if($comment == !NULL ) { ?>
+if($comments->fetch() == !NULL ) { ?>
     <h3><i class="fas fa-comments"></i> Commentaires</h3>
     <?php
 
@@ -39,7 +37,7 @@ if($comment == !NULL ) { ?>
             <em><a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Signaler
                     <i class="fas fa-bell"></i></a></em>
             <?php if (($comment['author']) == $_SESSION['pseudo']) { ?>
-                <em><a href="../V3/index.php?action=userUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Éditer
+                <em><a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Éditer
                         <i class="fas fa-comment-dots"></i></a></em>
                 <?php
             }
