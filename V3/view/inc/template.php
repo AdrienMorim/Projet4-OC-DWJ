@@ -19,10 +19,10 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 
                 <header id="header" class="container col-lg-12">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="nav col-lg-2">
                             <?php include('../V3/view/inc/nav.php') ?>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="banner col-lg-8">
                             <?= $header ?>
                         </div>
                     </div>
@@ -38,5 +38,8 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 
             </div>
         </div>
+        <script>
+
+        </script>
     </body>
 </html>
