@@ -4,22 +4,22 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
 {
     ?>
     <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
+        <li class="nav-item nav-active">
             <h4 class="nav-link"><a href="#"><i class="fas fa-bars"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <h4 class="nav-link"><a href="#"><i class="fas fa-times"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link " href="../V3/index.php?action=dashbord"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=home"><i class="fas fa-home"></i> Accueil Visiteur</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=about"><i class="fas fa-chalkboard-teacher"></i> À propos</a>
         </li>
-        <li class="nav-item dropright">
+        <li class="nav-item dropright nav-toggle">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-edit"></i> Chapitres</a>
             <div class="dropdown-menu">
                 <ul class="nav">
@@ -32,7 +32,7 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
                 </ul>
             </div>
         </li>
-        <li class="nav-item dropright">
+        <li class="nav-item dropright nav-toggle">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-comment"></i> Commentaires</a>
             <div class="dropdown-menu">
                 <ul class="nav">
@@ -45,7 +45,7 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
                 </ul>
             </div>
         </li>
-        <li class="nav-item dropright">
+        <li class="nav-item dropright nav-toggle">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i> Paramètres</a>
             <div class="dropdown-menu">
                 <ul class="nav">
@@ -59,7 +59,7 @@ if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1)
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=logout"><i class="fas fa-user-times"></i> Déconnexion</a>
         </li>
     </ul>
@@ -69,25 +69,25 @@ elseif (isset($_SESSION['id']) && $_SESSION['id_group'] == 2)
 {
     ?>
     <ul class="nav flex-column">
-        <li class="nav-item">
-            <h4 class="nav-link"><a href="#"><i class="fas fa-minus"></i></a> MENU</h4>
+        <li class="nav-item nav-active">
+            <h4 class="nav-link"><a href="#"><i class="fas fa-bars"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <h4 class="nav-link"><a href="#"><i class="fas fa-times"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php"><i class="fas fa-home"></i> Accueil</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=about"><i class="fas fa-chalkboard-teacher"></i> À propos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=listChapters"><i class="far fa-newspaper"></i> Chapitres</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><i class="fas fa-cog"></i> Mon profil</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=logout"><i class="fas fa-user-times"></i> Déconnexion</a>
         </li>
     </ul>
@@ -97,22 +97,22 @@ else
 {
     ?>
     <ul class="nav flex-column">
-        <li class="nav-item">
-            <h4 class="nav-link"><a href="#"><i class="fas fa-minus"></i></a> MENU</h4>
+        <li class="nav-item nav-active">
+            <h4 class="nav-link"><a href="#"><i class="fas fa-bars"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <h4 class="nav-link"><a href="#"><i class="fas fa-times"></i></a> MENU</h4>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php"><i class="fas fa-home"></i> Accueil</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=about"><i class="fas fa-chalkboard-teacher"></i> À propos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=listChapters"><i class="far fa-newspaper"></i> Chapitres</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-toggle">
             <a class="nav-link" href="../V3/index.php?action=login"><i class="fas fa-user-alt"></i> Inscription / Connexion</a>
         </li>
     </ul>
