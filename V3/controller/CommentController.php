@@ -28,7 +28,17 @@ class CommentController
 // Liste des commentaires
     public function adminListComments()
     {
-        $comments = $this->_comment->getAllComments();
+        $comment_per_page = 10;
+        $commentsTotal = $this->_comment->countComments();
+        $nbPages = ceil($commentsTotal['total_comments']/$comment_per_page);
+        $current_page = 1;
+        if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages){
+            $_GET['page'] = intval($_GET['page']);
+            $current_page = $_GET['page'];
+        }
+
+        $start = ($current_page-1) * $comment_per_page;
+        $allComments = $this->_comment->getAllComments($start, $comment_per_page);
         require ('view/backend/ListCommentsView.php');
     }
 
@@ -89,7 +99,17 @@ class CommentController
 // Liste des commentaires signalés
     public function adminCommentsReport()
     {
-        $reportComments = $this->_comment->getReportComments();
+        $comment_per_page = 10;
+        $commentsReportTotal = $this->_comment->countCommentsReport();
+        $nbPages = ceil($commentsReportTotal['total_comments_report']/$comment_per_page);
+        $current_page = 1;
+        if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages){
+            $_GET['page'] = intval($_GET['page']);
+            $current_page = $_GET['page'];
+        }
+
+        $start = ($current_page-1) * $comment_per_page;
+        $reportComments = $this->_comment->getReportComments($start, $comment_per_page);
         require ('view/backend/reportCommentsView.php');
     }
 

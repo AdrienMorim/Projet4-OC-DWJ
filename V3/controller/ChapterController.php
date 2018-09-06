@@ -24,14 +24,35 @@ class ChapterController
     {
         $chapter = $this->_chapter->getChapter($id_chapter);
         $comments = $this->_comment->getComments($id_chapter);
+
         require('view/frontend/chapterView.php');
     }
 
 // Liste des chapitres
     public function listChapters()
     {
-        $chapters = $this->_chapter->getAllChapters();
-        require('view/frontend/listChaptersView.php');
+        if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1){
+            $chapter_per_page = 10;
+        }else{
+            $chapter_per_page = 4;
+        }
+
+        $chaptersTotal = $this->_chapter->countChapters();
+        $nbPages = ceil($chaptersTotal['total_chapters']/$chapter_per_page); // ceil recupère le resultat à l'entier supérieur
+        $current_page = 1;
+        if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $nbPages){
+            $_GET['page'] = intval($_GET['page']);
+            $current_page = $_GET['page'];
+        }
+
+        $start = ($current_page-1) * $chapter_per_page;
+        $chapters = $this->_chapter->getAllChapters($start, $chapter_per_page);
+        if(isset($_SESSION['id']) && $_SESSION['id_group'] == 1){
+            require('view/backend/listChaptersView.php');
+        }
+        else{
+            require('view/frontend/listChaptersView.php');
+        }
     }
 
 
