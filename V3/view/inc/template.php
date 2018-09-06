@@ -1,10 +1,10 @@
-<?php
+<!--<?php
 
-if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+/*if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 {
-    echo 'Bonjour ' . $_SESSION['pseudo'] . ', tu es admin de level: ' . $_SESSION['id_group'];
+
 }
-?>
+*/?> -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,30 +16,20 @@ if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
     <body>
         <div class="container-fluid">
             <div class="row">
-
-                <header id="header" class="container col-lg-12">
-                    <div class="row">
-                        <div class="nav col-lg-2">
-                            <?php include('../V3/view/inc/nav.php') ?>
-                        </div>
-                        <div class="banner col-lg-8">
-                            <?= $header ?>
-                        </div>
-                    </div>
+                <header id="header" class="container col">
+                    <?= $header ?>
                 </header>
 
-                <section class="container col-lg-8 offset-lg-2">
+                <section id="body" class="container col">
                     <?= $content ?>
                 </section>
 
-                <footer id="footer" class="container col-lg-12">
+                <footer id="footer" class="container col">
                     <?php include('../V3/view/inc/footer.php'); ?>
                 </footer>
-
             </div>
         </div>
-        <script>
-
-        </script>
+        <script type="text/javascript" src="../V3/public/js/toggle.js"></script>
+        <script type="text/javascript" src="../V3/public/js/main.js"></script>
     </body>
 </html>

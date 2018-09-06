@@ -2,39 +2,74 @@
 
 <?php ob_start(); ?>
 
-    <h1>Billet simple pour l'Alaska</h1>
-    <h2>Liste des membres</h2>
+    <div id="banner" class="row banner-page">
+        <div class="nav col-lg-12">
+            <?php include('../V3/view/inc/nav.php') ?>
+
+            <?php if(isset($_SESSION['id'])) { ?>
+                <p id="welcome">
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    </a>
+                </p>
+            <?php } ?>
+        </div>
+        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+            <h1>Billet simple pour l'Alaska</h1>
+            <h2>Liste des membres</h2>
+        </div>
+    </div>
 
 <?php $header = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-
-<?php
-
-while ($user = $users->fetch())
-{
-    ?>
-    <div class="news">
-        <h3>
-            <?= htmlspecialchars($user['id']); ?>
-        </h3>
-        <p>
-            <?= htmlspecialchars($user['pseudo']); ?>
-            <em><a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Éditer</a></em>
-            <em><a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a></em>
-        </p>
-        <p>
-            <?= htmlspecialchars($user['registration_date']); ?>
-        </p>
-        <p>
-            <?= htmlspecialchars($user['email']); ?>
-        </p>
+    <div id="inner" class="container col-lg-12">
+        <div id="admin" class="col-lg-10 offset-lg-1">
+            <div class="text-center">
+                <h4>Liste des membres</h4>
+            </div>
+            <div id="table-blog" class="table-responsive col-lg-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th class="align-baseline" scope="col">Pseudo</th>
+                            <th class="align-baseline" scope="col">Inscription</th>
+                            <th class="align-baseline" scope="col">Email</th>
+                            <th class="align-baseline" scope="col">Niveau</th>
+                            <th class="align-baseline text-center" scope="col"><i class="fas fa-pen-square"></i></th>
+                            <th class="align-baseline text-center" scope="col"><i class="fas fa-trash-alt"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while ($user = $users->fetch()) { ?>
+                        <tr>
+                            <th class="align-middle">
+                                <?= htmlspecialchars($user['pseudo']); ?>
+                            </th>
+                            <td class="align-middle">
+                                <?= htmlspecialchars($user['registration_date_fr']); ?>
+                            </td>
+                            <td class="align-middle">
+                                <?= htmlspecialchars($user['email']); ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php if(($user['id_group']) == 1){ echo 'Administrateur'; } else{ echo 'Membre'; } ?>
+                            </td>
+                            <td class="align-middle text-center">
+                                <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
+                            </td>
+                            <td class="align-middle text-center">
+                                <a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
+                            </td>
+                        </tr>
+                    <?php
+                    } // fin de la boucle des chapitres
+                    $users->closeCursor(); ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <?php
-} // fin de la boucle des chapitres
 
-$users->closeCursor();
-?>
 
 <?php $content = ob_get_clean(); ?>
 
