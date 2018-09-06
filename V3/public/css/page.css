@@ -1,0 +1,95 @@
+
+
+/*==========================================================================*\
+ *								    BODY                                    *
+/*==========================================================================*/
+
+#body{
+    margin: auto;
+    padding: 0;
+}
+
+/*============[ Apercu du Roman ]=============*/
+#overview{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 50px 20px 50px 20px;
+    background-color: #373741;
+}
+
+#overview img {
+    width: 100%;
+    border-radius: 50%;
+    transform: scale(0.9);
+    transition: all 1s ease-out;
+}
+
+#overview img:hover{
+    transform: scale(1.1);
+}
+
+#overview blockquote, #overview h3{
+    color: #ffffff;
+}
+
+/*============[ Derniers Chapitre & commentaire ]=============*/
+#inner{
+    width: 100%;
+    height: auto;
+    margin: auto;
+
+    padding: 50px 20px 50px 20px;
+    background-color: rgba(82, 189, 212, 0);
+}
+
+#inner .card{
+    border: thin solid rgba(82, 189, 212, 0.9);
+}
+
+#inner .card-header{
+    border-color: rgba(82, 189, 212, 0.9);
+    background-color: rgba(82, 189, 212, 0.3);
+}
+
+#inner .card-body{
+    padding: 40px;
+    margin: auto;
+}
+
+#inner .content-inner{
+    margin-right: 20px;
+}
+
+#last-chapter, #last-comment{
+    padding: 0;
+}
+
+#last-chapter .text-data, #last-comment .text-data{
+    color: rgba(201, 201, 201, 0.9);
+}
+
+#last-chapter .btn-primary{
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.125);
+    color: #212529;
+    box-shadow: 2px 2px 5px 2px #5a5a5a; /* décalage H, décalage V, Adoucissement, Propagation, Couleur */
+    border-bottom: 3px solid #4091b7;
+
+    transition-property: background-color, color, box-shadow;
+    transition-duration: 0.2s;
+}
+
+#last-chapter .btn-primary:hover{
+    background-color: rgba(82, 189, 212, 0.8);
+    color: #ffffff;
+    box-shadow: 4px 4px 10px 4px #5a5a5a;
+    transform: scale(1.02);
+}
+
+#last-chapter .btn-primary:active{
+    background-color: rgba(82, 189, 212, 0.8);
+    color: #000000;
+    box-shadow: 1px 1px 2.5px 1px #5a5a5a;
+    transform: scale(0.98);
+}

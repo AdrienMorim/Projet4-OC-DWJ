@@ -39,11 +39,11 @@
         $chapters_total = $chapters_number['chapters_total'];
         $pages_number = ceil($chapters_total/$chapter_per_page);
 
+        $current_page = 1;
+
         if(isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $pages_number){
             $_GET['page'] = intval($_GET['page']);
             $current_page = $_GET['page'];
-        }else{
-            $current_page = 1;
         }
 
         $first_page = ($current_page-1)* $chapter_per_page;
