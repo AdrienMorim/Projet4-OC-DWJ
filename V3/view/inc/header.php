@@ -4,7 +4,11 @@
 <meta name="keywords" content="Jean Forteroche, Blog, Roman, Billet simple pour l'Alaska"/>
 <meta name="author" content="Jean Forteroche">
 <!-- Link Style - public -->
-<link rel="stylesheet" type="text/css" href="../V3/public/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../V3/public/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="../V3/public/css/header.css"/>
+<link rel="stylesheet" type="text/css" href="../V3/public/css/nav.css"/>
+<link rel="stylesheet" type="text/css" href="../V3/public/css/footer.css"/>
+<link rel="stylesheet" type="text/css" href="../V3/public/css/page.css"/>
 <link rel="icon" type="image/ico" sizes="500X500" href="../V3/public/images/ico/favicon.png" />
 <!-- Fonteawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -12,6 +16,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,500" rel="stylesheet">
+<!-- TinyMCE -->
+<script src="../V3/tinymce/tinymce.min.js"></script>
+<script src="../V3/tinymce/jquery.tinymce.min.js"></script>
+<script>tinymce.init({
+        selector:'textarea#content'
+    });</script>
+
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

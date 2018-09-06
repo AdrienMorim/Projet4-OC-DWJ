@@ -1,0 +1,26 @@
+/*==========================================================================*\
+ *								   FOOTER.CSS                               *
+/*==========================================================================*/
+
+#footer{
+    width: 100vw;
+    height: auto;
+    margin: 0;
+    padding-top: 20px;
+    background-color: #141e1e;
+    color: #ffffff;
+}
+
+#footer .logo-footer:hover{
+
+}
+
+
+#footer i:hover, #footer img:hover{
+    transform: scale(1.4);
+    transition: all 0.8s ease-in-out;
+}
+
+#footer a{
+    color: #0082c8;
+}

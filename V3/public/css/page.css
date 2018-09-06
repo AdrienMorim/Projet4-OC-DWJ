@@ -1,21 +1,22 @@
-
-
 /*==========================================================================*\
  *								    BODY                                    *
 /*==========================================================================*/
 
 #body{
-    margin: auto;
+    margin: 0;
     padding: 0;
 }
 
-/*============[ Apercu du Roman ]=============*/
+/*============[ article overview ]=============*/
+
 #overview{
-    width: 100%;
+    width: 100vw;
     height: auto;
     margin: auto;
     padding: 50px 20px 50px 20px;
     background-color: #373741;
+    overflow-y: hidden;
+    color: #ffffff;
 }
 
 #overview img {
@@ -29,27 +30,40 @@
     transform: scale(1.1);
 }
 
-#overview blockquote, #overview h3{
-    color: #ffffff;
+#overview .chapter-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 200px;
+    background-image: url("../images/alaska_3.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    color: #373741;
+    font-size: 20px;
+    transform: scale(0.9);
+    transition: transform 1s ease-in-out;
 }
 
-/*============[ Derniers Chapitre & commentaire ]=============*/
+#overview .chapter-img:hover{
+    transform: scale(1.2);
+}
+
+/*============[ article inner ]=============*/
+
 #inner{
-    width: 100%;
-    height: auto;
+    width: 100vw;
     margin: auto;
-
     padding: 50px 20px 50px 20px;
-    background-color: rgba(82, 189, 212, 0);
+    background-image: url("../images/alaska_2.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
-#inner .card{
-    border: thin solid rgba(82, 189, 212, 0.9);
-}
-
-#inner .card-header{
-    border-color: rgba(82, 189, 212, 0.9);
-    background-color: rgba(82, 189, 212, 0.3);
+#inner-page{
+    padding: 50px 20px 50px 20px;
 }
 
 #inner .card-body{
@@ -61,35 +75,59 @@
     margin-right: 20px;
 }
 
-#last-chapter, #last-comment{
+/*============[ aside ]=============*/
+
+#inner aside{
+    opacity: 0.9;
     padding: 0;
 }
 
-#last-chapter .text-data, #last-comment .text-data{
-    color: rgba(201, 201, 201, 0.9);
+#post{
+    margin-top: 50px;
 }
 
-#last-chapter .btn-primary{
+#no-comment{
+    height: auto;
+    padding: 10px !important;
+}
+
+/*============[ Page erreur ]=============*/
+
+#error{
+    height: 50vh;
+    margin: auto;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#error p{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #373741;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/*============[ Profil ]=============*/
+
+#admin{
+    width: 80vw;
+    min-height: 50vh;
+    height: auto;
+    margin: auto;
+    padding: 50px 20px 50px 20px;
+    border-radius: 10px;
     background-color: #ffffff;
-    border-color: rgba(0, 0, 0, 0.125);
-    color: #212529;
-    box-shadow: 2px 2px 5px 2px #5a5a5a; /* décalage H, décalage V, Adoucissement, Propagation, Couleur */
-    border-bottom: 3px solid #4091b7;
-
-    transition-property: background-color, color, box-shadow;
-    transition-duration: 0.2s;
 }
 
-#last-chapter .btn-primary:hover{
-    background-color: rgba(82, 189, 212, 0.8);
-    color: #ffffff;
-    box-shadow: 4px 4px 10px 4px #5a5a5a;
-    transform: scale(1.02);
+/*============[ Table ]=============*/
+
+#table-blog{
+    margin: auto;
+    padding: 50px 0;
 }
 
-#last-chapter .btn-primary:active{
-    background-color: rgba(82, 189, 212, 0.8);
-    color: #000000;
-    box-shadow: 1px 1px 2.5px 1px #5a5a5a;
-    transform: scale(0.98);
+#table-blog i:hover{
+    transform: scale(1.4);
+    transition: all 0.5s ease-in;
 }
+

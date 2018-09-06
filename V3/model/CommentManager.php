@@ -156,11 +156,14 @@ class CommentManager extends Manager
     /**
      * @return bool|\PDOStatement       Récupère tous les commentaires
      */
-    public function getAllComments()
+    public function getAllComments($start, $comment_per_page)
     {
         $db = $this->dbConnect();
-        $comments = $db->query('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC');
-        return $comments;
+        $allComments = $db->prepare('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT ?, ?');
+        $allComments->bindParam(1,$start, PDO::PARAM_INT);
+        $allComments->bindParam(2,$comment_per_page, PDO::PARAM_INT);
+        $allComments->execute();
+        return $allComments;
     }
 
     /**
@@ -169,7 +172,7 @@ class CommentManager extends Manager
     public function countComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT COUNT(*) AS total_comments FROM comments');
+        $req = $db->query('SELECT COUNT(id) AS total_comments FROM comments');
         $req->execute();
         $commentsTotal = $req->fetch();
         return $commentsTotal;
@@ -178,11 +181,14 @@ class CommentManager extends Manager
     /**
      * @return bool|\PDOStatement       Récupère tous les commentaires signalés
      */
-    public function getReportComments()
+    public function getReportComments($start, $comment_per_page)
     {
         $db = $this->dbConnect();
-
-        $reportComments = $db->query('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= 1 ORDER BY reporting DESC');
+        $reportComments = $db->prepare('SELECT id, id_chapter, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H:%i:%s\') AS comment_date_fr FROM comments WHERE reporting= ? ORDER BY reporting DESC LIMIT ?, ?');
+        $reportComments->bindValue(1, 1,PDO::PARAM_INT);
+        $reportComments->bindParam(2,$start, PDO::PARAM_INT);
+        $reportComments->bindParam(3,$comment_per_page, PDO::PARAM_INT);
+        $reportComments->execute();
         return $reportComments;
     }
 
@@ -207,7 +213,7 @@ class CommentManager extends Manager
         $this->setIdChapter($id_chapter);
 
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, author, comment, reporting, DATE_FORMAT(comment_date, \'%d/%m/%Y à %H h %i min %s s\') AS comment_date_fr, DATE_FORMAT(update_date, \'%d/%m/%Y à %H h %i min %s s\') AS update_date_fr FROM comments WHERE id_chapter = ? ORDER BY comment_date DESC');
         $comments->execute(array($this->getIdChapter()));
 
         return $comments;
@@ -242,7 +248,7 @@ class CommentManager extends Manager
         $this->setComment($comment);
 
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments (id_chapter, author, comment, comment_date) VALUES( ?, ?, ?, NOW())');
+        $comments = $db->prepare('INSERT INTO comments (id_chapter, author, comment, comment_date, update_date) VALUES( ?, ?, ?, NOW(), NOW())');
         $createComment = $comments->execute(array(
             $this->getIdChapter(),
             $this->getAuthor(),
@@ -267,7 +273,7 @@ class CommentManager extends Manager
         $this->setComment($comment);
 
         $db = $this->dbConnect();
-        $comments = $db->prepare('UPDATE comments SET id_chapter= :id_chapter, author= :author, comment= :comment, comment_date= NOW() WHERE id= :id_comment');
+        $comments = $db->prepare('UPDATE comments SET id_chapter= :id_chapter, author= :author, comment= :comment, update_date= NOW() WHERE id= :id_comment');
         $comments->bindParam('id_chapter', $this->getIdChapter(), PDO::PARAM_INT);
         $comments->bindParam('author',$this->getAuthor(), PDO::PARAM_STR);
         $comments->bindParam('comment',$this->getComment(), PDO::PARAM_STR);

@@ -21,8 +21,8 @@ class UserManager extends Manager
 {
     // Attributs de la classe
     /**
-     * @var int         $_id_user                     identifiant de l'utilisateur (généré automatiquement par le SGBDR donc pas de setter)
-     * @var int         $id_group               identifiant du groupe utilisateur (défini la niveau d'administration)
+     * @var int         $_id_user                identifiant de l'utilisateur (généré automatiquement par le SGBDR donc pas de setter)
+     * @var int         $_id_group               identifiant du groupe utilisateur (défini la niveau d'administration)
      * @var string      $_pseudo                 le pseudo de l'utilisateur
      * @var string      $_email                  l'email de l'utilisateur
      * @var string      $_registration_date      date d'inscription de l'utilisateur
@@ -212,7 +212,6 @@ class UserManager extends Manager
     // READ
     /**
      * @param                       $pseudo
-     * @param                       $pass
      * @return mixed                Récupère un utilisateur via son pseudo
      */
     public function getUser($pseudo)
@@ -228,6 +227,22 @@ class UserManager extends Manager
     }
 
     /**
+     * @param                       $pseudo
+     * @return mixed                Récupère un utilisateur via son email
+     */
+    public function getUserByEmail($email)
+    {
+        $this->setPseudo($email);
+
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM users WHERE email = ?');
+        $req->execute(array($this->getEmail()));
+        $user = $req->fetch();
+
+        return $user;
+    }
+
+    /**
      * @param                       $id_user
      * @return mixed                Récupère un utilisateur via son identifiant
      */
@@ -236,7 +251,7 @@ class UserManager extends Manager
         $this->setIdUser($id_user);
 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, id_group, pseudo, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y\') AS registration_date_fr, firstname, surname, birthday_date FROM users WHERE id = ?');
+        $req = $db->prepare('SELECT id, id_group, pseudo, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y\') AS registration_date_fr, firstname, surname, DATE_FORMAT(birthday_date, \' %d / %m / %Y\') AS birthday_date_fr FROM users WHERE id = ?');
         $req->execute(array($this->getIdUser()));
         $user = $req->fetch();
 
@@ -249,7 +264,7 @@ class UserManager extends Manager
     public function getAllUsers()
     {
         $db = $this->dbConnect();
-        $users = $db->query('SELECT * FROM users ORDER BY registration_date');
+        $users = $db->query('SELECT id, id_group, pseudo, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y\') AS registration_date_fr, firstname, surname, birthday_date FROM users ORDER BY registration_date');
 
         return $users;
     }

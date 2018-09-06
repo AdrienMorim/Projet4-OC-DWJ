@@ -5,9 +5,10 @@ use \PDO;
 
 /**
  * Class Manager
+ * classe abstraite
  * @package V3\Model\Backend
  */
-class Manager
+abstract class Manager
 {
     /**
      * @var $_db            Instance de PDO

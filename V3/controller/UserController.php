@@ -25,13 +25,18 @@ class UserController
 // Inscription
     public function registerUser($id_group, $pseudo, $password_hache, $email){
 
-        $registerUser = $this->_user->createUser($id_group, $pseudo, $password_hache, $email);
-        if($registerUser === false)
+        $userPseudo = $this->_user->getUser($pseudo);
+        $userEmail = $this->_user->getUserByEmail($email);
+        if($userPseudo == true)
         {
-            throw new Exception('Impossible d\'inscrire le nouvel utilisateur');
+            throw new Exception('Le pseudo est déjà utilisé par un autre utilisateur.');
         }
-        else
+        elseif($userEmail == true)
         {
+            throw new Exception('L\'email est déjà utilisé par un autre utilisateur.');
+        }
+        else{
+            $registerUser = $this->_user->createUser($id_group, $pseudo, $password_hache, $email);
             header('Location: ../V3/index.php');
         }
     }
@@ -47,7 +52,7 @@ class UserController
     public function logUser($pseudo, $pass)
     {
         $user = $this->_user->getUser($pseudo);
-        $proper_pass = password_verify($_POST['pass'], $user['pass']);
+        $proper_pass = password_verify($pass, $user['pass']);
 
         if(!$user)
         {
@@ -210,7 +215,6 @@ class UserController
         setcookie('pseudo', '');
         setcookie('pass', '');
         setcookie('id_group', '');
-
 
         header('Location: ../V3/index.php');
     }

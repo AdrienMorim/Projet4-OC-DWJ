@@ -139,11 +139,13 @@ class ChapterManager extends Manager
     /**
      * @return bool|\PDOStatement           Récupère tous les chapitres
      */
-    public function getAllChapters()
+    public function getAllChapters($start, $chapter_per_page)
     {
         $db = $this->dbConnect();
-
-        $req = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 100');
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT ?, ?');
+        $req->bindParam(1,$start, PDO::PARAM_INT);
+        $req->bindParam(2,$chapter_per_page, PDO::PARAM_INT);
+        $req->execute();
         return $req;
     }
 
@@ -153,10 +155,11 @@ class ChapterManager extends Manager
     public function countChapters()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT COUNT(*) AS total_chapters FROM chapters');
+        $req = $db->query('SELECT COUNT(id) AS total_chapters FROM chapters');
         $req->execute();
         $chaptersTotal = $req->fetch();
         return $chaptersTotal;
+
     }
 
     /**
@@ -168,11 +171,11 @@ class ChapterManager extends Manager
         $this->setId($id_chapter);
 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters WHERE id = ?');
+        $req = $db->prepare('SELECT id, title, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %H:%i:%s\') AS creation_date_fr FROM chapters WHERE id = ?');
         $req->execute(array($this->getId()));
         $chapter = $req->fetch();
 
-        return $chapter;
+        return $chapter; var_dump($chapter);
     }
 
     /**
