@@ -647,6 +647,7 @@ class Routeur
                     }
                     // Inscription
                     elseif ($_GET['action'] == 'register') {
+
                         if (!empty($_POST['pseudo']) && !empty($_POST['password']) && !empty($_POST['password_confirm']) && !empty($_POST['email'])) {
                             // Sécurité
                             $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -670,8 +671,8 @@ class Routeur
                     }
                     // Connexion
                     elseif ($_GET['action'] == 'log') {
-                        if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-                            $this->_userCtrl->logUser($_POST['pseudo'], $_POST['pass']);
+                        if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                            $this->_userCtrl->logUser($_POST['pseudo'], $_POST['password']);
                         } else {
                             throw new Exception('Tous les champs doivent être remplis !');
                         }
