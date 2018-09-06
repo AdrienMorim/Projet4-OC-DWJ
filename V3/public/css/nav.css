@@ -1,0 +1,114 @@
+/*==========================================================================*\
+ *								    NAVIGATEUR                                  *
+/*==========================================================================*/
+
+#banner.nav a{
+    color: #0082c8;
+}
+
+#welcome{
+    position: fixed;
+    top: 0;
+    right: 15px;
+}
+
+#navbar-button{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 900;
+    cursor: pointer;
+}
+
+#navbar-body{
+}
+
+#navbar-content{
+    display: none;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    padding: 10px;
+    color: #ffffff;
+    z-index: 800;
+    transform: translateX(-100%);
+    -webkit-transition: transform 0.2s ease-out;
+    -moz-transition: transform 0.2s ease-out;
+    -ms-transition: transform 0.2s ease-out;
+    -o-transition: transform 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+}
+
+#navbar-overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 700;
+}
+
+#navbar-content.active{
+    display: block;
+    transform: translateX(0);
+}
+
+#navbar-overlay.overlay-active{
+    display: block
+}
+
+.nav li:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#banner .nav a:hover, #banner.nav a:active{
+    color: #ffffff;
+}
+
+.nav-active{
+    cursor: pointer;
+}
+
+.nav-toggle{
+    cursor: pointer;
+}
+
+/*================================================================================*\
+
+					MEP Petit Ecran: Min-width: 760px - Max Width: 1024px;
+
+/*================================================================================*/
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    #navbar-overlay{
+        width: 30vw;
+    }
+}
+
+/*================================================================================*\
+
+								MEP Tablette: Max-width: 768px
+
+/*================================================================================*/
+
+@media screen and (max-width: 768px) {
+    #navbar-overlay{
+        width: 40vw;
+    }
+}
+
+/*================================================================================*\
+
+								MEP Mobile: Max-width: 480px
+
+/*================================================================================*/
+
+@media screen and (max-width: 480px){
+    #navbar-overlay{
+        width: 80vw;
+    }
+}
