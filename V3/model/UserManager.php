@@ -21,8 +21,8 @@ class UserManager extends Manager
 {
     // Attributs de la classe
     /**
-     * @var int         $_id_user                     identifiant de l'utilisateur (généré automatiquement par le SGBDR donc pas de setter)
-     * @var int         $id_group               identifiant du groupe utilisateur (défini la niveau d'administration)
+     * @var int         $_id_user                identifiant de l'utilisateur (généré automatiquement par le SGBDR donc pas de setter)
+     * @var int         $_id_group               identifiant du groupe utilisateur (défini la niveau d'administration)
      * @var string      $_pseudo                 le pseudo de l'utilisateur
      * @var string      $_email                  l'email de l'utilisateur
      * @var string      $_registration_date      date d'inscription de l'utilisateur
@@ -228,7 +228,7 @@ class UserManager extends Manager
 
     /**
      * @param                       $pseudo
-     * @return mixed                Récupère un utilisateur via son pseudo
+     * @return mixed                Récupère un utilisateur via son email
      */
     public function getUserByEmail($email)
     {
