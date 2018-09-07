@@ -15,22 +15,18 @@ var toggle = {
         // Controle souris
         button.on('click', function() {
             // On verifie le Noeud parent
-            //console.log(this.parentNode);
+            console.log(this.parentNode);
 
             // On ajoute la class active
             content.toggleClass('active');
             overlay.toggleClass('overlay-active');
-            if (icon)
-            icon.addClass('fa-times');
-            icon.removeClass('fa-bars');
+            icon.toggleClass('fa-times').toggleClass('fa-bars');
         });
 
         overlay.on('click', function() {
             content.toggleClass('active');
             overlay.toggleClass('overlay-active');
-            icon.addClass('fa-bars');
-            icon.removeClass('fa-times');
-
+            icon.toggleClass('fa-times').toggleClass('fa-bars');
         });
 
         // Controle clavier
@@ -47,4 +43,4 @@ var toggle = {
             }
         });
     }
-}
+};
