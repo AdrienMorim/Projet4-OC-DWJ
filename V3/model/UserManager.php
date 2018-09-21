@@ -251,7 +251,7 @@ class UserManager extends Manager
         $this->setIdUser($id_user);
 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, id_group, pseudo, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y\') AS registration_date_fr, firstname, surname, DATE_FORMAT(birthday_date, \' %d / %m / %Y\') AS birthday_date_fr FROM users WHERE id = ?');
+        $req = $db->prepare('SELECT id, id_group, pseudo, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y\') AS registration_date_fr, firstname, surname, DATE_FORMAT(birthday_date, \' %d/%m/%Y\') AS birthday_date_fr, DATE_FORMAT(birthday_date, \'%Y-%m-%d\') AS birthday_date_form FROM users WHERE id = ?');
         $req->execute(array($this->getIdUser()));
         $user = $req->fetch();
 
