@@ -13,9 +13,9 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
-            <h2>Nouveau Roman - Jean Forteroche</h2>
+            <!--<h2>Nouveau Roman - Jean Forteroche</h2>-->
             <h3>À propos de l'auteur</h3>
         </div>
     </div>
@@ -25,7 +25,7 @@
 <?php ob_start(); ?>
 
 <article id="overview" class="row align-items-start">
-    <div class="col-lg-3 offset-lg-1">
+    <div class="image-overview col-lg-3 offset-lg-1">
         <img src="../V3/public/images/jeanForteroche.jpg" alt="photo de baleine en Alaska"/>
     </div>
 

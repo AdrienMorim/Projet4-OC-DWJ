@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Liste des membres</h2>
         </div>
@@ -22,7 +22,7 @@
 <?php $header = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-    <div id="inner" class="container col-lg-12">
+    <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-center">
                 <h4>Liste des membres</h4>
@@ -34,7 +34,7 @@
                             <th class="align-baseline" scope="col">Pseudo</th>
                             <th class="align-baseline" scope="col">Inscription</th>
                             <th class="align-baseline" scope="col">Email</th>
-                            <th class="align-baseline" scope="col">Niveau</th>
+                            <th class="align-baseline level" scope="col">Niveau</th>
                             <th class="align-baseline text-center" scope="col"><i class="fas fa-pen-square"></i></th>
                             <th class="align-baseline text-center" scope="col"><i class="fas fa-trash-alt"></i></th>
                         </tr>
@@ -51,7 +51,7 @@
                             <td class="align-middle">
                                 <?= htmlspecialchars($user['email']); ?>
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle level">
                                 <?php if(($user['id_group']) == 1){ echo 'Administrateur'; } else{ echo 'Membre'; } ?>
                             </td>
                             <td class="align-middle text-center">

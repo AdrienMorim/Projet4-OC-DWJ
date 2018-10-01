@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Commentaires</h2>
         </div>
@@ -22,13 +22,10 @@
 <?php $header = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-    <div id="inner" class="container col-lg-12">
+    <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-right col-lg-3 offset-lg-9">
                 <a href="../V3/index.php?action=adminCommentsReport"><i class="far fa-bell"></i> Voir les commentaires signalés</a>
-            </div>
-            <div class="text-center">
-                <h4>Liste des commentaires</h4>
             </div>
             <div id="table-blog" class="table-responsive col-lg-12">
                 <table class="table table-bordered table-hover">

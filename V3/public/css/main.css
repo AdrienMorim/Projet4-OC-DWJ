@@ -76,10 +76,55 @@ a:hover{
 @keyframes opacity-hide-show {
     0%, 100%   { opacity: 1; }
     50% { opacity: 0; }
-
 }
 
 @keyframes slideY {
     0%, 100% { transform: translateY(0) }
     50% { transform: translateY(100%) }
+}
+
+/*==========================================================================*\
+ *                          MEDIA QUERIES                                   *
+\*==========================================================================*/
+/*==========================================================================*\
+
+				MEP Mobile- Tablette - Petit Ecran - Max Width: 980px;
+
+/*==========================================================================*/
+
+@media screen and (max-width: 980px){
+    #admin .text-center{
+        text-align: left!important;
+    }
+}
+
+/*============================================================================*\
+
+								MEP Tablette: Max-width: 768px
+
+/*============================================================================*/
+
+@media screen and (max-width: 768px) {
+
+}
+
+/*=============================================================================*\
+
+								MEP Mobile: Max-width: 480px
+
+/*=============================================================================*/
+
+@media screen and (max-width: 480px){
+    #header h1, #body h1{
+        font-size: 2rem;
+    }
+    #header h2, #body h2{
+        font-size: 1.5rem;
+    }
+    #header h3, #body h3{
+        font-size: 1rem;
+    }
+    p, input, label, textarea, button, #admin .btn, #admin .form-control{
+        font-size: 0.8rem;
+    }
 }

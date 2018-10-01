@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Éditer le chapitre: <?= htmlspecialchars($chapter['title']); ?></h2>
         </div>
@@ -22,18 +22,8 @@
 <?php $header = ob_get_clean(); ?>
 
 <?php ob_start(); ?>
-    <div id="inner" class="container col-lg-12">
+    <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
-            <div class="text-center">
-                <h3>
-                    <?= htmlspecialchars($chapter['title']); ?>
-                    <em>le <?= $chapter['creation_date_fr']; ?></em>
-                </h3>
-
-                <p>
-                    <?= nl2br(htmlspecialchars($chapter['content'])); ?> <br/>
-                </p>
-            </div>
             <form action="../V3/index.php?action=updateChapter&amp;id_chapter=<?= $_GET['id_chapter']; ?>" method="POST">
                 <div class="col-lg-12">
                     <div class="form-group row">
@@ -51,13 +41,13 @@
                     <div class="form-group row">
                         <label for="title" class="col-lg-3">Titre</label>
                         <div class="col-lg-9">
-                            <input type="text" name="title" class="form-control" id="title" placeholder="Indiquez ici votre titre"/>
+                            <input type="text" name="title" class="form-control" id="title" value="<?= htmlspecialchars($chapter['title']); ?>"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-lg-3">Chapitre</label>
                         <div class="col-lg-9">
-                            <textarea name="content" id="content" class="form-control" placeholder="Indiquez ici votre chapitre"></textarea>
+                            <textarea name="content" id="content" class="form-control" placeholder="Indiquez ici votre chapitre"><?= nl2br(htmlspecialchars($chapter['content'])); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

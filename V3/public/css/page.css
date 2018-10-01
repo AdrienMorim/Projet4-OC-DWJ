@@ -30,6 +30,10 @@
     transform: scale(1.1);
 }
 
+#overview #listChapter h4{
+    display: none;
+}
+
 #overview .chapter-img{
     display: flex;
     justify-content: center;
@@ -80,15 +84,20 @@
 #inner aside{
     opacity: 0.9;
     padding: 0;
+    margin-bottom: 1rem;
 }
 
 #post{
     margin-top: 50px;
 }
 
-#no-comment{
+/*#no-comment{
     height: auto;
     padding: 10px !important;
+}*/
+
+#comment hr:last-child{
+    display: none;
 }
 
 /*============[ Page erreur ]=============*/
@@ -119,6 +128,10 @@
     background-color: #ffffff;
 }
 
+#admin hr:last-child{
+    display: none;
+}
+
 /*============[ Table ]=============*/
 
 #table-blog{
@@ -129,5 +142,88 @@
 #table-blog i:hover{
     transform: scale(1.4);
     transition: all 0.5s ease-in;
+}
+
+/*==========================================================================*\
+ *                          MEDIA QUERIES                                   *
+\*==========================================================================*/
+/*==========================================================================*\
+
+				MEP Petit Ecran: Min-width: 760px - Max Width: 1024px;
+
+/*===========================================================================*/
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
+}
+
+/*============================================================================*\
+
+								MEP Tablette: Max-width: 768px
+
+/*============================================================================*/
+
+@media screen and (max-width: 768px) {
+    #overview img{
+        width: 50vw;
+        margin: auto;
+    }
+    #overview .image-overview{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #admin{
+        padding: 20px 0 20px 0;
+    }
+    #admin input, #admin button{
+        margin-bottom: 0.5rem;
+    }
+
+    #table-blog .text-center{
+        text-align: center !important;
+    }
+}
+
+/*=============================================================================*\
+
+								MEP Mobile: Max-width: 480px
+
+/*=============================================================================*/
+
+@media screen and (max-width: 480px){
+    #overview #listChapter h4{
+        display: block;
+    }
+
+    #overview .image-overview, #overview .chapter-img{
+        display: none;
+    }
+
+    #overview .col-12{
+        margin-bottom: 2rem;
+    }
+
+    #inner .card-body{
+        padding: 10px;
+    }
+
+    #inner .row{
+        margin: auto;
+    }
+
+    #comment .text-right .admin{
+        display: none;
+    }
+    #admin{
+        width: 90vw;
+        margin: 0;
+    }
+    #admin h3{
+        text-align: center;
+    }
+
+    #table-blog th:nth-child(2), #table-blog td:nth-child(2), #table-blog th:nth-child(3), #table-blog td:nth-child(3), #table-blog .level{
+        display: none;
+    }
 }
 

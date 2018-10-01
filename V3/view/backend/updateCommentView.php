@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Éditer le commentaire de: </h2>
             <p><?= htmlspecialchars($comment['author']); ?><em> du <?= htmlspecialchars($comment['comment_date_fr']); ?></em><br/>
@@ -27,7 +27,7 @@
 
 <?php ob_start(); ?>
 
-    <div id="inner" class="container col-lg-12">
+    <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-center">
 

@@ -1,6 +1,6 @@
-<div id="navbar-button">
-        <h4 class="nav-link"><a href="#"><i id="icon-button" class="fas fa-bars"></i></a> MENU</h4>
-        <!-- <h4 class="nav-link"><a href="#"><i class="fas fa-times"></i></a> MENU</h4> -->
+<div id="navbar-button" class="row">
+    <h4 class="nav-link button-icon"><a href="#"><i id="icon-button" class="fas fa-bars"></i></a></h4>
+    <h4 class="nav-link button-title">MENU</h4>
 </div>
 <div id="navbar-body">
     <div id="navbar-overlay"></div>

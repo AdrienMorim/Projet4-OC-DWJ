@@ -13,9 +13,9 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
-            <h2>Nouveau Roman - Jean Forteroche</h2>
+            <!--<h2>Nouveau Roman - Jean Forteroche</h2>-->
             <h3>Chapitre <?= htmlspecialchars($chapter['id']); ?></h3>
         </div>
     </div>
@@ -25,7 +25,7 @@
 <?php ob_start(); ?>
 
     <div id="overview" class="row align-items-center">
-        <div class="image-overview col-lg-4 offset-lg-1 align-self-center">
+        <div class="image-overview col-lg-4 offset-lg-1 col-md-6 offset-md-3 align-self-center">
             <img src="../V3/public/images/alaska_3.jpg" alt="En route pour l'Alaska"/>
         </div>
 
@@ -50,50 +50,42 @@
             <h3 class="card-header text-center align-item-center">
                 <i class="fas fa-comments"></i> Commentaires
             </h3>
-            <div class="row card-body">
+            <div class="card-body">
 
                 <?php $countComments = 0;
                 while ($comment = $comments->fetch()) {
 
                     $countComments++ ?>
-
-                    <p class="col-lg-12"><strong><?= htmlspecialchars($comment['author']) ?></strong></p>
-                    <?php if($comment['comment_date_fr'] == $comment['update_date_fr']){ ?>
-                            <p class="col-lg-6 text-muted">le <?= htmlspecialchars($comment['comment_date_fr']) ?></p>
-                        <?php }
-                        else { ?>
-                            <p class="col-lg-6 text-muted">modifié le <?= htmlspecialchars($comment['update_date_fr']) ?></p>
-                        <?php } ?>
-                    <p class="col-lg-8"><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+                    <div class="row author-report-comments">
+                        <p class="col-xl-6 col-lg-4 col-md-4 col-6"><strong><?= htmlspecialchars($comment['author']) ?></strong></p>
                     <?php if (!isset($_SESSION['id_group'])) { ?>
-                    <p class="col-lg-3 offset-lg-1 text-right">
-                        <em>
-                            <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Signaler
-                                <i class="fas fa-bell"></i>
-                            </a>
-                        </em>
-                    </p>
+                        <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
+                            <em>
+                                <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <span class="admin">Signaler</span>
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                            </em>
+                        </p>
                         <?php
                         } // fin du if
                         elseif (isset($_SESSION) && $_SESSION['id_group'] == 2) {
 
                             if (($comment['author']) == $_SESSION['pseudo']) { ?>
-                            <p class="col-lg-3 offset-lg-1">
-                                <em class="">
-                                    <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Éditer <i class="fas fa-comment-dots"></i>
+                            <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
+                                <em>
+                                    <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                        <span class="admin">Éditer</span>
+                                        <i class="fas fa-comment-dots"></i>
                                     </a>
                                 </em><br/>
-                                <em class="">
-                                    <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Signaler
-                                        <i class="fas fa-bell"></i>
-                                    </a>
-                                </em>
                             </p>
                             <?php }
                             else { ?>
-                            <p class="col-lg-3 offset-lg-1">
+                            <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                                 <em>
-                                    <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Signaler
+                                    <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                        <span class="admin">Signaler</span>
                                         <i class="fas fa-bell"></i>
                                     </a>
                                 </em>
@@ -101,21 +93,40 @@
                             <?php }
                         } // fin du elseif
                         else { ?>
-                        <p class="col-lg-3 offset-lg-1">
-                            <em>
-                                <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Éditer <i class="fas fa-comment-dots"></i>
-                                </a>
-                            </em><br/>
-                            <em>
-                                <a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Supprimer <i class="fas fa-comment-slash"></i>
-                                </a>
-                            </em><br/>
-                            <em>
-                                <a href="../V3/index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">Approuver <i class="fas fa-check-circle"></i>
-                                </a>
-                            </em>
+                        <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
+                            <span class="row no-gutters">
+                                <em class="col-lg-4 col-4">
+                                    <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                        <span class="admin">Éditer</span>
+                                        <i class="fas fa-comment-dots"></i>
+                                    </a>
+                                </em><br/>
+                                <em class="col-lg-4 col-4">
+                                    <a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                        <span class="admin">Supprimer</span>
+                                        <i class="fas fa-comment-slash"></i>
+                                    </a>
+                                </em><br/>
+                                <em class="col-lg-4 col-4">
+                                    <a href="../V3/index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                        <span class="admin">Approuver</span>
+                                        <i class="fas fa-check-circle"></i>
+                                    </a>
+                                </em>
+                            </span>
                         </p>
                     <?php } // fin du else ?>
+                    </div>
+                    <div class="row date-comment-comments">
+                        <?php if($comment['comment_date_fr'] == $comment['update_date_fr']){ ?>
+                            <p class="col-lg-6 text-muted">le <?= htmlspecialchars($comment['comment_date_fr']) ?></p>
+                        <?php }
+                        else { ?>
+                            <p class="col-lg-6 text-muted">modifié le <?= htmlspecialchars($comment['update_date_fr']) ?></p>
+                        <?php } ?>
+                        <p class="col-lg-8"><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+                    </div>
+                    <hr>
                 <?php } //fin de la boucle while
 
                 $comments->closeCursor();

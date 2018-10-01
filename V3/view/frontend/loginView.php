@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('../V3/view/inc/nav.php') ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Nouveau Roman - Jean Forteroche</h2>
             <h3>Connexion / Inscription</h3>

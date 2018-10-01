@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Liste des chapitres</h2>
         </div>
@@ -26,12 +26,12 @@
     <article id="overview">
         <?php while ($data = $chapters->fetch()) { ?>
             <aside id="listChapter" class="row col-lg-12 align-items-center">
-                <div class="col-lg-3 offset-lg-1">
+                <div class="col-lg-3 offset-lg-1 col-md-4">
                     <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
-                        <div class="chapter-img">Chapitre <?= $data['id']; ?> </div>
+                        <div class="chapter-img"><?= htmlspecialchars($data['title']); ?> </div>
                     </a>
                 </div>
-                <div class="col-lg-7 offset-lg-1">
+                <div class="col-lg-7 offset-lg-1 col-md-8">
                     <h4 class="align-middle" scope="row"><?= htmlspecialchars($data['title']); ?></h4>
                     <h5 class="text-muted align-middle"> <?= $data['creation_date_fr']; ?></h5>
                     <p class="align-middle"> <?= nl2br(htmlspecialchars(substr($data['content'], 0, 200))); ?>...

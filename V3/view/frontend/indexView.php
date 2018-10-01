@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-8 offset-lg-2 banner-title-index">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2 banner-title-index">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Nouveau Roman - Jean Forteroche</h2>
         </div>

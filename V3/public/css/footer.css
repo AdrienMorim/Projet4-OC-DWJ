@@ -24,3 +24,81 @@
 #footer a{
     color: #0082c8;
 }
+
+/*==========================================================================*\
+ *                          MEDIA QUERIES                                   *
+\*==========================================================================*/
+/*==========================================================================*\
+
+				MEP Mobile - Tablette - Petit Ecran - Max Width: 980px;
+
+/*==========================================================================*/
+
+@media screen and (max-width: 980px) {
+    #socialNetwork {
+        order: 1;
+    }
+
+    #developer {
+        order: 3;
+    }
+
+    #copyright {
+        order: 2;
+    }
+
+    #socialNetwork > div, #developer > div {
+        margin-bottom: 1rem;
+    }
+}
+
+/*============================================================================*\
+
+								MEP Tablette: Max-width: 768px
+
+/*============================================================================*/
+
+@media screen and (max-width: 768px) {
+    #footer {
+        height: 100vh;
+        padding-top: 100px;
+    }
+
+    #developer, #socialNetwork{
+        /*height: 50vh;*/
+        /*margin: 20px 20px 20px;*/
+    }
+
+    /*#footer .fa-2x{
+        font-size: 3em;
+    }*/
+}
+
+/*=============================================================================*\
+
+								MEP Mobile: Max-width: 480px
+
+/*=============================================================================*/
+
+@media screen and (max-width: 480px){
+    #footer{
+        height: 100vh;
+        padding-top: 100px
+    }
+
+    #copyright, #developer, #socialNetwork{
+        margin-bottom: 1rem;
+    }
+
+    #socialNetwork {
+        order: 1;
+    }
+
+    #developer {
+        order: 2;
+    }
+
+    #copyright {
+        order: 3;
+    }
+}

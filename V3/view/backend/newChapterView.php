@@ -13,7 +13,7 @@
                 </p>
             <?php } ?>
         </div>
-        <div id="banner-title" class="col-lg-6 offset-lg-3  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Création d'un nouveau chapitre</h2>
         </div>
@@ -23,11 +23,8 @@
 
 <?php ob_start(); ?>
 
-<div id="inner" class="container col-lg-12">
+<div id="inner" class="container col">
     <div id="admin" class="col-lg-10 offset-lg-1">
-        <div class="text-center">
-            <h4>Édition d'un nouveau chapitre</h4>
-        </div>
         <form action="../V3/index.php?action=createChapter" method="POST">
             <div class="col-lg-12">
                 <div class="form-group row">
