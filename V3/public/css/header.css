@@ -4,12 +4,20 @@
 
 #banner{
     width: 100vw;
-    min-height: 50vh;
     color: #ffffff;
     background-image: url("../images/alaska_2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+}
+
+.banner-page{
+    min-height: 50vh;
+}
+
+.banner-page-login{
+    min-height: 25vh;
+    max-height: 50vh;
 }
 
 #welcome a{

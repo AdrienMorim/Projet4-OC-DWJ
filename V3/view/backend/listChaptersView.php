@@ -52,7 +52,7 @@
                             <td class="align-middle"> <?= nl2br(htmlspecialchars(substr($data['content'], 0, 100))); ?>...
                                 <div class="text-right">
                                     <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
-                                        <em>Voir la suite</i></em>
+                                        <em>Voir la suite</em>
                                     </a>
                                 </div>
                             </td>

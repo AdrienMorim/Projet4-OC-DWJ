@@ -2,14 +2,13 @@
 
 <?php ob_start(); ?>
 
-    <div id="banner" class="row banner-page">
+    <div id="banner" class="row banner-page-login">
         <div class="nav col-lg-12">
             <?php include('../V3/view/inc/nav.php') ?>
         </div>
-        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
+        <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2 banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Nouveau Roman - Jean Forteroche</h2>
-            <h3>Connexion / Inscription</h3>
         </div>
     </div>
 
@@ -44,6 +43,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
             </form>
         </aside>
         <aside id="register" class="card col-lg-5 offset-lg-1">
