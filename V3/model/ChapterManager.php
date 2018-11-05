@@ -175,7 +175,7 @@ class ChapterManager extends Manager
         $req->execute(array($this->getId()));
         $chapter = $req->fetch();
 
-        return $chapter; var_dump($chapter);
+        return $chapter;
     }
 
     /**

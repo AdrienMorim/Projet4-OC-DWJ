@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -55,10 +55,10 @@
                                 <?php if(($user['id_group']) == 1){ echo 'Administrateur'; } else{ echo 'Membre'; } ?>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
+                                <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
+                                <a href="index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
                             </td>
                         </tr>
                     <?php
@@ -73,4 +73,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

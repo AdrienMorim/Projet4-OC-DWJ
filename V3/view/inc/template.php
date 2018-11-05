@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <?php include('../V3/view/inc/header.php') ?>
+        <?php include('view/inc/header.php') ?>
         <title> <?= $title ?> </title>
     </head>
 
@@ -25,11 +25,11 @@
                 </section>
 
                 <footer id="footer" class="container col">
-                    <?php include('../V3/view/inc/footer.php'); ?>
+                    <?php include('view/inc/footer.php'); ?>
                 </footer>
             </div>
         </div>
-        <script type="text/javascript" src="../V3/public/js/toggle.js"></script>
-        <script type="text/javascript" src="../V3/public/js/main.js"></script>
+        <script type="text/javascript" src="public/js/toggle.js"></script>
+        <script type="text/javascript" src="public/js/main.js"></script>
     </body>
 </html>

@@ -4,12 +4,12 @@
 <meta name="keywords" content="Jean Forteroche, Blog, Roman, Billet simple pour l'Alaska"/>
 <meta name="author" content="Jean Forteroche">
 <!-- Link Style - public -->
-<link rel="stylesheet" type="text/css" href="../V3/public/css/main.css"/>
-<link rel="stylesheet" type="text/css" href="../V3/public/css/header.css"/>
-<link rel="stylesheet" type="text/css" href="../V3/public/css/nav.css"/>
-<link rel="stylesheet" type="text/css" href="../V3/public/css/footer.css"/>
-<link rel="stylesheet" type="text/css" href="../V3/public/css/page.css"/>
-<link rel="icon" type="image/ico" sizes="500X500" href="../V3/public/images/ico/favicon.png" />
+<link rel="stylesheet" type="text/css" href="public/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/header.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/nav.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/footer.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/page.css"/>
+<link rel="icon" type="image/ico" sizes="500X500" href="public/images/ico/favicon.png" />
 <!-- Fonteawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <!-- Bootstrap V4 -->
@@ -17,8 +17,8 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron:400,500" rel="stylesheet">
 <!-- TinyMCE -->
-<script src="../V3/tinymce/tinymce.min.js"></script>
-<script src="../V3/tinymce/jquery.tinymce.min.js"></script>
+<script src="tinymce/tinymce.min.js"></script>
+<script src="tinymce/jquery.tinymce.min.js"></script>
 <script>tinymce.init({
         selector:'textarea#content'
     });</script>

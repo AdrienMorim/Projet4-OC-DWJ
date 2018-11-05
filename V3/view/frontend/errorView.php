@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -39,4 +39,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

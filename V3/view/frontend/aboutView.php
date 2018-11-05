@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -26,7 +26,7 @@
 
 <article id="overview" class="row align-items-start">
     <div class="image-overview col-lg-3 offset-lg-1">
-        <img src="../V3/public/images/jeanForteroche.jpg" alt="photo de baleine en Alaska"/>
+        <img src="public/images/jeanForteroche.jpg" alt="photo de baleine en Alaska"/>
     </div>
 
     <div class="content-overview col-lg-7 align-self-center">
@@ -48,4 +48,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

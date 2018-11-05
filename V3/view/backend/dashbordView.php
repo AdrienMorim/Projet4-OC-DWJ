@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -38,7 +38,7 @@
                         <h5 class="card-title"> <?= htmlspecialchars($data['title']); ?><em> le <?= $data['creation_date_fr']; ?></em></h5>
                         <p class="card-text"> <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?>...
                         </p>
-                        <p class="card-link"><em><a class="btn btn-primary" href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
+                        <p class="card-link"><em><a class="btn btn-primary" href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                         </p>
                     </div>
                 </div>
@@ -78,22 +78,22 @@
                 <div id="collapseNumber" class="card-body collapse show">
                     <ul class="card-text list-group list-group-flush">
                         <li class="list-group-item">
-                            <a class="nav-link card-link" href="../V3/index.php?action=listChapters">
+                            <a class="nav-link card-link" href="index.php?action=listChapters">
                                 <p>Vous avez actuellement <?= $chaptersTotal['total_chapters']?> chapitres.</p>
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a class="nav-link card-link " href="../V3/index.php?action=adminListComments">
+                            <a class="nav-link card-link " href="index.php?action=adminListComments">
                                 <p>Vous avez actuellement <?= $commentsTotal['total_comments']?> commentaires.</p>
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a class="nav-link card-link " href="../V3/index.php?action=adminCommentsReport">
+                            <a class="nav-link card-link " href="index.php?action=adminCommentsReport">
                                 <p>Vous avez actuellement <?= $commentsReportTotal['total_comments_report']?> commentaires signalés.</p>
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a class="nav-link card-link " href="../V3/index.php?action=adminListUsers">
+                            <a class="nav-link card-link " href="index.php?action=adminListUsers">
                                 <p>Vous avez actuellement <?= $usersTotal['total_users']?> utilisateurs inscrits.</p>
                             </a>
                         </li>
@@ -106,4 +106,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

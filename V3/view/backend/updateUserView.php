@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -49,7 +49,7 @@
         <div id="admin" class="col-lg-10 offset-lg-1 col-12">
 
         <?php if($user['id'] == $_SESSION['id']) { ?>
-        <form action="../V3/index.php?action=updatePseudo&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
+        <form action="index.php?action=updatePseudo&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
             <div class="col-lg-12">
                 <div class="form-group row text-center">
                     <h3 class="col-lg-offset-2 col-lg-10">Modifier mon profil :</h3>
@@ -72,7 +72,7 @@
         </form>
         <hr/>
         <!-- Nom & Prenom -->
-        <form action="../V3/index.php?action=updateName&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
+        <form action="index.php?action=updateName&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
             <div class="col-lg-12">
                 <div class="form-group row">
                     <div class="col-lg-9 col-md-9">
@@ -103,7 +103,7 @@
         </form>
         <hr/>
         <!-- Date de naissance -->
-        <form action="../V3/index.php?action=updateBirthday&amp;id_user=<?= htmlspecialchars($user['id']); ?>"
+        <form action="index.php?action=updateBirthday&amp;id_user=<?= htmlspecialchars($user['id']); ?>"
               method="post">
             <div class="col-lg-12">
                 <div class="form-group row">
@@ -122,7 +122,7 @@
         </form>
         <hr/>
         <!-- MDP -->
-        <form action="../V3/index.php?action=updatePass&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
+        <form action="index.php?action=updatePass&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
             <div class="col-lg-12">
                 <div class="form-group row">
                     <div class="col-lg-9 col-md-9">
@@ -150,7 +150,7 @@
         </form>
         <hr/>
         <!-- Email -->
-        <form action="../V3/index.php?action=updateEmail&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
+        <form action="index.php?action=updateEmail&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
             <div class="col-lg-12">
                 <div class="form-group row">
                     <label for="email" class="col-lg-3 col-md-2">E-mail :</label>
@@ -177,7 +177,7 @@
         <!-- Admin -->
     <?php if(isset($_SESSION) && $_SESSION['id_group'] == 1) { ?>
 
-        <form action="../V3/index.php?action=updateGroup&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
+        <form action="index.php?action=updateGroup&amp;id_user=<?= htmlspecialchars($user['id']); ?>" method="post">
             <div class="col-lg-12">
                 <div class="form-group row">
                     <div class="col-lg-9 col-md-9">
@@ -210,4 +210,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

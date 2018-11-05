@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -27,7 +27,7 @@
         <?php while ($data = $chapters->fetch()) { ?>
             <aside id="listChapter" class="row col-lg-12 align-items-center">
                 <div class="col-lg-3 offset-lg-1 col-md-4">
-                    <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
+                    <a href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
                         <div class="chapter-img"><?= htmlspecialchars($data['title']); ?> </div>
                     </a>
                 </div>
@@ -38,7 +38,7 @@
 
                     </p>
                     <p class="text-right">
-                        <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
+                        <a href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
                             <em>Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></em>
                         </a>
                     </p>
@@ -59,7 +59,7 @@
                     if ($i == $current_page){
                         echo '<li class="page-item disabled"><a class="page-link" href="#"> ' . $i . ' </a></li>';
                     }else{
-                        echo '<li class="page-item"><a class="page-link" href="../V3/index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
                     }
                 }
             ?>
@@ -71,4 +71,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

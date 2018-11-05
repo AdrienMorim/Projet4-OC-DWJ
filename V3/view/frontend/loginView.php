@@ -4,7 +4,7 @@
 
     <div id="banner" class="row banner-page-login">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
         </div>
         <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2 banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
@@ -18,7 +18,7 @@
 
     <div id="inner" class="row justify-content-lg-center">
         <aside id="login" class="card col-lg-5">
-            <form action="../V3/index.php?action=log" method="POST">
+            <form action="index.php?action=log" method="POST">
                 <div class="col-lg-12 card-header text-center">
                     <div class="form-group row">
                         <h3 class="offset-lg-3 col-lg-6">Connexion</h3>
@@ -47,7 +47,7 @@
             </form>
         </aside>
         <aside id="register" class="card col-lg-5 offset-lg-1">
-            <form action="../V3/index.php?action=register" method="post">
+            <form action="index.php?action=register" method="post">
                 <div class="col-lg-12 card-header text-center">
                     <div class="form-group row">
                         <h3 class="offset-lg-3 col-lg-6">Inscription</h3>
@@ -91,4 +91,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-page">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -25,7 +25,7 @@
     <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-right col-lg-3 offset-lg-9">
-                <a href="../V3/index.php?action=adminNewChapter"><i class="fas fa-pencil-alt"></i> Créer un chapitre</a>
+                <a href="index.php?action=adminNewChapter"><i class="fas fa-pencil-alt"></i> Créer un chapitre</a>
             </div>
             <div id="table-blog" class="table-responsive col-lg-12">
                 <table class="table table-bordered table-hover">
@@ -51,16 +51,16 @@
                             <td class="align-middle"> <?= $data['creation_date_fr']; ?></td>
                             <td class="align-middle"> <?= nl2br(htmlspecialchars(substr($data['content'], 0, 100))); ?>...
                                 <div class="text-right">
-                                    <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
+                                    <a href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
                                         <em>Voir la suite</em>
                                     </a>
                                 </div>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Éditer</a>
+                                <a href="index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Éditer</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer</a>
+                                <a href="index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer</a>
                             </td>
                         </tr>
                         <?php
@@ -80,7 +80,7 @@
                             if ($i == $current_page){
                                 echo '<li class="page-item disabled"><a class="page-link" href="#"> ' . $i . ' </a></li>';
                             }else{
-                                echo '<li class="page-item"><a class="page-link" href="../V3/index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
                             }
                         }
                         ?>
@@ -92,4 +92,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>

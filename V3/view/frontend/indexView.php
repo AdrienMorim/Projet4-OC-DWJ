@@ -4,11 +4,11 @@
 
     <div id="banner" class="row banner-index">
         <div class="nav col-lg-12">
-            <?php include('../V3/view/inc/nav.php') ?>
+            <?php include('view/inc/nav.php') ?>
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -31,7 +31,7 @@
 
     <article id="overview" class="row justify-content-center">
         <div class="image-overview col-lg-4 align-self-center">
-            <img src="../V3/public/images/alaska_1.jpg" alt="photo de baleine en Alaska"/>
+            <img src="public/images/alaska_1.jpg" alt="photo de baleine en Alaska"/>
         </div>
 
         <div class="content-overview col-lg-8 align-self-center">
@@ -62,7 +62,7 @@
                 <p class="card-text content-inner">
                     <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?> ...
                 </p>
-                <p class="card-link"><em><a class="btn btn-primary" href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
+                <p class="card-link"><em><a class="btn btn-primary" href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                 </p>
                 <?php
                 } // fin de la boucle des chapitres
@@ -90,4 +90,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../V3/view/inc/template.php'); ?>
+<?php require('view/inc/template.php'); ?>
