@@ -6,9 +6,9 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION['id'])) { ?>
+            <?php if(isset($_SESSION)) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -25,7 +25,7 @@
     <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-right col-lg-3 offset-lg-9">
-                <a href="index.php?action=adminNewChapter"><i class="fas fa-pencil-alt"></i> Créer un chapitre</a>
+                <a href="../V3/index.php?action=adminNewChapter"><i class="fas fa-pencil-alt"></i> Créer un chapitre</a>
             </div>
             <div id="table-blog" class="table-responsive col-lg-12">
                 <table class="table table-bordered table-hover">
@@ -47,20 +47,20 @@
                     <tbody>
                     <?php while ($data = $chapters->fetch()) { ?>
                         <tr>
-                            <th class="align-middle" scope="row"><?= htmlspecialchars($data['title']); ?></th>
+                            <th class="align-middle" scope="row"><?= $data['title']; ?></th>
                             <td class="align-middle"> <?= $data['creation_date_fr']; ?></td>
-                            <td class="align-middle"> <?= nl2br(htmlspecialchars(substr($data['content'], 0, 100))); ?>...
+                            <td class="align-middle"> <?= substr($data['content'], 0, 100); ?>...
                                 <div class="text-right">
-                                    <a href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
+                                    <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
                                         <em>Voir la suite</em>
                                     </a>
                                 </div>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Éditer</a>
+                                <a href="../V3/index.php?action=adminUpdateChapter&amp;id_chapter=<?= $data['id']; ?>">Éditer</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer</a>
+                                <a href="../V3/index.php?action=deleteChapter&amp;id_chapter=<?= $data['id']; ?>">Supprimer</a>
                             </td>
                         </tr>
                         <?php
@@ -80,7 +80,7 @@
                             if ($i == $current_page){
                                 echo '<li class="page-item disabled"><a class="page-link" href="#"> ' . $i . ' </a></li>';
                             }else{
-                                echo '<li class="page-item"><a class="page-link" href="index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="../V3/index.php?action=listChapters&page=' . $i . '"> ' . $i . ' </a></li>';
                             }
                         }
                         ?>

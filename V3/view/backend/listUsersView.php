@@ -6,9 +6,9 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION['id'])) { ?>
+            <?php if(isset($_SESSION)) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -43,22 +43,22 @@
                     <?php while ($user = $users->fetch()) { ?>
                         <tr>
                             <th class="align-middle">
-                                <?= htmlspecialchars($user['pseudo']); ?>
+                                <?= $user['pseudo']; ?>
                             </th>
                             <td class="align-middle">
-                                <?= htmlspecialchars($user['registration_date_fr']); ?>
+                                <?= $user['registration_date_fr']; ?>
                             </td>
                             <td class="align-middle">
-                                <?= htmlspecialchars($user['email']); ?>
+                                <?= $user['email']; ?>
                             </td>
                             <td class="align-middle level">
                                 <?php if(($user['id_group']) == 1){ echo 'Administrateur'; } else{ echo 'Membre'; } ?>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
+                                <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
+                                <a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
                             </td>
                         </tr>
                     <?php

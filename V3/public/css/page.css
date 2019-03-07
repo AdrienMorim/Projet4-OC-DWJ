@@ -195,7 +195,7 @@
         display: block;
     }
 
-    #overview .image-overview, #overview .chapter-img{
+    #overview .chapter-img{
         display: none;
     }
 

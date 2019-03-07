@@ -4,7 +4,6 @@
 
 #banner{
     width: 100vw;
-    color: #ffffff;
     background-image: url("../images/alaska_2.jpg");
     background-attachment: fixed;
     background-position: center;
@@ -29,6 +28,7 @@
 }
 
 #banner-title{
+    color: #ffffff;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 15px;

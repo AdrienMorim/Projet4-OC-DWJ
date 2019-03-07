@@ -6,7 +6,7 @@ use \PDO;
 /**
  * Class Manager
  * classe abstraite
- * @package V3\Model\Backend
+ * @package V3\Model
  */
 abstract class Manager
 {
@@ -27,13 +27,13 @@ abstract class Manager
      */
     protected function dbConnect()
     {
-        $host = 'mysql:host=db760145379.hosting-data.io;';
-        $database = 'dbname=projet4';
+        $host = 'mysql:host=localhost;'; //'mysql:host=db760145379.hosting-data.io;';
+        $database = 'dbname=projet4;'; //'dbname=db760145379';
         $dsn = $host . $database;
-        $username = 'dbo760145379';
-        $password = 'Livio.3107';
+        $username = 'root'; //'dbo760145379';
+        $password = 'root'; //'Livio.3107';
 
-        $this->_db = new PDO($dsn . ';charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->_db = new PDO($dsn . 'charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         return $this->_db;
     }
 }

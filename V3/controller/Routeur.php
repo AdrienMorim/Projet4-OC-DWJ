@@ -7,7 +7,7 @@ require('Autoload.php');
 /*
 require('ChapterController.php');
 require('CommentController.php');
-require('DashboardController.php');
+require('DashbordController.php');
 require('IndexController.php');
 require('UserController.php');
 require('ViewController.php');
@@ -20,12 +20,12 @@ class Routeur
     /**
      * @var     ChapterController
      * @var     CommentController
-     * @var     DashboardController
+     * @var     DashbordController
      * @var     IndexController
      * @var     UserController
      * @var     ViewController
      */
-    private $_chapterCtrl, $_commentCtrl, $_dashboardCtrl, $_indexCtrl, $_userCtrl, $_viewCtrl;
+    private $_chapterCtrl, $_commentCtrl, $_dashbordCtrl, $_indexCtrl, $_userCtrl, $_viewCtrl;
 
     /**
      * Routeur constructor.
@@ -37,7 +37,7 @@ class Routeur
         Autoload::register();
         $this->_chapterCtrl = new ChapterController();
         $this->_commentCtrl = new CommentController();
-        $this->_dashboardCtrl = new DashboardController();
+        $this->_dashbordCtrl = new DashbordController();
         $this->_indexCtrl = new IndexController();
         $this->_userCtrl = new UserController();
         $this->_viewCtrl = new ViewController();
@@ -57,7 +57,7 @@ class Routeur
                     // ADMIN - Dashbord
                     if ($_GET['action'] == 'dashbord')
                     {
-                        $this->_dashboardCtrl->dashbord();
+                        $this->_dashbordCtrl->dashbord();
                     }
                     // ADMIN - Liste des commentaires
                     elseif ($_GET['action'] == 'adminListComments')
@@ -120,7 +120,7 @@ class Routeur
                     // ADMIN - page de MAJ des commentaires
                     elseif ($_GET['action'] == 'adminUpdateComment')
                     {
-                        $this->_commentCtrl->adminUpdateComment();
+                        $this->_commentCtrl->adminUpdateComment($_GET['id_chapter'], $_GET['id']);
                     }
                     // ADMIN - Mise à jour d'un commentaire
                     elseif ($_GET['action'] == 'updateComment')
@@ -348,25 +348,6 @@ class Routeur
                             throw new Exception('Aucun identifiant de chapitre envoyé !');
                         }
                     }
-                    // Signaler un commentaire
-                    elseif ($_GET['action'] == 'report')
-                    {
-                        if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
-                        {
-                            if (isset($_GET['id']) && $_GET['id'] > 0)
-                            {
-                                $this->_commentCtrl->reportingComment();
-                            }
-                            else
-                            {
-                                throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception('Aucun identifiant de chapitre envoyé pour revenir sur la page précédente!');
-                        }
-                    }
 
                     // Deconnexion
                     elseif ($_GET['action'] == 'logout')
@@ -377,7 +358,7 @@ class Routeur
                 // Retourne au Dashbord.
                 else
                 {
-                    $this->_dashboardCtrl->dashbord();
+                    $this->_dashbordCtrl->dashbord();
                 }
             }
             // SI USER
@@ -425,7 +406,7 @@ class Routeur
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $this->_commentCtrl->reportingComment();
+                                $this->_commentCtrl->reportingComment($_GET['id_chapter'], $_GET['id']);
                             } else {
                                 throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                             }
@@ -436,7 +417,7 @@ class Routeur
                     // Page de MAJ des commentaires
                     elseif ($_GET['action'] == 'adminUpdateComment')
                     {
-                        $this->_commentCtrl->adminUpdateComment();
+                        $this->_commentCtrl->adminUpdateComment($_GET['id_chapter'], $_GET['id']);
                     }
                     // Mise à jour d'un commentaire
                     elseif ($_GET['action'] == 'updateComment')
@@ -633,7 +614,7 @@ class Routeur
                     elseif ($_GET['action'] == 'report') {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $this->_commentCtrl->reportingComment();
+                                $this->_commentCtrl->reportingComment($_GET['id_chapter'], $_GET['id']);
                             } else {
                                 throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                             }

@@ -6,9 +6,9 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION['id'])) { ?>
+            <?php if(isset($_SESSION)) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -29,7 +29,7 @@
                 <i class="fas fa-exclamation-triangle fa-5x"></i>
             </div><br/>
             <h3 class="text-center">
-                Attention <?php if(isset($_SESSION['id'])) { echo $_SESSION['pseudo']; } ?>
+                Attention <?php if(isset($_SESSION)) { echo $user['pseudo']; } ?>
             </h3>
             <hr/>
             <p class="text-center"><strong>Erreur: </strong><?= $errorMessage ?></p>

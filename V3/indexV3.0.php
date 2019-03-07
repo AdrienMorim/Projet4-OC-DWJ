@@ -11,7 +11,7 @@ require('controller/ViewController.php');
 
 use V3\Controller\ChapterController;
 use V3\Controller\CommentController;
-use V3\Controller\DashboardController;
+use V3\Controller\DashbordController;
 use V3\Controller\IndexController;
 use V3\Controller\UserController;
 use V3\Controller\ViewController;
@@ -26,7 +26,7 @@ try{
             // ADMIN - Dashbord
             if ($_GET['action'] == 'dashbord')
             {
-                $dashboardCtrl = new DashboardController();
+                $dashboardCtrl = new DashbordController();
                 $dashboardCtrl->dashbord();
             }
             // ADMIN - Liste des commentaires
@@ -346,7 +346,7 @@ try{
         // Retourne au Dashbord.
         else
         {
-            $dashboardCtrl = new DashboardController();
+            $dashboardCtrl = new DashbordController();
             $dashboardCtrl->dashbord();
         }
     }

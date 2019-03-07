@@ -39,7 +39,7 @@ class CommentController
 
         $start = ($current_page-1) * $comment_per_page;
         $allComments = $this->_comment->getAllComments($start, $comment_per_page);
-        require ('view/backend/ListCommentsView.php');
+        require ('view/backend/listCommentsView.php');
     }
 
 // Ajouter un commentaire
@@ -51,15 +51,16 @@ class CommentController
             throw new Exception('Impossible d\'ajouter le commentaire');
         }
         else{
-            header('Location: index.php?action=chapter&id_chapter=' . $id_chapter);
+            header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+            exit();
         }
     }
 
 // Page d'édition d'un commentaire
-    public function adminUpdateComment()
+    public function adminUpdateComment($id_chapter, $id_comment)
     {
-        $chapter = $this->_chapter->getChapter($_GET['id_chapter']);
-        $comment = $this->_comment->getCommentById($_GET['id']);
+        $chapter = $this->_chapter->getChapter($id_chapter);
+        $comment = $this->_comment->getCommentById($id_comment);
         require ('view/backend/updateCommentView.php');
     }
 
@@ -74,17 +75,19 @@ class CommentController
         }
         else
         {
-            header('Location: index.php?action=chapter&id_chapter=' . $id_chapter );
+            header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+            exit();
         }
     }
 
 // Signaler un commentaire
-    public function reportingComment()
+    public function reportingComment($id_chapter, $id_comment)
     {
-        $chapter = $this->_chapter->getChapter($_GET['id_chapter']);
-        $reportComment = $this->_comment->reportComment($_GET['id']);
+        $chapter = $this->_chapter->getChapter($id_chapter);
+        $reportComment = $this->_comment->reportComment($id_comment);
 
-        header('Location: index.php?action=chapter&id_chapter=' . $_GET['id_chapter']);
+        header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+        exit();
     }
 
 // Approuver un commentaire (retirer le signalement)
@@ -93,7 +96,8 @@ class CommentController
         $chapter = $this->_chapter->getChapter($_GET['id_chapter']);
         $reportComment = $this->_comment->approvedComment($_GET['id']);
 
-        header('Location: index.php?action=adminCommentsReport');
+        header('Location: ../V3/index.php?action=adminCommentsReport');
+        exit();
     }
 
 // Liste des commentaires signalés
@@ -124,7 +128,8 @@ class CommentController
         }
         else
         {
-            header('Location: index.php?action=dashbord' );
+            header('Location: ../V3/index.php?action=dashbord');
+            exit();
         }
     }
 }

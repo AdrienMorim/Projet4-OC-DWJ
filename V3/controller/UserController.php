@@ -37,7 +37,8 @@ class UserController
         }
         else{
             $registerUser = $this->_user->createUser($id_group, $pseudo, $password_hache, $email);
-            header('Location: index.php');
+            header('Location: ../V3/index.php');
+            exit();
         }
     }
 
@@ -61,43 +62,38 @@ class UserController
         else{
             if($proper_pass && $user['id_group'] == 2)
             {
-                session_start();
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
-                $_SESSION['pass'] = $user['pass'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                $id = $user['id'];
+                /*$id = $user['id'];
                 $pseudo = $user['pseudo'];
-                $pass_hash = $user['pass'];
                 $group = $user['id_group'];
 
-                setcookie('id', $id, time() + 1800, null, null, false, true);
-                setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
-                setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
-                setcookie('id_group', $group, time() + 1800, null, null, false, true);
+                setcookie('id', $id, time() + 24*3600, null, null, false, true);
+                setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
+                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
 
-                header('Location: index.php');
+                header('Location: ../V3/index.php');
+                exit();
             }
             elseif($proper_pass && $user['id_group'] == 1)
             {
-                session_start();
+
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['pseudo'] = $user['pseudo'];
-                $_SESSION['pass'] = $user['pass'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                $id = $user['id'];
+                /*$id = $user['id'];
                 $pseudo = $user['pseudo'];
-                $pass_hash = $user['pass'];
                 $group = $user['id_group'];
 
-                setcookie('id', $id, time() + 1800, null, null, false, true);
-                setcookie('pseudo', $pseudo, time() + 1800, null, null, false, true);
-                setcookie('pass', $pass_hash, time() + 1800, null, null, false, true);
-                setcookie('id_group', $group, time() + 1800, null, null, false, true);
+                setcookie('id', $id, time() + 24*3600, null, null, false, true);
+                setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
+                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
 
-                header('Location: index.php?action=dashbord');
+                header('Location: ../V3/index.php?action=dashbord');
+                exit();
             }
             else
             {
@@ -124,6 +120,7 @@ class UserController
         else
         {
             header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
 
@@ -136,7 +133,8 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
     public function updatePassUser($id, $pass)
@@ -148,7 +146,8 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
     public function updateNameUser($id, $firstname, $surname)
@@ -160,7 +159,8 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
     public function updateEmailUser($id, $email)
@@ -172,7 +172,8 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
     public function updateBirthdayUser($id, $birthday)
@@ -184,7 +185,8 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            exit();
         }
     }
 
@@ -198,24 +200,24 @@ class UserController
         }
         else
         {
-            header('Location: index.php?action=adminListUsers');
+            header('Location: ../V3/index.php?action=adminListUsers');
+            exit();
         }
     }
 
 // Deconnexion
     public function logoutUser()
     {
-        session_start();
+        //session_start();
         // Suppression des variables de session et de la session
         $_SESSION = array();
         session_destroy();
-
         // Suppression des cookies de connexion automatique
         setcookie('id', '');
         setcookie('pseudo', '');
-        setcookie('pass', '');
         setcookie('id_group', '');
-
-        header('Location: index.php');
+        ob_start();
+        header('Location: ../V3/index.php');
+        exit();
     }
 }

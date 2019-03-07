@@ -8,7 +8,7 @@
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -54,15 +54,15 @@
             <div class="card-body">
                 <?php while ($data = $chapter->fetch()) { ?>
                 <h4 class="card-subtitle">
-                    <?= htmlspecialchars($data['title']); ?>
+                    <?= $data['title']; ?>
                 </h4>
                 <p class="text-muted">
                     <em>Publié le <?= $data['creation_date_fr']; ?></em>
                 </p>
                 <p class="card-text content-inner">
-                    <?= nl2br(htmlspecialchars(substr($data['content'], 0, 80))); ?> ...
+                    <?= substr($data['content'], 0, 80); ?> ...
                 </p>
-                <p class="card-link"><em><a class="btn btn-primary" href="index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
+                <p class="card-link"><em><a class="btn btn-primary" href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                 </p>
                 <?php
                 } // fin de la boucle des chapitres
@@ -74,12 +74,12 @@
             <h3 class="card-header">Dernier commentaire</h3>
             <div class="card-body">
                 <?php while ($data = $comment->fetch()) { ?>
-                <p class="card-text"><strong><?= htmlspecialchars($data['author']); ?></strong>
+                <p class="card-text"><strong><?= $data['author']; ?></strong>
                 </p>
                 <p class="text-muted">
                     <em>le <?= $data['comment_date_fr']; ?></em>
                 </p>
-                <p class="card-text content-inner"><?= nl2br(htmlspecialchars($data['comment'])); ?>
+                <p class="card-text content-inner"><?= $data['comment']; ?>
                 </p>
                 <?php
                 }

@@ -6,9 +6,9 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION['id'])) { ?>
+            <?php if(isset($_SESSION)) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -25,7 +25,7 @@
     <div id="inner" class="container col">
         <div id="admin" class="col-lg-10 offset-lg-1">
             <div class="text-right col-lg-3 offset-lg-9">
-                <a href="index.php?action=adminCommentsReport"><i class="far fa-bell"></i> Voir les commentaires signalés</a>
+                <a href="../V3/index.php?action=adminCommentsReport"><i class="far fa-bell"></i> Voir les commentaires signalés</a>
             </div>
             <div id="table-blog" class="table-responsive col-lg-12">
                 <table class="table table-bordered table-hover">
@@ -42,17 +42,17 @@
                     <tbody>
                     <?php while ($comment = $allComments->fetch()) { ?>
                         <tr>
-                            <th class="align-middle"><?= htmlspecialchars($comment['author']) ?></th>
+                            <th class="align-middle"><?= $comment['author'] ?></th>
                             <td class="align-middle">le <?= $comment['comment_date_fr'] ?></td>
-                            <td class="align-middle"><?= nl2br(htmlspecialchars($comment['comment'])) ?></td>
+                            <td class="align-middle"><?= $comment['comment'] ?></td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=adminUpdateComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Éditer</a>
+                                <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Éditer</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=deleteComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a>
+                                <a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="index.php?action=report&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Signaler</a>
+                                <a href="../V3/index.php?action=report&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Signaler</a>
                             </td>
                         </tr>
 
@@ -72,7 +72,7 @@
                             if ($i == $current_page){
                                 echo '<li class="page-item disabled"><a class="page-link" href="#"> ' . $i . ' </a></li>';
                             }else{
-                                echo '<li class="page-item"><a class="page-link" href="index.php?action=adminListComments&page=' . $i . '"> ' . $i . ' </a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="../V3/index.php?action=adminListComments&page=' . $i . '"> ' . $i . ' </a></li>';
                             }
                         }
                         ?>

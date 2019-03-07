@@ -8,7 +8,7 @@
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -31,9 +31,9 @@
                     <label for="author" class="col-lg-3">Auteur</label>
                     <div class="col-lg-9">
                         <input type="text" name="author" id="author" class="form-control" value="<?php
-                        if (isset($_SESSION['pseudo']))
+                        if (isset($_SESSION))
                         {
-                            echo htmlspecialchars($_SESSION['pseudo']);
+                            echo $_SESSION['pseudo'];
                         }
                         ?>"
                         />
@@ -42,13 +42,13 @@
                 <div class="form-group row">
                     <label for="title" class="col-lg-3">Titre</label>
                     <div class="col-lg-9">
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Indiquez ici votre titre"/>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Indiquez ici le titre de votre nouveau chapitre"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="content" class="col-lg-3">Chapitre</label>
                     <div class="col-lg-9">
-                        <textarea name="content" id="content" class="form-control" placeholder="Indiquez ici votre chapitre"></textarea>
+                        <textarea name="content" id="content" class="form-control" placeholder="Écrivez ici votre nouveau chapitre"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">

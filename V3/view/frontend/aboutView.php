@@ -6,9 +6,9 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION['id'])) { ?>
+            <?php if(isset($_SESSION)) { ?>
                 <p id="welcome">
-                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>">Bonjour <?= $_SESSION['pseudo']; ?>
+                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -26,11 +26,11 @@
 
 <article id="overview" class="row align-items-start">
     <div class="image-overview col-lg-3 offset-lg-1">
-        <img src="public/images/jeanForteroche.jpg" alt="photo de baleine en Alaska"/>
+        <img src="public/images/jeanForteroche.jpg" alt="photo de Jean Forteroche"/>
     </div>
 
     <div class="content-overview col-lg-7 align-self-center">
-        <h3>Écrivain, Auteur masi avant tout passionné</h3>
+        <h3>Écrivain, Auteur mais avant tout passionné</h3>
         <blockquote class="blockquote">
             <p>Quam ob rem vita quidem talis fuit vel fortuna vel gloria, ut nihil posset accedere, moriendi autem sensum celeritas abstulit; quo de genere mortis difficile dictu est; quid homines suspicentur, videtis; </p>
             <p>hoc vere tamen licet dicere, P. Scipioni ex multis diebus, quos in vita celeberrimos laetissimosque viderit, illum diem clarissimum fuisse, cum senatu dimisso domum reductus ad vesperum est a patribus conscriptis, populo Romano, sociis et Latinis. </p>

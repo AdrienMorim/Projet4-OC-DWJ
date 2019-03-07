@@ -45,6 +45,7 @@
 
     #copyright {
         order: 2;
+        margin: 20px;
     }
 
     #socialNetwork > div, #developer > div {
@@ -64,14 +65,9 @@
         padding-top: 100px;
     }
 
-    #developer, #socialNetwork{
-        /*height: 50vh;*/
-        /*margin: 20px 20px 20px;*/
+    #developer, #socialNetwork, #copyright{
+        height: 25vh;
     }
-
-    /*#footer .fa-2x{
-        font-size: 3em;
-    }*/
 }
 
 /*=============================================================================*\
@@ -86,7 +82,7 @@
         padding-top: 100px
     }
 
-    #copyright, #developer, #socialNetwork{
+    #developer, #socialNetwork{
         margin-bottom: 1rem;
     }
 
@@ -100,5 +96,6 @@
 
     #copyright {
         order: 3;
+        margin: 0;
     }
 }

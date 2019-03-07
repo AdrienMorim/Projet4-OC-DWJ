@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="socialNetwork" class="col-lg-4 col-md-6 order-last">
+    <div id="socialNetwork" class="col-lg-4 order-last">
         <p class="text-center"><i class="fas fa-hashtag"></i> Suivez-moi :</p>
         <div class="d-flex justify-content-around">
                 <a href='#'><i class="fab fa-facebook fa-2x" aria-hidden="true"></i></a>
@@ -15,7 +15,7 @@
             Projet 4 DWJ - <a href="https://openclassrooms.com">Openclassrooms</a>
         </p>
     </div>
-    <div id="developer" class="col-lg-4 offset-lg-0 col-md-6 offset-md-6 order-first">
+    <div id="developer" class="col-lg-4 offset-lg-0 order-first">
         <p class="text-center"><i class="fas fa-code"></i> Développé par <a href="http://morimadrien.fr">Morim Adrien</a> avec :</p>
         <div class="d-flex justify-content-around">
             <span>
