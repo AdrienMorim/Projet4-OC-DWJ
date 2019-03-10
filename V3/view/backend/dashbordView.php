@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION)) { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
                     <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
@@ -37,8 +37,8 @@
                     </div>
 
                     <div id="collapseChapter" class="card-body collapse show">
-                        <h5 class="card-title"> <?= $data['title']; ?><em> le <?= $data['creation_date_fr']; ?></em></h5>
-                        <p class="card-text"> <?= substr($data['content'], 0, 80); ?>...
+                        <h5 class="card-title"> <?= ($data['title']); ?><em> le <?= $data['creation_date_fr']; ?></em></h5>
+                        <p class="card-text"> <?= substr(htmlspecialchars_decode($data['content']), 0, 80); ?>...
                         </p>
                         <p class="card-link"><em><a class="btn btn-primary" href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                         </p>
@@ -59,8 +59,8 @@
                     </div>
 
                     <div id="collapseComment" class="card-body collapse show">
-                        <h6 class="card-title"><strong><?= $data['author']; ?></strong> le <?= $data['comment_date_fr']; ?></h6>
-                        <p class="card-text"><?= $data['comment']; ?></p>
+                        <h6 class="card-title"><strong><?= strip_tags(htmlspecialchars_decode($data['author'])); ?></strong> le <?= $data['comment_date_fr']; ?></h6>
+                        <p class="card-text"><?= strip_tags(htmlspecialchars_decode($data['comment'])); ?></p>
                     </div>
                 </div>
             <?php

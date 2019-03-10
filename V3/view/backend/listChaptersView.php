@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION)) { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
                     <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
@@ -31,7 +31,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr class="table-primary">
-                        <?php if(!isset($_SESSION['id_group']) || isset($_SESSION) && $_SESSION['id_group'] == 2) { ?>
+                        <?php if(!isset($_SESSION['id_group']) || isset($_SESSION['id']) && $_SESSION['id_group'] == 2) { ?>
                             <th class="align-baseline" scope="col">Titre </th>
                             <th class="align-baseline" scope="col">Date</th>
                             <th class="align-baseline" scope="col">Aperçu</th>
@@ -49,7 +49,7 @@
                         <tr>
                             <th class="align-middle" scope="row"><?= $data['title']; ?></th>
                             <td class="align-middle"> <?= $data['creation_date_fr']; ?></td>
-                            <td class="align-middle"> <?= substr($data['content'], 0, 100); ?>...
+                            <td class="align-middle"> <?= substr(htmlspecialchars_decode($data['content']), 0, 100); ?>...
                                 <div class="text-right">
                                     <a href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">
                                         <em>Voir la suite</em>

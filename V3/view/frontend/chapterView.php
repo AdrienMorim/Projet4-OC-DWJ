@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION)) { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
                     <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
@@ -57,7 +57,7 @@
 
                     $countComments++ ?>
                     <div class="row author-report-comments">
-                        <p class="col-xl-6 col-lg-4 col-md-4 col-6"><strong><?= $comment['author']; ?></strong></p>
+                        <p class="col-xl-6 col-lg-4 col-md-4 col-6"><strong><?= strip_tags(htmlspecialchars_decode($comment['author'])); ?></strong></p>
                     <?php if (!isset($_SESSION['id_group'])) { ?>
                         <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                             <em>
@@ -69,7 +69,7 @@
                         </p>
                         <?php
                         } // fin du if
-                        elseif (isset($_SESSION) && $_SESSION['id_group'] == 2) {
+                        elseif (isset($_SESSION['id']) && $_SESSION['id_group'] == 2) {
 
                             if (($comment['author']) == $_SESSION['pseudo']) { ?>
                             <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
@@ -124,7 +124,7 @@
                         else { ?>
                             <p class="col-lg-6 text-muted">modifié le <?= $comment['update_date_fr']; ?></p>
                         <?php } ?>
-                        <p class="col-lg-8"><?= $comment['comment']; ?></p>
+                        <p class="col-lg-8"><?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?></p>
                     </div>
                     <hr>
                 <?php } //fin de la boucle while
@@ -150,7 +150,7 @@
                         <label for="author" class="col-lg-3">Auteur</label>
                         <div class="col-lg-9">
                             <input type="text" name="author" id="author" class="form-control" placeholder="Indiquez ici votre nom" value="<?php
-                            if (isset($_SESSION))
+                            if (isset($_SESSION['id']))
                             {
                                 echo $_SESSION['pseudo'];
                             }

@@ -31,7 +31,7 @@
                     <label for="author" class="col-lg-3">Auteur</label>
                     <div class="col-lg-9">
                         <input type="text" name="author" id="author" class="form-control" value="<?php
-                        if (isset($_SESSION))
+                        if (isset($_SESSION['id']))
                         {
                             echo $_SESSION['pseudo'];
                         }

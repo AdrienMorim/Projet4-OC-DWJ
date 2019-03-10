@@ -60,7 +60,7 @@
                     <em>Publié le <?= $data['creation_date_fr']; ?></em>
                 </p>
                 <p class="card-text content-inner">
-                    <?= substr($data['content'], 0, 80); ?> ...
+                    <?= substr(htmlspecialchars_decode($data['content']), 0, 80); ?> ...
                 </p>
                 <p class="card-link"><em><a class="btn btn-primary" href="../V3/index.php?action=chapter&amp;id_chapter=<?= $data['id']; ?>">Voir la suite <i class="fas fa-arrow-alt-circle-right"></i></a></em>
                 </p>
@@ -74,12 +74,12 @@
             <h3 class="card-header">Dernier commentaire</h3>
             <div class="card-body">
                 <?php while ($data = $comment->fetch()) { ?>
-                <p class="card-text"><strong><?= $data['author']; ?></strong>
+                <p class="card-text"><strong><?= strip_tags(htmlspecialchars_decode($data['author'])); ?></strong>
                 </p>
                 <p class="text-muted">
                     <em>le <?= $data['comment_date_fr']; ?></em>
                 </p>
-                <p class="card-text content-inner"><?= $data['comment']; ?>
+                <p class="card-text content-inner"><?= strip_tags(htmlspecialchars_decode($data['comment'])); ?>
                 </p>
                 <?php
                 }

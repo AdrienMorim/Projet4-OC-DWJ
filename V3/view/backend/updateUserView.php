@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($user['id'])) { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
                     <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
@@ -175,7 +175,7 @@
     }
     ?>
         <!-- Admin -->
-    <?php if(isset($_SESSION) && $user['id_group'] == 1) { ?>
+    <?php if(isset($_SESSION['id']) && $user['id_group'] == 1) { ?>
 
         <form action="index.php?action=updateGroup&amp;id_user=<?= $user['id']; ?>" method="post">
             <div class="col-lg-12">

@@ -45,9 +45,9 @@
                         {
                             ?>
                             <tr>
-                                <th class="align-middle"><?= $comment['author']; ?></th>
+                                <th class="align-middle"><?= strip_tags(htmlspecialchars_decode($comment['author'])); ?></th>
                                 <td class="align-middle">le <?= $comment['comment_date_fr']; ?></td>
-                                <td class="align-middle"><?= $comment['comment']; ?></td>
+                                <td class="align-middle"><?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?></td>
                                 <td class="align-middle text-center">
                                     <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Éditer</a>
                                 </td>

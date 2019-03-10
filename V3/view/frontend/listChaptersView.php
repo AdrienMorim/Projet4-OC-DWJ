@@ -6,7 +6,7 @@
         <div class="nav col-lg-12">
             <?php include('view/inc/nav.php') ?>
 
-            <?php if(isset($_SESSION)) { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
                     <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
@@ -34,7 +34,7 @@
                 <div class="col-lg-7 offset-lg-1 col-md-8">
                     <h4 class="align-middle" scope="row"><?= $data['title']; ?></h4>
                     <h5 class="text-muted align-middle"> <?= $data['creation_date_fr']; ?></h5>
-                    <p class="align-middle"> <?= substr($data['content'], 0, 200); ?>...
+                    <p class="align-middle"> <?= substr(htmlspecialchars_decode($data['content']), 0, 200); ?>...
 
                     </p>
                     <p class="text-right">

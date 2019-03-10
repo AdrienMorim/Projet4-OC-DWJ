@@ -16,8 +16,8 @@
         <div id="banner-title" class="col-lg-8 col-md-10 col-8 offset-lg-2  banner-title-page">
             <h1>Billet simple pour l'Alaska</h1>
             <h2>Éditer le commentaire de: </h2>
-            <p><?= $comment['author']; ?><em> du <?= $comment['comment_date_fr']; ?></em><br/>
-                <?= $comment['comment']; ?>
+            <p><?= strip_tags(htmlspecialchars_decode($comment['author'])); ?><em> du <?= $comment['comment_date_fr']; ?></em><br/>
+                <?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?>
             </p>
         </div>
     </div>
@@ -44,13 +44,13 @@
                     <div class="form-group row">
                         <label for="author" class="col-lg-3">Auteur</label>
                         <div class="col-lg-9">
-                            <input type="text" name="author" id="author" class="form-control" value="<?= $comment['author']; ?>"/>
+                            <input type="text" name="author" id="author" class="form-control" value="<?= strip_tags(htmlspecialchars_decode($comment['author'])); ?>"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-lg-3">Commentaire</label>
                         <div class="col-lg-9">
-                            <textarea name="comment" id="comment" class="form-control" placeholder="<?= $comment['comment']; ?>"></textarea>
+                            <textarea name="comment" id="comment" class="form-control" placeholder="<?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?>"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
