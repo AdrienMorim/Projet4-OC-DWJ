@@ -16,18 +16,18 @@ abstract class Manager
     private $_db;
 
     /**
+     * @const   HOST            Nom du server.
+     * @const   DB_NAME         Nom de la bdd.
+     * @const   CHARSET         Encodage.
      * @const   DB_HOST         Nom du server, de la bdd et de l'encodage.
-     */
-    const DB_HOST = 'mysql:host=localhost;dbname=projet4;charset=utf8';
-
-    /**
      * @const   DB_USER         Nom de l'utilisateur.
-     */
-    const DB_USER = 'root';
-
-    /**
      * @const   DB_PASS         Mot de passe de l'utilisateur.
      */
+    const HOST = 'localhost';
+    const DB_NAME = 'projet4';
+    const CHARSET = 'utf8';
+    const DB_HOST = 'mysql:host='. self::HOST .';dbname=' . self::DB_NAME . ';charset=' . self::CHARSET;
+    const DB_USER = 'root';
     const DB_PASS = 'root';
 
     /**
