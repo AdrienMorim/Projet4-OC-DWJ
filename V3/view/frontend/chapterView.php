@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="content" class="col-lg-3">Commentaire</label>
+                        <label for="comment" class="col-lg-3">Commentaire</label>
                         <div class="col-lg-9">
                             <textarea name="comment" id="comment" class="form-control" placeholder="Indiquez ici votre commentaire"></textarea>
                         </div>

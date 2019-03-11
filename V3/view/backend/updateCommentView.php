@@ -50,7 +50,7 @@
                     <div class="form-group row">
                         <label for="content" class="col-lg-3">Commentaire</label>
                         <div class="col-lg-9">
-                            <textarea name="comment" id="comment" class="form-control" placeholder="<?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?>"></textarea>
+                            <textarea name="comment" id="content" class="form-control"><?= strip_tags(htmlspecialchars_decode($comment['comment'])); ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">

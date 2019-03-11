@@ -20,8 +20,17 @@
 <script src="tinymce/tinymce.min.js"></script>
 <script src="tinymce/jquery.tinymce.min.js"></script>
 <script>tinymce.init({
-        selector:'textarea#content'
-    });</script>
+        selector:'textarea#content',
+        max_height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor textcolor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount spellchecker'
+        ],
+        toolbar: 'undo redo | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help spellchecker'
+    });
+</script>
 
 
 <!-- Optional JavaScript -->
