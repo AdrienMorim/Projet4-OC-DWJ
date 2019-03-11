@@ -36,7 +36,7 @@
                     <em>le <?= $chapter['creation_date_fr']; ?></em>
                 </h3>
                 <p>
-                    <?= $chapter['content']; ?> <br/>
+                    <?= htmlspecialchars_decode($chapter['content']); ?> <br/>
                 </p>
             </div>
             <form action="index.php?action=updateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>" method="POST">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-12 text-right">
-                            <button type="submit" name="envoyer" class="btn btn-primary">Mettre à jour votre commentaire</button>
+                            <button type="submit" name="envoyer" class="btn btn-primary">Mettre à jour le commentaire</button>
                         </div>
                     </div>
                 </div>
