@@ -16,6 +16,21 @@ abstract class Manager
     private $_db;
 
     /**
+     * @const   DB_HOST         Nom du server, de la bdd et de l'encodage.
+     */
+    const DB_HOST = 'mysql:host=localhost;dbname=projet4;charset=utf8';
+
+    /**
+     * @const   DB_USER         Nom de l'utilisateur.
+     */
+    const DB_USER = 'root';
+
+    /**
+     * @const   DB_PASS         Mot de passe de l'utilisateur.
+     */
+    const DB_PASS = 'root';
+
+    /**
      * @return Instance
      */
     public function getDb()
@@ -27,13 +42,7 @@ abstract class Manager
      */
     protected function dbConnect()
     {
-        $host = 'mysql:host=localhost;'; //'mysql:host=db760145379.hosting-data.io;';
-        $database = 'dbname=projet4;'; //'dbname=db760145379';
-        $dsn = $host . $database;
-        $username = 'root'; //'dbo760145379';
-        $password = 'root'; //'Livio.3107';
-
-        $this->_db = new PDO($dsn . 'charset=utf8', $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $this->_db = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         return $this->_db;
     }
 }
