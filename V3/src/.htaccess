@@ -1,0 +1,4 @@
+AuthName "Page d'administration protégée"
+AuthType Basic
+AuthUserFile "/Users/morimadrien/Sites/Projet4_OC_DWJ/V3/src/.htpasswd"
+Require valid-user
