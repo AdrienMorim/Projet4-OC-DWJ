@@ -79,6 +79,12 @@
     margin-right: 20px;
 }
 
+#inner .disabled{
+    background: transparent;
+    color: #5a5a5a;
+    cursor: inherit;
+}
+
 /*============[ aside ]=============*/
 
 #inner aside{

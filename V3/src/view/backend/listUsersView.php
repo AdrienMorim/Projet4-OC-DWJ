@@ -58,7 +58,14 @@
                                 <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $user['id']; ?>">Modifier</a>
                             </td>
                             <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
+                                <?php if($user['id_group'] == 2 ){ ?>
+                                    <a href="../V3/index.php?action=deleteUser&amp;id_user=<?= $user['id']; ?>">Supprimer</a>
+                                <?php
+                                } else { ?>
+                                    <span class="disabled">Supprimer</span>
+                                <?php
+                                }
+                                ?>
                             </td>
                         </tr>
                     <?php

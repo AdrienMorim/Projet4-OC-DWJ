@@ -36,7 +36,6 @@
                             <th class="align-baseline" scope="col">Commentaire</th>
                             <th class="align-baseline text-center" scope="col"><i class="fas fa-comment-dots"></i></th>
                             <th class="align-baseline text-center" scope="col"><i class="fas fa-comment-slash"></i></th>
-                            <th class="align-baseline" scope="col"><i class="fas fa-bell"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,9 +49,6 @@
                             </td>
                             <td class="align-middle text-center">
                                 <a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Supprimer</a>
-                            </td>
-                            <td class="align-middle text-center">
-                                <a href="../V3/index.php?action=report&amp;id_chapter=<?= $comment['id_chapter'];?>&amp;id=<?= $comment['id'];?>">Signaler</a>
                             </td>
                         </tr>
 
