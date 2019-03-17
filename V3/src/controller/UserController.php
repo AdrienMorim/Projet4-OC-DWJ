@@ -70,14 +70,14 @@ class UserController
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                /*$id = $user['id'];
+                /*
+                $id = $user['id'];
                 $pseudo = $user['pseudo'];
                 $group = $user['id_group'];
-
                 setcookie('id', $id, time() + 24*3600, null, null, false, true);
                 setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
-                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
-
+                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);
+                */
                 header('Location: index.php');
                 exit();
             }
@@ -88,14 +88,14 @@ class UserController
                 $_SESSION['pseudo'] = $user['pseudo'];
                 $_SESSION['id_group'] = $user['id_group'];
 
-                /*$id = $user['id'];
+                /*
+                $id = $user['id'];
                 $pseudo = $user['pseudo'];
                 $group = $user['id_group'];
-
                 setcookie('id', $id, time() + 24*3600, null, null, false, true);
                 setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
-                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
-
+                setcookie('id_group', $group, time() + 24*3600, null, null, false, true);
+                */
                 header('Location: index.php?action=dashbord');
                 exit();
             }
@@ -212,14 +212,24 @@ class UserController
 // Deconnexion
     public function logoutUser()
     {
-        //session_start();
+        session_start();
         // Suppression des variables de session et de la session
         $_SESSION = array();
-        session_destroy();
+        // On supprime le cookie de session (générer par defaut)
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
         // Suppression des cookies de connexion automatique
-        setcookie('id', '');
-        setcookie('pseudo', '');
-        setcookie('id_group', '');
+        //setcookie('id', '');
+        //setcookie('pseudo', '');
+        //setcookie('id_group', '');
+
+        // On supprime la session
+        session_destroy();
         ob_start();
         header('Location: index.php');
         exit();
