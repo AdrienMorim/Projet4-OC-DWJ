@@ -8,7 +8,7 @@
 
             <?php if(isset($_SESSION['id'])) { ?>
                 <p id="welcome">
-                    <a href="../V3/index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
+                    <a href="index.php?action=adminUpdateUser&amp;id_user=<?= $_SESSION['id'];?>"><?= 'Bonjour ' . $_SESSION['pseudo']; ?>
                     </a>
                 </p>
             <?php } ?>
@@ -74,7 +74,7 @@
                             if (($comment['author']) == $_SESSION['pseudo']) { ?>
                             <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                                 <em>
-                                    <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <a href="index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
                                         <span class="admin">Éditer</span>
                                         <i class="fas fa-comment-dots"></i>
                                     </a>
@@ -84,7 +84,7 @@
                             else { ?>
                             <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                                 <em>
-                                    <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <a href="index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
                                         <span class="admin">Signaler</span>
                                         <i class="fas fa-bell"></i>
                                     </a>
@@ -96,19 +96,19 @@
                         <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                             <span class="row no-gutters">
                                 <em class="col-lg-4 col-4">
-                                    <a href="../V3/index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <a href="index.php?action=adminUpdateComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
                                         <span class="admin">Éditer</span>
                                         <i class="fas fa-comment-dots"></i>
                                     </a>
                                 </em><br/>
                                 <em class="col-lg-4 col-4">
-                                    <a href="../V3/index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <a href="index.php?action=deleteComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
                                         <span class="admin">Supprimer</span>
                                         <i class="fas fa-comment-slash"></i>
                                     </a>
                                 </em><br/>
                                 <em class="col-lg-4 col-4">
-                                    <a href="../V3/index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                    <a href="index.php?action=approvedComment&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
                                         <span class="admin">Approuver</span>
                                         <i class="fas fa-check-circle"></i>
                                     </a>

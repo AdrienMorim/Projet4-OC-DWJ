@@ -41,7 +41,7 @@ class UserController
         }
         else{
             $registerUser = $this->_user->createUser($id_group, $pseudo, $password_hache, $email);
-            header('Location: ../V3/index.php');
+            header('Location: index.php');
             exit();
         }
     }
@@ -78,7 +78,7 @@ class UserController
                 setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
                 setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
 
-                header('Location: ../V3/index.php');
+                header('Location: index.php');
                 exit();
             }
             elseif($proper_pass && $user['id_group'] == 1)
@@ -96,7 +96,7 @@ class UserController
                 setcookie('pseudo', $pseudo, time() + 24*3600, null, null, false, true);
                 setcookie('id_group', $group, time() + 24*3600, null, null, false, true);*/
 
-                header('Location: ../V3/index.php?action=dashbord');
+                header('Location: index.php?action=dashbord');
                 exit();
             }
             else
@@ -123,7 +123,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -137,7 +137,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -150,7 +150,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -163,7 +163,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -176,7 +176,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -189,7 +189,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminUpdateUser&id_user=' . $id);
+            header('Location: index.php?action=adminUpdateUser&id_user=' . $id);
             exit();
         }
     }
@@ -204,7 +204,7 @@ class UserController
         }
         else
         {
-            header('Location: ../V3/index.php?action=adminListUsers');
+            header('Location: index.php?action=adminListUsers');
             exit();
         }
     }
@@ -221,7 +221,7 @@ class UserController
         setcookie('pseudo', '');
         setcookie('id_group', '');
         ob_start();
-        header('Location: ../V3/index.php');
+        header('Location: index.php');
         exit();
     }
 }

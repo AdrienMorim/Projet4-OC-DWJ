@@ -55,7 +55,7 @@ class CommentController
             throw new Exception('Impossible d\'ajouter le commentaire');
         }
         else{
-            header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+            header('Location: index.php?action=chapter&id_chapter=' . $id_chapter);
             exit();
         }
     }
@@ -79,7 +79,7 @@ class CommentController
         }
         else
         {
-            header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+            header('Location: index.php?action=chapter&id_chapter=' . $id_chapter);
             exit();
         }
     }
@@ -90,7 +90,7 @@ class CommentController
         $chapter = $this->_chapter->getChapter($id_chapter);
         $reportComment = $this->_comment->reportComment($id_comment);
 
-        header('Location: ../V3/index.php?action=chapter&id_chapter=' . $id_chapter);
+        header('Location: index.php?action=chapter&id_chapter=' . $id_chapter);
         exit();
     }
 
@@ -100,7 +100,7 @@ class CommentController
         $chapter = $this->_chapter->getChapter($_GET['id_chapter']);
         $reportComment = $this->_comment->approvedComment($_GET['id']);
 
-        header('Location: ../V3/index.php?action=adminCommentsReport');
+        header('Location: index.php?action=adminCommentsReport');
         exit();
     }
 
@@ -132,7 +132,7 @@ class CommentController
         }
         else
         {
-            header('Location: ../V3/index.php?action=dashbord');
+            header('Location: index.php?action=dashbord');
             exit();
         }
     }

@@ -64,7 +64,7 @@ class ChapterController
     public function postChapter($author, $title, $content)
     {
         $createChapter = $this->_chapter->createChapter($author, $title, $content);
-        header('Location: ../V3/index.php?action=listChapters');
+        header('Location: index.php?action=listChapters');
         exit();
     }
 
@@ -83,7 +83,7 @@ class ChapterController
         if ($updateChapter === false) {
             throw new Exception('Impossible de mettre à jour le chapitre');
         } else {
-            header('Location: ../V3/index.php?action=listChapters');
+            header('Location: index.php?action=listChapters');
             exit();
         }
     }
@@ -99,7 +99,7 @@ class ChapterController
         } elseif ($deleteComments === false) {
             throw new Exception('Impossible de supprimer les commentaire du chapitre');
         } else {
-            header('Location: ../V3/index.php?action=listChapters');
+            header('Location: index.php?action=listChapters');
             exit();
         }
     }
