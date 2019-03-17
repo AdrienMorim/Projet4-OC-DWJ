@@ -61,10 +61,10 @@
                     <?php if (!isset($_SESSION['id_group'])) { ?>
                         <p class="col-xl-6 col-lg-8 col-md-8 col-6 text-right">
                             <em>
-                                <a href="../V3/index.php?action=report&amp;id_chapter=<?= $chapter['id']; ?>&amp;id=<?= $comment['id']; ?>">
+                                <span class="disabled pop-up" aria-label="Une connection est requise pour faire un signalement.">
                                     <span class="admin">Signaler</span>
                                     <i class="fas fa-bell"></i>
-                                </a>
+                                </span>
                             </em>
                         </p>
                         <?php

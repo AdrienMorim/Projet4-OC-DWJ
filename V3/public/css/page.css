@@ -82,7 +82,22 @@
 #inner .disabled{
     background: transparent;
     color: #5a5a5a;
-    cursor: inherit;
+}
+
+.pop-up{
+    position: relative;
+    cursor: help;
+}
+
+.pop-up:focus::after,
+.pop-up:hover::after{
+    content: attr(aria-label);  /* on affiche aria-label */
+    position: absolute;
+    color: #000;
+    top: -2.2em;
+    transform: translateX(-100%); /* on centre horizontalement  */
+    z-index: 1; /* pour s'afficher au dessus des éléments en position relative */
+    white-space: nowrap;
 }
 
 /*============[ aside ]=============*/
