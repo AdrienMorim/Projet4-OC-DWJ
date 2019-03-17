@@ -78,7 +78,10 @@ class Routeur
                     {
                         if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
                         {
-                            $this->_chapterCtrl->postChapter($_POST['author'], $_POST['title'], $_POST['content']);
+                            $this->_chapterCtrl->postChapter(
+                                htmlspecialchars($_POST['author']),
+                                htmlspecialchars($_POST['title']),
+                                htmlspecialchars($_POST['content']));
                         }
                         else
                         {
@@ -97,7 +100,11 @@ class Routeur
                         {
                             if ($_POST['author'] != NULL && $_POST['title'] != NULL && $_POST['content'] != NULL)
                             {
-                                $this->_chapterCtrl->updateChapter($_GET['id_chapter'], $_POST['author'], $_POST['title'], $_POST['content']);
+                                $this->_chapterCtrl->updateChapter(
+                                    intval($_GET['id_chapter']),
+                                    htmlspecialchars($_POST['author']),
+                                    htmlspecialchars($_POST['title']),
+                                    htmlspecialchars($_POST['content']));
                             }
                             else
                             {
@@ -114,7 +121,7 @@ class Routeur
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                         {
-                            $this->_chapterCtrl->deleteChapter($_GET['id_chapter']);
+                            $this->_chapterCtrl->deleteChapter(intval($_GET['id_chapter']));
                         }
                         else
                         {
@@ -124,7 +131,7 @@ class Routeur
                     // ADMIN - page de MAJ des commentaires
                     elseif ($_GET['action'] == 'adminUpdateComment')
                     {
-                        $this->_commentCtrl->adminUpdateComment($_GET['id_chapter'], $_GET['id']);
+                        $this->_commentCtrl->adminUpdateComment(intval($_GET['id_chapter']), intval($_GET['id']));
                     }
                     // ADMIN - Mise à jour d'un commentaire
                     elseif ($_GET['action'] == 'updateComment')
@@ -135,7 +142,11 @@ class Routeur
                             {
                                 if ($_POST['author'] != NULL && $_POST['comment'] != NULL)
                                 {
-                                    $this->_commentCtrl->updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                                    $this->_commentCtrl->updateComment(
+                                        intval($_GET['id']),
+                                        intval($_GET['id_chapter']),
+                                        htmlspecialchars($_POST['author']),
+                                        htmlspecialchars($_POST['comment']));
                                 }
                                 else
                                 {
@@ -158,7 +169,7 @@ class Routeur
                     {
                         if (isset($_GET['id']) && $_GET['id'] > 0)
                         {
-                            $this->_commentCtrl->deleteComment($_GET['id']);
+                            $this->_commentCtrl->deleteComment(intval($_GET['id']));
                         }
                         else
                         {
@@ -202,7 +213,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updatePseudo'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $pseudo = htmlspecialchars($_POST['pseudo']);
                             //On vérifie que les champs ne sont pas vides
                             if (!empty($_POST['pseudo'])) {
@@ -238,7 +249,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateName'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $firstname = htmlspecialchars($_POST['firstname']);
                             $surname = htmlspecialchars($_POST['surname']);
                             //On vérifie que les champs ne sont pas vides
@@ -254,7 +265,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateEmail'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $email = htmlspecialchars($_POST['email']);
                             // On vérifie la Regex pour l'adresse email
                             if (!empty($_POST['email'])) {
@@ -277,7 +288,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateBirthday'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $birthday = htmlspecialchars($_POST['birthday_date']);
                             //On vérifie que les champs ne sont pas vides
                             if (!empty($_POST['birthday_date'])){
@@ -326,7 +337,7 @@ class Routeur
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0)
                         {
-                            $this->_chapterCtrl->chapter($_GET['id_chapter']);
+                            $this->_chapterCtrl->chapter(intval($_GET['id_chapter']));
                         }
                         else
                         {
@@ -340,7 +351,10 @@ class Routeur
                         {
                             if (!empty($_POST['author']) && !empty($_POST['comment']))
                             {
-                                $this->_commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                                $this->_commentCtrl->addComment(
+                                    intval($_GET['id_chapter']),
+                                    htmlspecialchars($_POST['author']),
+                                    htmlspecialchars($_POST['comment']));
                             }
                             else
                             {
@@ -387,7 +401,7 @@ class Routeur
                     elseif ($_GET['action'] == 'chapter')
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                            $this->_chapterCtrl->chapter($_GET['id_chapter']);
+                            $this->_chapterCtrl->chapter(intval($_GET['id_chapter']));
                         } else {
                             throw new Exception('Aucun identifiant de chapitre envoyé !');
                         }
@@ -397,7 +411,10 @@ class Routeur
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                                $this->_commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                                $this->_commentCtrl->addComment(
+                                    intval($_GET['id_chapter']),
+                                    htmlspecialchars($_POST['author']),
+                                    htmlspecialchars($_POST['comment']));
                             } else {
                                 throw new Exception('Tous les champs doivent être remplis !');
                             }
@@ -410,7 +427,7 @@ class Routeur
                     {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $this->_commentCtrl->reportingComment($_GET['id_chapter'], $_GET['id']);
+                                $this->_commentCtrl->reportingComment(intval($_GET['id_chapter']), intval($_GET['id']));
                             } else {
                                 throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                             }
@@ -421,7 +438,7 @@ class Routeur
                     // Page de MAJ des commentaires
                     elseif ($_GET['action'] == 'adminUpdateComment')
                     {
-                        $this->_commentCtrl->adminUpdateComment($_GET['id_chapter'], $_GET['id']);
+                        $this->_commentCtrl->adminUpdateComment(intval($_GET['id_chapter']), intval($_GET['id']));
                     }
                     // Mise à jour d'un commentaire
                     elseif ($_GET['action'] == 'updateComment')
@@ -432,7 +449,11 @@ class Routeur
                             {
                                 if ($_POST['author'] != NULL && $_POST['comment'] != NULL)
                                 {
-                                    $this->_commentCtrl->updateComment($_GET['id'], $_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                                    $this->_commentCtrl->updateComment(
+                                        intval($_GET['id']),
+                                        intval($_GET['id_chapter']),
+                                        htmlspecialchars($_POST['author']),
+                                        htmlspecialchars($_POST['comment']));
                                 }
                                 else
                                 {
@@ -477,7 +498,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updatePseudo'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $pseudo = htmlspecialchars($_POST['pseudo']);
                             //On vérifie que les champs ne sont pas vides
                             if (!empty($_POST['pseudo'])) {
@@ -513,7 +534,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateName'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $firstname = htmlspecialchars($_POST['firstname']);
                             $surname = htmlspecialchars($_POST['surname']);
                             //On vérifie que les champs ne sont pas vides
@@ -529,7 +550,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateEmail'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $email = htmlspecialchars($_POST['email']);
                             // On vérifie la Regex pour l'adresse email
                             if (!empty($_POST['email'])) {
@@ -552,7 +573,7 @@ class Routeur
                     elseif ($_GET['action'] == 'updateBirthday'){
                         if (isset($_GET['id_user']) && $_GET['id_user'] > 0) {
                             // Sécurité
-                            $id = $_GET['id_user'];
+                            $id = intval($_GET['id_user']);
                             $birthday = htmlspecialchars($_POST['birthday_date']);
                             //On vérifie que les champs ne sont pas vides
                             if (!empty($_POST['birthday_date'])){
@@ -597,7 +618,7 @@ class Routeur
                     // Affiche le chapitre avec ses commentaires
                     elseif ($_GET['action'] == 'chapter') {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
-                            $this->_chapterCtrl->chapter($_GET['id_chapter']);
+                            $this->_chapterCtrl->chapter(intval($_GET['id_chapter']));
                         } else {
                             throw new Exception('Aucun identifiant de chapitre envoyé !');
                         }
@@ -606,7 +627,10 @@ class Routeur
                     elseif ($_GET['action'] == 'addComment') {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                                $this->_commentCtrl->addComment($_GET['id_chapter'], $_POST['author'], $_POST['comment']);
+                                $this->_commentCtrl->addComment(
+                                    intval($_GET['id_chapter']),
+                                    htmlspecialchars($_POST['author']),
+                                    htmlspecialchars($_POST['comment']));
                             } else {
                                 throw new Exception('Tous les champs doivent être remplis !');
                             }
@@ -618,7 +642,7 @@ class Routeur
                     elseif ($_GET['action'] == 'report') {
                         if (isset($_GET['id_chapter']) && $_GET['id_chapter'] > 0) {
                             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                                $this->_commentCtrl->reportingComment($_GET['id_chapter'], $_GET['id']);
+                                $this->_commentCtrl->reportingComment(intval($_GET['id_chapter']), intval($_GET['id']));
                             } else {
                                 throw new Exception('Aucun identifiant de commentaire envoyé pour pouvoir le signaler!');
                             }
