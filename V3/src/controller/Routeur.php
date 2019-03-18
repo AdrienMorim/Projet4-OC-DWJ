@@ -372,6 +372,10 @@ class Routeur
                     {
                         $this->_userCtrl->logoutUser();
                     }
+                    else
+                    {
+                        $this->_dashbordCtrl->dashbord();
+                    }
                 }
                 // Retourne au Dashbord.
                 else
@@ -590,6 +594,10 @@ class Routeur
                     {
                         $this->_userCtrl->logoutUser();
                     }
+                    else
+                    {
+                        $this->_indexCtrl->home();
+                    }
                 }
                 // Retourne à l'index
                 else
@@ -689,6 +697,10 @@ class Routeur
                     // Deconnexion
                     elseif ($_GET['action'] == 'logout') {
                         $this->_userCtrl->logoutUser();
+                    }
+                    else
+                    {
+                        $this->_indexCtrl->home();
                     }
                 }
                 // Retourne à l'index.
